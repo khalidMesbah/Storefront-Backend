@@ -1,0 +1,2 @@
+- [ ]the Node application and Postgres database will run in the same VM.
+- 
