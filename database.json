@@ -1,16 +1,41 @@
 {
+    "defaultEnv": {
+        "ENV": "NODE_ENV"
+    },
     "dev": {
         "driver": "pg",
-        "host": "127.0.0.1",
-        "database": "books",
-        "user": "khalid",
-        "password": "password123"
+        "host": {
+            "ENV": "POSTGRES_HOST"
+        },
+        "port": {
+            "ENV": "POSTGRES_PORT"
+        },
+        "database": {
+            "ENV": "POSTGRES_DB"
+        },
+        "user": {
+            "ENV": "POSTGRES_USER"
+        },
+        "password": {
+            "ENV": "POSTGRES_PASSWORD"
+        }
     },
     "test": {
         "driver": "pg",
-        "host": "127.0.0.1",
-        "database": "fantasy_worlds_test",
-        "user": "khalid",
-        "password": "password123"
+        "host": {
+            "ENV": "POSTGRES_HOST"
+        },
+        "port": {
+            "ENV": "POSTGRES_PORT"
+        },
+        "database": {
+            "ENV": "POSTGRES_DB_TEST"
+        },
+        "user": {
+            "ENV": "POSTGRES_USER"
+        },
+        "password": {
+            "ENV": "POSTGRES_PASSWORD"
+        }
     }
 }
