@@ -1,7 +1,7 @@
-import dotenv from "dotenv";
+import dotenv from 'dotenv';
 // pool : a connection or set of connections to the database
 // pool is just a connection to the database.
-import { Pool } from "pg"; // postgres libirary
+import { Pool } from 'pg'; // postgres libirary
 
 /* The dotenv.config() line initializes the environment variables.
  You can't access the env vars unless this line exists in your code,
