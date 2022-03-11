@@ -30,7 +30,9 @@ app.use(helmet());
 // testing the database
 db.connect().then(async client => {
   try {
-    const res = await client.query('insert into ppl values(3,\'khaled\',21);');
+    const res = await client.query(
+      "insert into books(title,total_pages,author,type,summary) values('the purpose of life',100,'khalid Mesbah','life','fantastica');"
+    );
     console.log(res.rows, res.rowCount);
     // don't forget to release
     client.release();

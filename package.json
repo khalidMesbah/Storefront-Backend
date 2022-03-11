@@ -12,7 +12,8 @@
     "lint:fix": "eslint './src/**/*.ts' --fix",
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess \"node ./dist/server.js\"",
     "test": "npm run build && jasmine",
-    "migrate": "db-migrate up"
+    "migrate:up": "db-migrate up",
+    "migrate:down": "db-migrate down"
   },
   "author": "Khalid Mesbah",
   "license": "ISC",
