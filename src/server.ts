@@ -3,10 +3,11 @@ import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
+import errorMiddleware from './middlewares/error.middleware';
 
 // create an instance of the server
 const app: Application = express();
-const port = 3000;
+const PORT = 3000;
 
 // middleware to parse incoming requests
 app.use(express.json());
@@ -32,7 +33,9 @@ app.use(
 );
 
 // routing for /  path
-app.get('/', function (req: Request, res: Response) {
+// if you will not use a parameter write it like that _req
+app.get('/', function (_req: Request, res: Response) {
+  throw new Error('opsy');
   res.json({
     message: 'hello universe',
   });
@@ -45,8 +48,19 @@ app.post('/', function (req: Request, res: Response) {
   });
 });
 
-app.listen(port, function () {
-  console.log(`starting app on: ${port}`);
+// to handle errors inside the valid pathes
+app.use(errorMiddleware);
+
+// for handling the errors due to wrong pathes
+// but it at the end of your file
+app.use((_req: Request, res: Response) => {
+  res.status(404).json({
+    message: 'wrong path',
+  });
+});
+
+app.listen(PORT, () => {
+  console.log(`starting app on: ${PORT}`);
 });
 
 export default app;
