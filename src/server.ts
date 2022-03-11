@@ -4,10 +4,12 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import errorMiddleware from './middlewares/error.middleware';
-
+// import our environment variables
+import ENV from './middlewares/config';
 // create an instance of the server
 const app: Application = express();
-const PORT = 3000;
+// import the port from our environment variables
+const PORT = ENV.PORT || 3000;
 
 // middleware to parse incoming requests
 app.use(express.json());
@@ -34,14 +36,17 @@ app.use(
 
 // routing for /  path
 // if you will not use a parameter write it like that _req
-app.get('/', function (_req: Request, res: Response) {
-  throw new Error('opsy');
+app.get('/', (_req: Request, res: Response) => {
   res.json({
     message: 'hello universe',
   });
 });
 
-app.post('/', function (req: Request, res: Response) {
+app.get('/err', () => {
+  throw new Error('opsy error from the error middleware');
+});
+
+app.post('/', (req: Request, res: Response) => {
   res.json({
     message: 'hello universe from post',
     data: req.body,

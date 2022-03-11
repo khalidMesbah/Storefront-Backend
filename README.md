@@ -59,4 +59,4 @@ Before submitting your project, spin it up and test each endpoint. If each one r
 - helment:http security middleware
 - express.json:parse incoming requests
 - express rate limit:rate-limiting middleware for express
-- 
+- error middleware: to handle errors in a correct path
