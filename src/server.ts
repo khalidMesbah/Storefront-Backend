@@ -4,12 +4,16 @@ import morgan from 'morgan';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import errorMiddleware from './middlewares/error.middleware';
+import db from './databases/database';
+
 // import our environment variables
-import ENV from './middlewares/config';
+import env from './middlewares/config';
+
 // create an instance of the server
 const app: Application = express();
+
 // import the port from our environment variables
-const PORT = ENV.PORT || 3000;
+const PORT = env.port || 3000;
 
 // middleware to parse incoming requests
 app.use(express.json());
@@ -22,6 +26,21 @@ app.use(morgan('common'));
 
 // http security middleware
 app.use(helmet());
+
+// testing the database
+db.connect().then(async client => {
+  try {
+    const res = await client.query('insert into ppl values(3,\'khaled\',21);');
+    console.log(res.rows, res.rowCount);
+    // don't forget to release
+    client.release();
+    return res;
+  } catch (err) {
+    // don't forget to release
+    client.release();
+    console.error(err);
+  }
+});
 
 // a middleware for limiting the number of requests
 app.use(
