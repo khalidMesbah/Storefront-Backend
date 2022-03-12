@@ -7,7 +7,7 @@ import { Pool } from 'pg'; // postgres libirary
 
 // using pool to connect to a database
 // the parameters we need to connect to the database
-const client = new Pool({
+const Client = new Pool({
   host: env.host,
   port: parseInt(env.dbport as string, 10),
   database: env.db,
@@ -17,17 +17,17 @@ const client = new Pool({
 });
 
 // add listener if(err)=>log(err)
-client.on('error', (error: Error) => {
+Client.on('error', (error: Error) => {
   console.error(error.message);
 });
-client.on('connect', () => {
+Client.on('connect', () => {
   console.log('connected');
 });
-client.on('remove', () => {
+Client.on('remove', () => {
   console.log('removed');
 });
-client.on('acquire', () => {
+Client.on('acquire', () => {
   console.log('acquired');
 });
 
-export default client;
+export default Client;

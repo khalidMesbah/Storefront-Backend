@@ -31,7 +31,7 @@ app.use(helmet());
 db.connect().then(async client => {
   try {
     const res = await client.query(
-      "insert into books(title,total_pages,author,type,summary) values('the purpose of life',100,'khalid Mesbah','life','fantastica');"
+      "insert into books(title,total_pages,author,type,summary) values('life',100,'loda','life','fantastica');"
     );
     console.log(res.rows, res.rowCount);
     // don't forget to release
@@ -39,7 +39,7 @@ db.connect().then(async client => {
     return res;
   } catch (err) {
     // don't forget to release
-    client.release();
+    client.release(); // close the connection to the database
     console.error(err);
   }
 });

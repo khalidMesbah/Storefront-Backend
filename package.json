@@ -12,6 +12,7 @@
     "lint:fix": "eslint './src/**/*.ts' --fix",
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess \"node ./dist/server.js\"",
     "test": "npm run build && jasmine",
+    "dbtest": "ENV=test db-migrate --env test up && jasmine-ts && db-migrate db:drop test",
     "migrate:up": "db-migrate up",
     "migrate:down": "db-migrate down"
   },

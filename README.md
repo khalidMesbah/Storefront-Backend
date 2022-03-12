@@ -58,5 +58,13 @@ Before submitting your project, spin it up and test each endpoint. If each one r
 - morgan:request logger middleware
 - helment:http security middleware
 - express.json:parse incoming requests
-- express rate limit:rate-limiting middleware for express
+- express-rate-limit:rate-limiting middleware for express
 - error middleware: to handle errors in a correct path
+
+## Stack
+- Postgres for the database
+- Node/Express for the application logic
+- dotenv from npm for managing environment variables
+- db-migrate from npm for migrations
+- jsonwebtoken from npm for working with JWTs
+- jasmine from npm for testing
