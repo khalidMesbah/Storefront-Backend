@@ -5,6 +5,7 @@ import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import errorMiddleware from './middlewares/error.middleware';
 import db from './databases/database';
+import routes from './routes';
 
 // import our environment variables
 import env from './middlewares/config';
@@ -14,6 +15,9 @@ const app: Application = express();
 
 // import the port from our environment variables
 const PORT = env.port || 3000;
+
+// use our routes
+app.use('/api', routes);
 
 // middleware to parse incoming requests
 app.use(express.json());

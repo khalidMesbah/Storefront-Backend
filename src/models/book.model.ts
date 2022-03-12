@@ -3,18 +3,10 @@
 // The model is represented as a class, each book row in the database will be an instance of the book model.
 
 import Client from '../databases/database';
-
-export type Book = {
-  id: number;
-  title: string;
-  total_pages: number;
-  author: string;
-  type: string;
-  summary: string;
-};
+import Book from '../types/book.type';
 // models are a class in our code that can be used as a template to create items that are stored as rows in the table.
-
-export class BookStore {
+export default class BookStore {
+  // describe the table
   async index(): Promise<Book[]> {
     try {
       const conn = await Client.connect();
@@ -29,22 +21,26 @@ export class BookStore {
       throw new Error(`Could not get books. Error: ${err}`);
     }
   }
-
+  // get a specific book
   async show(id: string): Promise<Book> {
     try {
       const sql = 'SELECT * FROM books WHERE id=($1)';
+      // open a connection with the database
       const conn = await Client.connect();
 
+      // run the query
       const result = await conn.query(sql, [id]);
 
+      // close the connection to the database
       conn.release();
 
+      //  return the created user
       return result.rows[0];
     } catch (err) {
       throw new Error(`Could not find book ${id}. Error: ${err}`);
     }
   }
-
+  // create a new book
   async create(b: Book): Promise<Book> {
     try {
       const sql =
@@ -67,7 +63,7 @@ export class BookStore {
       throw new Error(`Could not add new book ${b.title}. Error: ${err}`);
     }
   }
-
+  // delete a book
   async delete(id: string): Promise<Book> {
     try {
       const sql = 'DELETE FROM books WHERE id=($1)';
@@ -84,6 +80,9 @@ export class BookStore {
       throw new Error(`Could not delete book ${id}. Error: ${err}`);
     }
   }
+
+  // update a book
+  // authenticate a book
 }
 /* 
 CREATE TABLE books (

@@ -1,5 +1,5 @@
 // Integration Test - Tests a flow or process in the application that spans multiple units of individual functions or classes.
-import { BookStore } from '../../models/book';
+import { BookStore } from '../../models/book.model';
 
 const store = new BookStore();
 
