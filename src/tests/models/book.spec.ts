@@ -1,5 +1,5 @@
 // Integration Test - Tests a flow or process in the application that spans multiple units of individual functions or classes.
-import { BookStore } from '../../models/book.model';
+import BookStore from '../../models/book.model';
 
 const store = new BookStore();
 
@@ -39,7 +39,6 @@ describe('Book Model', () => {
       title: 'Bridge to Terabithia',
       total_pages: 250,
       author: 'Katherine Paterson',
-      type: 'Childrens',
       id: 0,
       summary: '',
     });
@@ -48,7 +47,6 @@ describe('Book Model', () => {
       title: 'Bridge to Terabithia',
       total_pages: 250,
       author: 'Katherine Paterson',
-      type: 'Childrens',
       summary: '',
     });
   });
@@ -61,7 +59,6 @@ describe('Book Model', () => {
         title: 'Bridge to Terabithia',
         total_pages: 250,
         author: 'Katherine Paterson',
-        type: 'Childrens',
         summary: '',
       },
     ]);
@@ -74,7 +71,6 @@ describe('Book Model', () => {
       title: 'Bridge to Terabithia',
       total_pages: 250,
       author: 'Katherine Paterson',
-      type: 'Childrens',
       summary: '',
     });
   });

@@ -1,27 +1,29 @@
 // a model file with methods
 // the model file is defining what a book is for our application.
 // The model is represented as a class, each book row in the database will be an instance of the book model.
-
 import Client from '../databases/database';
-import Book from '../types/book.type';
+/*  Did you notice or wonder why its the books (plural) table in the database, but the book (singular) file for the model? That's because the database table will hold many books, but the model file is defining what a book is for our application. */
+import { Book } from './types/book.type';
 // models are a class in our code that can be used as a template to create items that are stored as rows in the table.
+/* 
+The model is represented as a class, each book row in the database will be an instance of the book model.
+ */
 export default class BookStore {
   // describe the table
+  // a method reading all the rows
   async index(): Promise<Book[]> {
     try {
       const conn = await Client.connect();
       const sql = 'SELECT * FROM books';
-
       const result = await conn.query(sql);
-
       conn.release();
-
       return result.rows;
     } catch (err) {
       throw new Error(`Could not get books. Error: ${err}`);
     }
   }
   // get a specific book
+  // a method for reading a specific row
   async show(id: string): Promise<Book> {
     try {
       const sql = 'SELECT * FROM books WHERE id=($1)';
@@ -34,13 +36,14 @@ export default class BookStore {
       // close the connection to the database
       conn.release();
 
-      //  return the created user
+      //  return the created book
       return result.rows[0];
     } catch (err) {
       throw new Error(`Could not find book ${id}. Error: ${err}`);
     }
   }
   // create a new book
+  // a method for creating a book
   async create(b: Book): Promise<Book> {
     try {
       const sql =
@@ -64,6 +67,7 @@ export default class BookStore {
     }
   }
   // delete a book
+  // a method for deleting a book
   async delete(id: string): Promise<Book> {
     try {
       const sql = 'DELETE FROM books WHERE id=($1)';

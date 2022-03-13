@@ -6,6 +6,7 @@ import rateLimit from 'express-rate-limit';
 import errorMiddleware from './middlewares/error.middleware';
 import db from './databases/database';
 import routes from './routes';
+import cors from 'cors';
 
 // import our environment variables
 import env from './middlewares/config';
@@ -25,6 +26,12 @@ app.use(express.json());
 // i don't know exactly what is this ?
 app.use(bodyParser.json());
 
+// add cors to make our api available for public
+const corsOptions = {
+  origin: 'http://weirdDomain.com',
+  optionSuccessStatus: 200,
+};
+app.use(cors(corsOptions));
 // http request logger middleware
 app.use(morgan('common'));
 
@@ -35,7 +42,7 @@ app.use(helmet());
 db.connect().then(async client => {
   try {
     const res = await client.query(
-      "insert into books(title,total_pages,author,type,summary) values('life',100,'loda','life','fantastica');"
+      "insert into books(title,total_pages,author,summary) values('life',100,'loda','fantastica');"
     );
     console.log(res.rows, res.rowCount);
     // don't forget to release
@@ -52,12 +59,19 @@ db.connect().then(async client => {
 app.use(
   rateLimit({
     windowMs: 10 * 60 * 1000, // 10 minutes
-    max: 10, // Limit each IP to 10 requests per `window` (here, per 15 minutes)
+    max: 200, // Limit each IP to 10 requests per `window` (here, per 15 minutes)
     standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
     legacyHeaders: false, // Disable the `X-RateLimit-*` headers
     message: 'too many requests from this ip,try again after a year',
   })
 );
+
+// testing cors
+app.get('/cors', cors(corsOptions), (_req: Request, res: Response) => {
+  res.json({
+    message: 'this message is availabe to the public thanks to cors middleware',
+  });
+});
 
 // routing for /  path
 // if you will not use a parameter write it like that _req

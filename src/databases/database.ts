@@ -13,21 +13,21 @@ const Client = new Pool({
   database: env.db,
   user: env.user,
   password: env.pass,
-  max: 4, // maximum number of requests
+  max: 100, // maximum number of requests
 });
 
 // add listener if(err)=>log(err)
 Client.on('error', (error: Error) => {
-  console.error(error.message);
+  console.log('error', error.message);
 });
 Client.on('connect', () => {
-  console.log('connected');
+  console.log('connect');
 });
 Client.on('remove', () => {
-  console.log('removed');
+  console.log('remove');
 });
 Client.on('acquire', () => {
-  console.log('acquired');
+  console.log('acquire');
 });
 
 export default Client;
