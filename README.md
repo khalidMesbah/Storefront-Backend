@@ -72,3 +72,4 @@ Before submitting your project, spin it up and test each endpoint. If each one r
 
 ## Tasks
 - express.json instead of body-parser
+- req.body doesn't work in the controllers

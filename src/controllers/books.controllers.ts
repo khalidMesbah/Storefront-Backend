@@ -1,21 +1,27 @@
-import { NextFunction, Request, Response } from 'express';
-import BookStore from '../models/book.model';
+import { Request, Response, NextFunction } from 'express';
+import BookModel from '../models/book.model';
+import { Book } from '../types/book.type';
 
-const bookStore = new BookStore();
+const controller = new BookModel();
+class Controller {
+  create = async (req: Request, res: Response, next: NextFunction) => {
+    const data: Book = {
+      title: 'the wonder',
+      author: 'khaled',
+      total_pages: 200,
+      summary: 'i love this book',
+    };
+    try {
+      const book = await controller.create(data);
+      res.json({
+        status: 'success',
+        msg: 'the book has been created',
+        data: { ...book },
+      });
+    } catch (error) {
+      next(error);
+    }
+  };
+}
 
-export const create = async (
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  try {
-    const book = await bookStore.create(req.body);
-    res.json({
-      status: 'success',
-      data: { ...book },
-      message: 'created succussfully',
-    });
-  } catch (error) {
-    next(error);
-  }
-};
+export default Controller;

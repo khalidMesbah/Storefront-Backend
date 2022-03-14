@@ -47,7 +47,6 @@ db.connect().then(async client => {
     console.log(res.rows);
     return res;
   } catch (err) {
-    client.release();
     console.error(err);
   }
 });

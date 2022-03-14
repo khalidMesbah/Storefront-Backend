@@ -9,7 +9,7 @@ const errorMiddleware = (
 ) => {
   res.status(error.status || 500).json({
     status: error.status || 500,
-    message: error.message || 'oooopppsss st went wrong!!',
+    message: error.message || 'oooopppsss something went wrong!!',
   });
 };
 

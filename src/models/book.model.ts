@@ -16,7 +16,7 @@ export default class BookStore {
   async index(): Promise<Book[]> {
     try {
       const conn = await Client.connect();
-      const sql = 'SELECT * FROM books';
+      const sql = 'SELECT * FROM books;';
       const result = await conn.query(sql);
       conn.release();
       return result.rows;
@@ -29,16 +29,12 @@ export default class BookStore {
   async show(id: string): Promise<Book> {
     try {
       const sql = 'SELECT * FROM books WHERE id=($1)';
-      // open a connection with the database
       const conn = await Client.connect();
 
-      // run the query
       const result = await conn.query(sql, [id]);
 
-      // close the connection to the database
       conn.release();
 
-      //  return the created book
       return result.rows[0];
     } catch (err) {
       throw new Error(`Could not find book ${id}. Error: ${err}`);
@@ -48,6 +44,7 @@ export default class BookStore {
   // a method for creating a book
   async create(b: Book): Promise<Book> {
     try {
+      console.log(`=>>>>>>>>>>>>`, b);
       const sql =
         'INSERT INTO books (title, author, total_pages, summary) VALUES($1, $2, $3, $4) RETURNING *';
       const conn = await Client.connect();

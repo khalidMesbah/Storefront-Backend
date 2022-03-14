@@ -1,7 +1,7 @@
 export type Book = {
-  id: number;
+  // id: number;
   title: string;
-  total_pages: number;
   author: string;
+  total_pages: number;
   summary: string;
 };

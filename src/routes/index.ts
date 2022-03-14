@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import booksroutes from './apis/books.routes';
-const routes = Router();
+const router = Router();
 
-routes.use('/books', booksroutes);
+router.use('/books', booksroutes);
 
-export default routes;
+export default router;
