@@ -68,3 +68,7 @@ Before submitting your project, spin it up and test each endpoint. If each one r
 - db-migrate from npm for migrations
 - jsonwebtoken from npm for working with JWTs
 - jasmine from npm for testing
+- morgan
+
+## Tasks
+- express.json instead of body-parser

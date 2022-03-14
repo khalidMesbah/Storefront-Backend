@@ -24,7 +24,7 @@ Client.on('connect', () => {
   console.log('connect');
 });
 Client.on('remove', () => {
-  console.log('remove');
+  console.log('release');
 });
 Client.on('acquire', () => {
   console.log('acquire');

@@ -17,13 +17,14 @@ const app: Application = express();
 // import the port from our environment variables
 const PORT = env.port || 3000;
 
+// add morgan
+// app.use(morgan);
+
 // use our routes
 app.use('/api', routes);
 
 // middleware to parse incoming requests
 app.use(express.json());
-
-// i don't know exactly what is this ?
 app.use(bodyParser.json());
 
 // add cors to make our api available for public
@@ -41,16 +42,12 @@ app.use(helmet());
 // testing the database
 db.connect().then(async client => {
   try {
-    const res = await client.query(
-      "insert into books(title,total_pages,author,summary) values('life',100,'loda','fantastica');"
-    );
-    console.log(res.rows, res.rowCount);
-    // don't forget to release
+    const res = await client.query('SELECT NOW()');
     client.release();
+    console.log(res.rows);
     return res;
   } catch (err) {
-    // don't forget to release
-    client.release(); // close the connection to the database
+    client.release();
     console.error(err);
   }
 });
@@ -106,5 +103,3 @@ app.use((_req: Request, res: Response) => {
 app.listen(PORT, () => {
   console.log(`starting app on: ${PORT}`);
 });
-
-export default app;

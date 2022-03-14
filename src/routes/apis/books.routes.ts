@@ -15,7 +15,7 @@ routes.get('/', (_req: Request, res: Response) => {
   }
 });
 
-routes.get('//:id', (_req: Request, res: Response) => {
+routes.get('/:id', (_req: Request, res: Response) => {
   try {
     res.send('this is the SHOW route');
   } catch (err) {
@@ -37,7 +37,7 @@ routes.post('/', (req: Request, res: Response) => {
   }
 });
 
-routes.put('//:id', (req: Request, res: Response) => {
+routes.put('/:id', (req: Request, res: Response) => {
   /*   const book: Book = {
     summary: req.body.summary,
     title: req.body.title,
@@ -50,7 +50,20 @@ routes.put('//:id', (req: Request, res: Response) => {
   }
 });
 
-routes.delete('//:id', (_req: Request, res: Response) => {
+routes.patch('/:id', (req: Request, res: Response) => {
+  /*   const book: Book = {
+      summary: req.body.summary,
+      title: req.body.title,
+    }; */
+  try {
+    res.send('this is the EDIT route');
+  } catch (err) {
+    res.status(400);
+    res.json(err);
+  }
+});
+
+routes.delete('/:id', (_req: Request, res: Response) => {
   try {
     res.send('this is the DELETE route');
   } catch (err) {
