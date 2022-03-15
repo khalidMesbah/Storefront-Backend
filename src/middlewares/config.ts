@@ -15,4 +15,6 @@ export default {
   dbport: process.env.POSTGRES_PORT,
   user: process.env.POSTGRES_USER,
   pass: process.env.POSTGRES_PASSWORD,
+  pepper: process.env.BCRYPT_PASSWORD,
+  salt: process.env.SLART_ROUNDS,
 };

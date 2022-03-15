@@ -10,7 +10,7 @@ import { User } from '../types/user.type';
 /* 
 The model is represented as a class, each book row in the database will be an instance of the book model.
  */
-
+import hash from '../utilities/hashPassword';
 import queries from '../queries/users.queries';
 
 export default class UserStore {
@@ -45,7 +45,7 @@ export default class UserStore {
       const result = await conn.query(sql, [
         u.firstName,
         u.lastName,
-        u.password,
+        hash(u.password),
       ]);
       conn.release();
       return result.rows[0];
@@ -61,7 +61,7 @@ export default class UserStore {
       const result = await conn.query(sql, [
         u.firstName,
         u.lastName,
-        u.password,
+        hash(u.password),
         id,
       ]);
       conn.release();

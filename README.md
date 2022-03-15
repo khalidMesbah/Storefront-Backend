@@ -3,6 +3,7 @@ Advanced Full-Stack Web Development Nanodegree Program
 > ## Functionalities
 - connect to a postgres database
 - make crud operations to the database using the api
+- incrypting passwords using bcrypt package
 - 
 
 > ## Endpoints
@@ -99,6 +100,7 @@ Advanced Full-Stack Web Development Nanodegree Program
 - helment : for securing the server
 - express.json : for parsing incoming requests
 - express-rate-limit : for limiting the number of requests to the server
+- bcrypt : for encrypting the passwords 
 
 
 ## Steps to Completion
