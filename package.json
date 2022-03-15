@@ -14,7 +14,8 @@
     "test": "npm run build && jasmine",
     "dbtest": "ENV=test db-migrate --env test up && jasmine-ts && db-migrate db:drop test",
     "migrate:up": "db-migrate up",
-    "migrate:down": "db-migrate down"
+    "migrate:down": "db-migrate down",
+    "migrate:reset": "db-migrate reset"
   },
   "author": "Khalid Mesbah",
   "license": "ISC",

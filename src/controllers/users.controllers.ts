@@ -1,7 +1,10 @@
 import { Request, Response, NextFunction } from 'express';
-import BookModel from '../models/book.model';
+import UserModel from '../models/user.model';
+
 import gr from '../utilities/generateRandom';
-const controller = new BookModel();
+
+const controller = new UserModel();
+
 class Controller {
   index = async (req: Request, res: Response, next: NextFunction) => {
     try {
@@ -15,7 +18,7 @@ class Controller {
   show = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const result = await controller.show(req.params.id as string);
-      if (typeof result === 'undefined') res.json("the book doesn't exist");
+      if (typeof result === 'undefined') res.json("the user doesn't exist");
       res.json(result);
     } catch (error) {
       next(error);
@@ -24,14 +27,11 @@ class Controller {
 
   create = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      // const book = await controller.create(req.body);
+      // const result = await controller.create(req.body);
       const result = await controller.create({
-        title: gr(false, false, Math.floor(Math.random() * 10 + 5)),
-        total_pages: parseInt(
-          gr(false, true, Math.floor(Math.random() * 900 + 10))
-        ),
-        author: gr(false, false, Math.floor(Math.random() * 10 + 5)),
-        summary: gr(false, false, Math.floor(Math.random() * 100 + 5)),
+        firstName: gr(false, false, Math.floor(Math.random() * 10 + 5)),
+        lastName: gr(false, false, Math.floor(Math.random() * 10 + 5)),
+        password: gr(true, false, Math.floor(Math.random() * 20 + 5)),
       });
       res.json(result);
     } catch (error) {
@@ -43,14 +43,11 @@ class Controller {
     try {
       // const result = await controller.update(req.params.id as string, req.body);
       const result = await controller.update(req.params.id as string, {
-        title: gr(false, false, Math.floor(Math.random() * 10 + 5)),
-        total_pages: parseInt(
-          gr(false, true, Math.floor(Math.random() * 900 + 10))
-        ),
-        author: gr(false, false, Math.floor(Math.random() * 10 + 5)),
-        summary: gr(false, false, Math.floor(Math.random() * 100 + 5)),
+        firstName: gr(false, false, Math.floor(Math.random() * 10 + 5)),
+        lastName: gr(false, false, Math.floor(Math.random() * 10 + 5)),
+        password: gr(true, false, Math.floor(Math.random() * 20 + 5)),
       });
-      if (typeof result === 'undefined') res.json("the book doesn't exist");
+      if (typeof result === 'undefined') res.json("the user doesn't exist");
       res.json(result);
     } catch (error) {
       next(error);
@@ -60,7 +57,7 @@ class Controller {
   delete = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const result = await controller.delete(req.params.id as string);
-      if (typeof result === 'undefined') res.json("the book doesn't exist");
+      if (typeof result === 'undefined') res.json("the user doesn't exist");
       res.json(result);
     } catch (error) {
       next(error);
