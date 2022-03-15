@@ -1,5 +1,5 @@
 import express, { Request, Response, Application } from 'express';
-import bodyParser from 'body-parser';
+// import bodyParser from 'body-parser';
 import morgan from 'morgan';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
@@ -7,34 +7,25 @@ import errorMiddleware from './middlewares/error.middleware';
 import db from './databases/database';
 import routes from './routes';
 import cors from 'cors';
-
-// import our environment variables
 import env from './middlewares/config';
 
-// create an instance of the server
 const app: Application = express();
-
-// import the port from our environment variables
 const PORT = env.port || 3000;
-
-// add morgan
-// app.use(morgan);
-
-// use our routes
-app.use('/api', routes);
-
-// middleware to parse incoming requests
-app.use(express.json());
-app.use(bodyParser.json());
-
 // add cors to make our api available for public
 const corsOptions = {
   origin: 'http://weirdDomain.com',
   optionSuccessStatus: 200,
 };
 app.use(cors(corsOptions));
+
+// middleware to parse incoming requests
+app.use(express.json());
+
+// use our routes
+app.use('/api', routes);
+
 // http request logger middleware
-app.use(morgan('common'));
+app.use(morgan('dev'));
 
 // http security middleware
 app.use(helmet());
@@ -65,7 +56,8 @@ app.use(
 // testing cors
 app.get('/cors', cors(corsOptions), (_req: Request, res: Response) => {
   res.json({
-    message: 'this message is availabe to the public thanks to cors middleware',
+    message:
+      'this message is availabe to the public thanks to the cors middleware',
   });
 });
 

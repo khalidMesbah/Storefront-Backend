@@ -11,8 +11,6 @@ import { Book } from '../types/book.type';
 The model is represented as a class, each book row in the database will be an instance of the book model.
  */
 export default class BookStore {
-  // describe the table
-  // a method reading all the rows
   async index(): Promise<Book[]> {
     try {
       const conn = await Client.connect();
@@ -24,8 +22,7 @@ export default class BookStore {
       throw new Error(`Could not get books. Error: ${err}`);
     }
   }
-  // get a specific book
-  // a method for reading a specific row
+
   async show(id: string): Promise<Book> {
     try {
       const sql = 'SELECT * FROM books WHERE id=($1)';
@@ -34,17 +31,14 @@ export default class BookStore {
       const result = await conn.query(sql, [id]);
 
       conn.release();
-
       return result.rows[0];
     } catch (err) {
       throw new Error(`Could not find book ${id}. Error: ${err}`);
     }
   }
-  // create a new book
-  // a method for creating a book
+
   async create(b: Book): Promise<Book> {
     try {
-      console.log(`=>>>>>>>>>>>>`, b);
       const sql =
         'INSERT INTO books (title, author, total_pages, summary) VALUES($1, $2, $3, $4) RETURNING *';
       const conn = await Client.connect();
@@ -65,8 +59,7 @@ export default class BookStore {
       throw new Error(`Could not add new book ${b.title}. Error: ${err}`);
     }
   }
-  // delete a book
-  // a method for deleting a book
+
   async delete(id: string): Promise<Book> {
     try {
       const sql = 'DELETE FROM books WHERE id=($1)';
@@ -87,12 +80,3 @@ export default class BookStore {
   // update a book
   // authenticate a book
 }
-/* 
-CREATE TABLE books (
-    id SERIAL PRIMARY KEY,
-    title VARCHAR(150),
-    total_pages integer,
-    author VARCHAR(255),
-    type VARCHAR(100),
-    summary text
-); */
