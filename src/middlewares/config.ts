@@ -17,4 +17,5 @@ export default {
   pass: process.env.POSTGRES_PASSWORD,
   pepper: process.env.BCRYPT_PASSWORD,
   salt: process.env.SLART_ROUNDS,
+  tokenSecret: process.env.TOKEN_SECRET,
 };

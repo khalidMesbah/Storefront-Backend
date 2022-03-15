@@ -2,7 +2,8 @@ import { Request, Response, NextFunction } from 'express';
 import UserModel from '../models/user.model';
 
 import gr from '../utilities/generateRandom';
-
+import jwt from 'jsonwebtoken';
+import env from '../middlewares/config';
 const controller = new UserModel();
 
 class Controller {
@@ -59,6 +60,21 @@ class Controller {
       const result = await controller.delete(req.params.id as string);
       if (typeof result === 'undefined') res.json("the user doesn't exist");
       res.json(result);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  authenticate = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const result = await controller.authenticate(
+        req.body.id,
+        req.body.password
+      );
+      const token = jwt.sign({ result }, env.tokenSecret as unknown as string);
+      if (!result)
+        res.status(401).json("sorry , the user couldn't be authenticated");
+      res.json({ ...result, token });
     } catch (error) {
       next(error);
     }

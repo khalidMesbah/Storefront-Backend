@@ -10,8 +10,12 @@ import { User } from '../types/user.type';
 /* 
 The model is represented as a class, each book row in the database will be an instance of the book model.
  */
+import bcrypt from 'bcrypt';
+import env from '../middlewares/config';
+
 import hash from '../utilities/hashPassword';
 import queries from '../queries/users.queries';
+import { Hash } from 'crypto';
 
 export default class UserStore {
   async index(): Promise<User[]> {
@@ -84,4 +88,28 @@ export default class UserStore {
   }
 
   // authenticate a user
+  async authenticate(id: string, password: string): Promise<User | null> {
+    try {
+      const conn = await Client.connect();
+      const sql = queries.authenticate;
+      const result = await conn.query(sql, [id]);
+
+      if (result.rows.length) {
+        const { password: hashPassword } = result.rows[0];
+        const isSamePassword: boolean = bcrypt.compareSync(
+          `${password}${env.pepper}`,
+          hashPassword
+        );
+        if (isSamePassword) {
+          const userinfo = await conn.query(queries.getUser, [id]);
+          return userinfo.rows[0];
+        }
+      }
+
+      conn.release();
+      return null;
+    } catch (err) {
+      throw new Error(`Could not authenticate user ${id}. Error: ${err}`);
+    }
+  }
 }
