@@ -1,17 +1,105 @@
-# Storefront Backend Project
+# Storefront-Backend-Project
+Advanced Full-Stack Web Development Nanodegree Program
+> ## Functionalities
+- connect to a postgres database
+- make crud operations to the database using the api
+- 
 
-## Getting Started
+> ## Endpoints
+1. `/` : the endpoint that is responsible for displaying the home page
 
-This repo contains a basic Node and Express app to get you started in constructing an API. To get started, clone this repo and run `yarn` in your terminal at the project root.
+   usage
 
-## Required Technologies
-Your application must make use of the following libraries:
-- Postgres for the database
-- Node/Express for the application logic
-- dotenv from npm for managing environment variables
-- db-migrate from npm for migrations
-- jsonwebtoken from npm for working with JWTs
-- jasmine from npm for testing
+   <a href="http://localhost:3000/" target="_blank">http://localhost:3000/</a> 
+
+2. `/api/resize` : the endpoint that is responsible for resizing the image
+
+   usage
+
+   <a href="http://localhost:3000/api/resize?width=theWidth&height=theHeight&image=imageName" target="_blank">http://localhost:3000/api/resize?width=theWidth&height=theHeight&image=imageName</a>
+
+   example
+
+   <a href="http://localhost:3000/api/resize?width=1200&height=600&image=fjord.jpg" target="_blank">http://localhost:3000/api/resize?width=1200&height=600&image=fjord.jpg</a>
+
+3. `api/images` : the endpoint that is responsible for displaying the available images
+
+   <a href="http://localhost:3000/api/images" target="_blank">http://localhost:3000/api/images</a>
+
+4. `api/image/:id` : the endpoint that is responsible for displaying a specific image
+
+   <a href="http://localhost:3000/api/image/1" target="_blank">http://localhost:3000/api/image/1</a>
+
+   <a href="http://localhost:3000/api/image/5" target="_blank">http://localhost:3000/api/image/5</a>
+
+   <a href="http://localhost:3000/api/image/8" target="_blank">http://localhost:3000/api/image/8</a>
+
+   <a href="http://localhost:3000/api/image/0" target="_blank">http://localhost:3000/api/image/0</a>
+
+   <a href="http://localhost:3000/api/image" target="_blank">http://localhost:3000/api/image</a>
+
+
+> ## Scripts
+
+### install all the dependencies
+``` bash
+    npm i
+```
+
+### build : to compile typescript
+
+``` bash
+    npm run build
+```
+
+### run : to run the server
+
+``` bash
+    npm run start
+```
+
+### build and run : to compile typescript and run the server 
+
+``` bash
+    npm run start:prod
+```
+
+### prettify : to format the code
+
+``` bash
+    npm run prettier
+```
+
+### lint : to accelerate development and reduce errors
+
+``` bash
+    npm run lint
+```
+
+### test : to test our code        
+
+``` bash
+    npm run test
+```
+
+## Technologies / Stack
+- Postgres
+- Node.js
+- Express
+- TypeScript
+- [ ] ejs - incoming
+
+## Middlewares
+- dotenv : for managing environment variables
+- db-migrate : for migrations
+- pg : for connecting to a database
+- jsonwebtoken : for working with JWTs
+- jasmine : for testing
+- morgan : for logging incoming requests to the server
+- helment : for securing the server
+- express.json : for parsing incoming requests
+- express-rate-limit : for limiting the number of requests to the server
+
 
 ## Steps to Completion
 
@@ -53,23 +141,4 @@ Before submitting, make sure that your project is complete with a `README.md`. Y
 
 Before submitting your project, spin it up and test each endpoint. If each one responds with data that matches the data shapes from the `REQUIREMENTS.md`, it is ready for submission!
 
-
-## middlewares
-- morgan:request logger middleware
-- helment:http security middleware
-- express.json:parse incoming requests
-- express-rate-limit:rate-limiting middleware for express
-- error middleware: to handle errors in a correct path
-
-## Stack
-- Postgres for the database
-- Node/Express for the application logic
-- dotenv from npm for managing environment variables
-- db-migrate from npm for migrations
-- jsonwebtoken from npm for working with JWTs
-- jasmine from npm for testing
-- morgan
-
 ## Tasks
-- express.json instead of body-parser
-- req.body doesn't work in the controllers

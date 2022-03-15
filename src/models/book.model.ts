@@ -10,11 +10,14 @@ import { Book } from '../types/book.type';
 /* 
 The model is represented as a class, each book row in the database will be an instance of the book model.
  */
+
+import queries from '../queries/books.queries';
+
 export default class BookStore {
   async index(): Promise<Book[]> {
     try {
       const conn = await Client.connect();
-      const sql = 'SELECT * FROM books;';
+      const sql = queries.getBooks;
       const result = await conn.query(sql);
       conn.release();
       return result.rows;
@@ -25,11 +28,9 @@ export default class BookStore {
 
   async show(id: string): Promise<Book> {
     try {
-      const sql = 'SELECT * FROM books WHERE id=($1)';
       const conn = await Client.connect();
-
+      const sql = queries.getBook;
       const result = await conn.query(sql, [id]);
-
       conn.release();
       return result.rows[0];
     } catch (err) {
@@ -39,44 +40,50 @@ export default class BookStore {
 
   async create(b: Book): Promise<Book> {
     try {
-      const sql =
-        'INSERT INTO books (title, author, total_pages, summary) VALUES($1, $2, $3, $4) RETURNING *';
       const conn = await Client.connect();
-
+      const sql = queries.addBook;
       const result = await conn.query(sql, [
         b.title,
         b.author,
         b.total_pages,
         b.summary,
       ]);
-
-      const book = result.rows[0];
-
       conn.release();
-
-      return book;
+      return result.rows[0];
     } catch (err) {
       throw new Error(`Could not add new book ${b.title}. Error: ${err}`);
     }
   }
 
+  async update(id: string, data: Book): Promise<Book> {
+    try {
+      const conn = await Client.connect();
+      const sql = queries.updateBook;
+      const result = await conn.query(sql, [
+        data.title,
+        data.author,
+        data.total_pages,
+        data.summary,
+        id,
+      ]);
+      conn.release();
+      return result.rows[0];
+    } catch (err) {
+      throw new Error(`Could not update book ${id}. Error: ${err}`);
+    }
+  }
+
   async delete(id: string): Promise<Book> {
     try {
-      const sql = 'DELETE FROM books WHERE id=($1)';
       const conn = await Client.connect();
-
+      const sql = queries.removeBook;
       const result = await conn.query(sql, [id]);
-
-      const book = result.rows[0];
-
       conn.release();
-
-      return book;
+      return result.rows[0];
     } catch (err) {
       throw new Error(`Could not delete book ${id}. Error: ${err}`);
     }
   }
 
-  // update a book
   // authenticate a book
 }

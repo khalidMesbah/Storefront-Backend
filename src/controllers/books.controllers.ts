@@ -31,6 +31,16 @@ class Controller {
     }
   };
 
+  update = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const result = await controller.update(req.params.id as string, req.body);
+      if (typeof result === 'undefined') res.json("the book doesn't exist");
+      res.json({ ...result });
+    } catch (error) {
+      next(error);
+    }
+  };
+
   delete = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const result = await controller.delete(req.params.id as string);
