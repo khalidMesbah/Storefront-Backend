@@ -15,7 +15,6 @@ import env from '../middlewares/config';
 
 import hash from '../utilities/hashPassword';
 import queries from '../queries/users.queries';
-import { Hash } from 'crypto';
 
 export default class UserStore {
   async index(): Promise<User[]> {
@@ -93,16 +92,20 @@ export default class UserStore {
       const conn = await Client.connect();
       const sql = queries.authenticate;
       const result = await conn.query(sql, [id]);
-
+      console.log(result.rows[0].password);
+      console.log(password);
+      console.log(password + env.pepper);
+      console.log(result.rows[0].password === password);
+      console.log(`===================`);
+      console.log(
+        bcrypt.compareSync(password + env.pepper, result.rows[0].password)
+      );
+      console.log(`===================`);
       if (result.rows.length) {
-        const { password: hashPassword } = result.rows[0];
-        const isSamePassword: boolean = bcrypt.compareSync(
-          `${password}${env.pepper}`,
-          hashPassword
-        );
-        if (isSamePassword) {
-          const userinfo = await conn.query(queries.getUser, [id]);
-          return userinfo.rows[0];
+        const user = result.rows[0];
+        if (bcrypt.compareSync(`${password}${env.pepper}`, user.password)) {
+          console.log(user);
+          return user;
         }
       }
 

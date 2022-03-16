@@ -12,6 +12,6 @@ routes
   .patch(controller.update)
   .delete(controller.delete);
 
-routes.get('/auth', controller.authenticate);
+routes.post('/auth', controller.authenticate);
 
 export default routes;

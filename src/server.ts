@@ -24,6 +24,29 @@ app.use(express.json());
 // use our routes
 app.use('/api', routes);
 
+// import authenticateToken from './middlewares/authenticateToken';
+import jwt from 'jsonwebtoken';
+
+// const posts = [
+//   { id: 1, username: 'khaled' },
+//   { id: 2, username: 'sara' },
+// ];
+app.post('/auth', (req: Request, res: Response) => {
+  try {
+    const token = req.header('Authorization');
+    const data = jwt.verify(token as string, env.tokenSecret as string);
+    res.json(data);
+  } catch (error) {
+    res.json({ user: false });
+  }
+});
+
+app.post('/log', (req: Request, res: Response) => {
+  const theToken = jwt.sign(req.body, env.tokenSecret as string, {
+    expiresIn: '1h',
+  });
+  res.json(theToken);
+});
 // http request logger middleware
 app.use(morgan('dev'));
 
@@ -71,13 +94,6 @@ app.get('/', (_req: Request, res: Response) => {
 
 app.get('/err', () => {
   throw new Error('opsy error from the error middleware');
-});
-
-app.post('/', (req: Request, res: Response) => {
-  res.json({
-    message: 'hello universe from post',
-    data: req.body,
-  });
 });
 
 // to handle errors inside the valid pathes
