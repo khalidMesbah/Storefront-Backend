@@ -1,19 +1,9 @@
+###################USERS###################
 ### get all the users
 GET http://localhost:3000/api/users
 
-### get a user
-GET http://localhost:3000/api/users/87747103-b5f0-43e8-b52a-9dbf46618676
-
-### get a user
-POST http://localhost:3000/api/users/auth
-Content-Type: application/json
-
-{
-  "id": "41e68118-ad85-45f8-8345-65c58cc878a1",
-  "firstname": "MQrdMbhm",
-  "lastname": "IsiVoG",
-  "password": "password"
-}
+### get all the users
+GET http://localhost:3000/api/users/0164ba30-65d8-4d13-a17d-71bc1d7eb61e
 
 
 ### add a user
@@ -21,21 +11,32 @@ POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-  "firstName": "MQrdMbhm",
-  "lastName": "IsiVoG",
-  "password": "password"
+  "firstName": "khaled",
+  "lastName": "mesbah",
+  "password": "khalidSF46"
+}
+
+### authenticate a user
+POST http://localhost:3000/api/users/auth
+Content-Type: application/json
+
+{
+  "id": "4a8e3cf5-6d17-439a-9048-5039d623464e",
+  "firstname": "hager",
+  "lastname": "gaber",
+  "password": "hagesr"
 }
 
 
 ### update a user
-PUT  http://localhost:3000/api/users/39a6ea3e-c560-4100-9f1a-90c030d11dc7
+PUT  http://localhost:3000/api/users/0164ba30-65d8-4d13-a17d-71bc1d7eb61e
+Content-Type: application/json
 
-### gets all the books
-GET http://localhost:3000/api/books
-
-### get a book
-GET http://localhost:3000/api/books/2179b25e-4bb6-407e-a0d1-b6432206ccb2
-
+{
+  "firstName": "fasdf",
+  "lastName": "mesfsadfbah",
+  "password": "soadfa"
+}
 
 ### logging
 POST  http://localhost:3000/log
@@ -47,4 +48,13 @@ Content-Type: application/json
 
 ###
 POST  http://localhost:3000/auth
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJzYXJhIiwiaWF0IjoxNjQ3NDQ2NDc2LCJleHAiOjE2NDc0NTAwNzZ9.jB-2625xxyAaTKQoWSQImDHs65w-W48YZNke_QGS75I
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWQwYzExOGYtZTc0Ni00OWYxLTk4OWMtYmI2YTdkZWNkODYyIiwiZmlyc3RuYW1lIjoia2hhbGVkIiwibGFzdG5hbWUiOiJtZXNiYWgiLCJwYXNzd29yZCI6IiQyYiQxMCRkdnNIeVpLQ21SQ09YQlcyTW0uMU51STJVblJONHhkS2hscC54VDNWNkJaUnZxRnJVcFFlNiJ9LCJpYXQiOjE2NDc1MjYwNDV9.FOHgjMa2QxAZua9OeQs16AtiUmHc_5nTjTLPMCrPTwc
+###
+POST  http://localhost:3000/api/users/auth
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWQwYzExOGYtZTc0Ni00OWYxLTk4OWMtYmI2YTdkZWNkODYyIiwiZmlyc3RuYW1lIjoia2hhbGVkIiwibGFzdG5hbWUiOiJtZXNiYWgiLCJwYXNzd29yZCI6IiQyYiQxMCRkdnNIeVpLQ21SQ09YQlcyTW0uMU51STJVblJONHhkS2hscC54VDNWNkJaUnZxRnJVcFFlNiJ9LCJpYXQiOjE2NDc1MjYwNDV9.FOHgjMa2QxAZua9OeQs16AtiUmHc_5nTjTLPMCrPTwc
+
+
+
+
+###################PRODUCTS###################
+GET http://localhost:3000/api/products

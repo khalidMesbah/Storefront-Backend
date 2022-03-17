@@ -4,7 +4,14 @@ Advanced Full-Stack Web Development Nanodegree Program
 - connect to a postgres database
 - make crud operations to the database using the api
 - incrypting passwords using bcrypt package
-- 
+
+
+## how to setup and connect to the database
+
+## what ports the backend and database are running on
+
+## package installation instructions
+
 
 > ## Endpoints
 1. `/` : the endpoint that is responsible for displaying the home page

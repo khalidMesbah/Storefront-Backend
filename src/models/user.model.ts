@@ -92,15 +92,7 @@ export default class UserStore {
       const conn = await Client.connect();
       const sql = queries.authenticate;
       const result = await conn.query(sql, [id]);
-      console.log(result.rows[0].password);
-      console.log(password);
-      console.log(password + env.pepper);
-      console.log(result.rows[0].password === password);
-      console.log(`===================`);
-      console.log(
-        bcrypt.compareSync(password + env.pepper, result.rows[0].password)
-      );
-      console.log(`===================`);
+
       if (result.rows.length) {
         const user = result.rows[0];
         if (bcrypt.compareSync(`${password}${env.pepper}`, user.password)) {
