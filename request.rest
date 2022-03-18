@@ -7,7 +7,7 @@ GET http://localhost:3000/api/users
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMGU2MmEyMWUtNTExOS00OTg2LThjMzQtNmQ3ZDM1NDhhNWJhIiwiZmlyc3RuYW1lIjoic2RmYSIsImxhc3RuYW1lIjoibWVzYmFoIiwicGFzc3dvcmQiOiIkMmIkMTAkL3JIUWkwU2tNL0tVcU5XL3VNV1ZEZXBLSUhwWGV0VE9aYmNnckNCWGgxVGhXeVB4aHl2YUMifSwiaWF0IjoxNjQ3NjM3NjMzfQ.V1PIFKgysBIyRTUS8CmVaJGDkppwi4QMQ1LI_mcvATY
 
 ### get a specific user with id
-GET http://localhost:3000/api/users/0e62a21e-5119-4986-8c34-6d7d3548a5ba
+GET http://localhost:3000/api/users/d5d17c8e-d6d6-444a-8415-7000c3dd14a3
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMGU2MmEyMWUtNTExOS00OTg2LThjMzQtNmQ3ZDM1NDhhNWJhIiwiZmlyc3RuYW1lIjoic2RmYSIsImxhc3RuYW1lIjoibWVzYmFoIiwicGFzc3dvcmQiOiIkMmIkMTAkL3JIUWkwU2tNL0tVcU5XL3VNV1ZEZXBLSUhwWGV0VE9aYmNnckNCWGgxVGhXeVB4aHl2YUMifSwiaWF0IjoxNjQ3NjM3NjMzfQ.V1PIFKgysBIyRTUS8CmVaJGDkppwi4QMQ1LI_mcvATY
 
 
@@ -22,12 +22,12 @@ Content-Type: application/json
 }
 
 ### update a user
-PUT  http://localhost:3000/api/users/0e62a21e-5119-4986-8c34-6d7d3548a5ba
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMGU2MmEyMWUtNTExOS00OTg2LThjMzQtNmQ3ZDM1NDhhNWJhIiwiZmlyc3RuYW1lIjoic2RmYSIsImxhc3RuYW1lIjoibWVzYmFoIiwicGFzc3dvcmQiOiIkMmIkMTAkL3JIUWkwU2tNL0tVcU5XL3VNV1ZEZXBLSUhwWGV0VE9aYmNnckNCWGgxVGhXeVB4aHl2YUMifSwiaWF0IjoxNjQ3NjM3NjMzfQ.V1PIFKgysBIyRTUS8CmVaJGDkppwi4QMQ1LI_mcvATY
+PUT  http://localhost:3000/api/users/d5d17c8e-d6d6-444a-8415-7000c3dd14a3
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiZDVkMTdjOGUtZDZkNi00NDRhLTg0MTUtNzAwMGMzZGQxNGEzIiwiZmlyc3RuYW1lIjoib3NhbWEiLCJsYXN0bmFtZSI6Im1lc2JhaCIsInBhc3N3b3JkIjoiJDJiJDEwJHhVMTZ3WVhRZHdTemZTVmlRSUMwWC4vclhBTnVlOTVkdnZFSndPa29zd21RdEtwSkR6NGd5In0sImlhdCI6MTY0NzYzODMyMn0.DeTRXhGBiFCxa9l48Q29uxTQHZgCG7aYDzDrFJQ9iU0
 Content-Type: application/json
 
 {
-  "firstname": "khaled",
+  "firstname": "kahled",
   "lastname": "mesbah",
   "password": "ya"
 }

@@ -23,15 +23,6 @@ function parseJwt(token: string) {
 class Controller {
   index = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const authorizationHeader = req.headers.authorization as string;
-      const token = authorizationHeader.split(' ')[1];
-      jwt.verify(token, env.tokenSecret as string);
-    } catch (err) {
-      res.status(401);
-      res.json('Access denied, invalid token');
-      return;
-    }
-    try {
       const result = await controller.index();
       res.json(result);
     } catch (error) {
@@ -40,15 +31,6 @@ class Controller {
   };
 
   show = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const authorizationHeader = req.headers.authorization as string;
-      const token = authorizationHeader.split(' ')[1];
-      jwt.verify(token, env.tokenSecret as string);
-    } catch (err) {
-      res.status(401);
-      res.json('Access denied, invalid token');
-      return;
-    }
     try {
       const result = await controller.show(req.params.id as string);
       if (typeof result === 'undefined') res.json("the user doesn't exist");
@@ -69,21 +51,12 @@ class Controller {
   };
 
   update = async (req: Request, res: Response, next: NextFunction) => {
-    // check if the user is a real user
-    let token;
-    try {
-      const authorizationHeader = req.headers.authorization as string;
-      token = authorizationHeader.split(' ')[1];
-      jwt.verify(token, env.tokenSecret as string);
-    } catch (err) {
-      res.status(401);
-      res.json('Access denied, invalid token');
-      return;
-    }
     // check if the user is the same user that will be updated
     try {
       const userInfo = await controller.authenticate(req.params.id);
-      const tokenInfo = parseJwt(token);
+      const tokenInfo = parseJwt(
+        String(req.headers.authorization).split(' ')[1] as string
+      );
       console.log(`🚀🔥👉 ⚡ Controller ⚡ update= ⚡ userInfo`, userInfo);
       console.log(
         `🚀🔥👉 ⚡ Controller ⚡ update= ⚡ tokenInfo.user`,

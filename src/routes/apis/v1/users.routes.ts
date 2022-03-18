@@ -1,15 +1,18 @@
 import { Router } from 'express';
 import Controller from '../../../handlers/users.controllers';
-
+import authenticateToken from '../../../middlewares/authenticateToken';
 const controller = new Controller();
 const routes = Router();
 
-routes.route('/').get(controller.index).post(controller.create);
+routes
+  .route('/')
+  .get(authenticateToken, controller.index)
+  .post(controller.create);
 routes
   .route('/:id')
-  .get(controller.show)
-  .put(controller.update)
-  .patch(controller.update)
-  .delete(controller.delete);
+  .get(authenticateToken, controller.show)
+  .put(authenticateToken, controller.update)
+  .patch(authenticateToken, controller.update)
+  .delete(authenticateToken, controller.delete);
 
 export default routes;
