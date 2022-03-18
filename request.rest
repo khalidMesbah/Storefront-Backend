@@ -4,11 +4,11 @@
 
 ### get all the users
 GET http://localhost:3000/api/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMGU2MmEyMWUtNTExOS00OTg2LThjMzQtNmQ3ZDM1NDhhNWJhIiwiZmlyc3RuYW1lIjoic2RmYSIsImxhc3RuYW1lIjoibWVzYmFoIiwicGFzc3dvcmQiOiIkMmIkMTAkL3JIUWkwU2tNL0tVcU5XL3VNV1ZEZXBLSUhwWGV0VE9aYmNnckNCWGgxVGhXeVB4aHl2YUMifSwiaWF0IjoxNjQ3NjM3NjMzfQ.V1PIFKgysBIyRTUS8CmVaJGDkppwi4QMQ1LI_mcvATY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNGQ0YjhlNzQtMWQyNC00MTE2LWI5ZTctMzFhODk4Y2JlN2QxIiwiZmlyc3RuYW1lIjoibG9kYSIsImxhc3RuYW1lIjoic2YiLCJwYXNzd29yZCI6IiQyYiQxMCR4NGcycDZ1N3l0NWJNYXpBRWJkVVV1YkVtYmUyb2w4a3pOQUtGd3NJOUtZdUJFQm9sMDhKYSJ9LCJpYXQiOjE2NDc2Mzg0NTZ9.rZ9qHqjCfO0ULN7RfWMTVwwLF_kDp8XeCMaNbYwI2KA
 
 ### get a specific user with id
-GET http://localhost:3000/api/users/d5d17c8e-d6d6-444a-8415-7000c3dd14a3
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMGU2MmEyMWUtNTExOS00OTg2LThjMzQtNmQ3ZDM1NDhhNWJhIiwiZmlyc3RuYW1lIjoic2RmYSIsImxhc3RuYW1lIjoibWVzYmFoIiwicGFzc3dvcmQiOiIkMmIkMTAkL3JIUWkwU2tNL0tVcU5XL3VNV1ZEZXBLSUhwWGV0VE9aYmNnckNCWGgxVGhXeVB4aHl2YUMifSwiaWF0IjoxNjQ3NjM3NjMzfQ.V1PIFKgysBIyRTUS8CmVaJGDkppwi4QMQ1LI_mcvATY
+GET http://localhost:3000/api/users/4d4b8e74-1d24-4116-b9e7-31a898cbe7d1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNGQ0YjhlNzQtMWQyNC00MTE2LWI5ZTctMzFhODk4Y2JlN2QxIiwiZmlyc3RuYW1lIjoibG9kYSIsImxhc3RuYW1lIjoic2YiLCJwYXNzd29yZCI6IiQyYiQxMCR4NGcycDZ1N3l0NWJNYXpBRWJkVVV1YkVtYmUyb2w4a3pOQUtGd3NJOUtZdUJFQm9sMDhKYSJ9LCJpYXQiOjE2NDc2Mzg0NTZ9.rZ9qHqjCfO0ULN7RfWMTVwwLF_kDp8XeCMaNbYwI2KA
 
 
 ### add a user
@@ -22,15 +22,20 @@ Content-Type: application/json
 }
 
 ### update a user
-PUT  http://localhost:3000/api/users/d5d17c8e-d6d6-444a-8415-7000c3dd14a3
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiZDVkMTdjOGUtZDZkNi00NDRhLTg0MTUtNzAwMGMzZGQxNGEzIiwiZmlyc3RuYW1lIjoib3NhbWEiLCJsYXN0bmFtZSI6Im1lc2JhaCIsInBhc3N3b3JkIjoiJDJiJDEwJHhVMTZ3WVhRZHdTemZTVmlRSUMwWC4vclhBTnVlOTVkdnZFSndPa29zd21RdEtwSkR6NGd5In0sImlhdCI6MTY0NzYzODMyMn0.DeTRXhGBiFCxa9l48Q29uxTQHZgCG7aYDzDrFJQ9iU0
+PUT  http://localhost:3000/api/users/4d4b8e74-1d24-4116-b9e7-31a898cbe7d1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNGQ0YjhlNzQtMWQyNC00MTE2LWI5ZTctMzFhODk4Y2JlN2QxIiwiZmlyc3RuYW1lIjoia2FobGVkIiwibGFzdG5hbWUiOiJtZXNiYWgiLCJwYXNzd29yZCI6IiQyYiQxMCRpLjFORGJGSHZJdnZVSWtYOUJNZHMuazM2eXZrTjFjbnhKUU0uNk9nLkFvb3FnSktzeWcuVyJ9LCJpYXQiOjE2NDc2Mzg1MDd9.rzapUoibphE41fExxVhgEJCPZ9Bg8THoqxkC_JU7PJw
 Content-Type: application/json
 
 {
-  "firstname": "kahled",
+  "firstname": "sadfsadfsdf",
   "lastname": "mesbah",
   "password": "ya"
 }
+
+### delete a user
+DELETE   http://localhost:3000/api/users/4d4b8e74-1d24-4116-b9e7-31a898cbe7d1
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiZDVkMTdjOGUtZDZkNi00NDRhLTg0MTUtNzAwMGMzZGQxNGEzIiwiZmlyc3RuYW1lIjoib3NhbWEiLCJsYXN0bmFtZSI6Im1lc2JhaCIsInBhc3N3b3JkIjoiJDJiJDEwJHhVMTZ3WVhRZHdTemZTVmlRSUMwWC4vclhBTnVlOTVkdnZFSndPa29zd21RdEtwSkR6NGd5In0sImlhdCI6MTY0NzYzODMyMn0.DeTRXhGBiFCxa9l48Q29uxTQHZgCG7aYDzDrFJQ9iU0
+
 
 ########PRODUCTS######PRODUCTS########PRODUCTS######
 ########PRODUCTS######PRODUCTS########PRODUCTS######

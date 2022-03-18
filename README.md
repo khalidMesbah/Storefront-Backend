@@ -1,50 +1,27 @@
-# Storefront-Backend-Project
+# Storefront Backend API
 Advanced Full-Stack Web Development Nanodegree Program
-> ## Functionalities
-- connect to a postgres database
-- make crud operations to the database using the api
-- incrypting passwords using bcrypt package
 
+> ## About The Project
+A RESTFUL API For an e-commerce backend based on three models: Products, Orders and Users.
 
-## how to setup and connect to the database
+A detailed list of the endpoints and actions available can be found in the REQUIREMENTS.md file.
 
-## what ports the backend and database are running on
+> ## Databases Configurations
+We are using postgresql as our object-relational database management system to deal with the databases.
 
-## package installation instructions
+we need to make two databases:-
+- store_dev : for development
+- store_test : for testing
 
-
-> ## Endpoints
-1. `/` : the endpoint that is responsible for displaying the home page
-
-   usage
-
-   <a href="http://localhost:3000/" target="_blank">http://localhost:3000/</a> 
-
-2. `/api/resize` : the endpoint that is responsible for resizing the image
-
-   usage
-
-   <a href="http://localhost:3000/api/resize?width=theWidth&height=theHeight&image=imageName" target="_blank">http://localhost:3000/api/resize?width=theWidth&height=theHeight&image=imageName</a>
-
-   example
-
-   <a href="http://localhost:3000/api/resize?width=1200&height=600&image=fjord.jpg" target="_blank">http://localhost:3000/api/resize?width=1200&height=600&image=fjord.jpg</a>
-
-3. `api/images` : the endpoint that is responsible for displaying the available images
-
-   <a href="http://localhost:3000/api/images" target="_blank">http://localhost:3000/api/images</a>
-
-4. `api/image/:id` : the endpoint that is responsible for displaying a specific image
-
-   <a href="http://localhost:3000/api/image/1" target="_blank">http://localhost:3000/api/image/1</a>
-
-   <a href="http://localhost:3000/api/image/5" target="_blank">http://localhost:3000/api/image/5</a>
-
-   <a href="http://localhost:3000/api/image/8" target="_blank">http://localhost:3000/api/image/8</a>
-
-   <a href="http://localhost:3000/api/image/0" target="_blank">http://localhost:3000/api/image/0</a>
-
-   <a href="http://localhost:3000/api/image" target="_blank">http://localhost:3000/api/image</a>
+``` sql
+CREATE USER userName WITH PASSWORD 'userPassword';
+CREATE DATABASE store_dev;
+CREATE DATABASE store_test;
+\c store_dev;
+GRANT ALL PRIVILEGES ON DATABASE store_dev TO userName;
+\c store_test;
+GRANT ALL PRIVILEGES ON DATABASE store_test TO userName;
+```
 
 
 > ## Scripts
@@ -52,6 +29,11 @@ Advanced Full-Stack Web Development Nanodegree Program
 ### install all the dependencies
 ``` bash
     npm i
+```
+
+### npm migrate:up : To set up all needed tables and their relationships
+``` bash
+    npx db-migrate up
 ```
 
 ### build : to compile typescript
@@ -90,12 +72,63 @@ Advanced Full-Stack Web Development Nanodegree Program
     npm run test
 ```
 
-## Technologies / Stack
+> ## Functionalities
+- connect to a postgres database
+- make crud operations to the database using the api
+- incrypting passwords using bcrypt package
+
+
+> ## how to setup and connect to the database
+- Create a .env according to the .env-example file to set you environment variables   
+- run the `migrate:up` script 
+- run the server 
+- done
+
+
+> ## what ports the backend and database are running on
+the port is 3000
+
+> ## Endpoints
+1. `/` : the endpoint that is responsible for displaying the home page
+
+   usage
+
+   <a href="http://localhost:3000/" target="_blank">http://localhost:3000/</a> 
+
+2. `/api/resize` : the endpoint that is responsible for resizing the image
+
+   usage
+
+   <a href="http://localhost:3000/api/resize?width=theWidth&height=theHeight&image=imageName" target="_blank">http://localhost:3000/api/resize?width=theWidth&height=theHeight&image=imageName</a>
+
+   example
+
+   <a href="http://localhost:3000/api/resize?width=1200&height=600&image=fjord.jpg" target="_blank">http://localhost:3000/api/resize?width=1200&height=600&image=fjord.jpg</a>
+
+3. `api/images` : the endpoint that is responsible for displaying the available images
+
+   <a href="http://localhost:3000/api/images" target="_blank">http://localhost:3000/api/images</a>
+
+4. `api/image/:id` : the endpoint that is responsible for displaying a specific image
+
+   <a href="http://localhost:3000/api/image/1" target="_blank">http://localhost:3000/api/image/1</a>
+
+   <a href="http://localhost:3000/api/image/5" target="_blank">http://localhost:3000/api/image/5</a>
+
+   <a href="http://localhost:3000/api/image/8" target="_blank">http://localhost:3000/api/image/8</a>
+
+   <a href="http://localhost:3000/api/image/0" target="_blank">http://localhost:3000/api/image/0</a>
+
+   <a href="http://localhost:3000/api/image" target="_blank">http://localhost:3000/api/image</a>
+
+
+> ## Technologies / Stack
 - Postgres
 - Node.js
 - Express
 - TypeScript
 - [ ] ejs - incoming
+- [ ] 
 
 ## Middlewares
 - dotenv : for managing environment variables
@@ -108,9 +141,7 @@ Advanced Full-Stack Web Development Nanodegree Program
 - express.json : for parsing incoming requests
 - express-rate-limit : for limiting the number of requests to the server
 - bcrypt : for encrypting the passwords 
-
-
-## Steps to Completion
+- jwt : for authorization
 
 ### 1. Plan to Meet Requirements
 
