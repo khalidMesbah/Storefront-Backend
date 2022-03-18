@@ -1,9 +1,14 @@
-###################USERS###################
-### get all the users
-GET http://localhost:3000/api/users
+########USERS######USERS########USERS######
+########USERS######USERS########USERS######
+########USERS######USERS########USERS######
 
 ### get all the users
-GET http://localhost:3000/api/users/0164ba30-65d8-4d13-a17d-71bc1d7eb61e
+GET http://localhost:3000/api/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMGU2MmEyMWUtNTExOS00OTg2LThjMzQtNmQ3ZDM1NDhhNWJhIiwiZmlyc3RuYW1lIjoic2RmYSIsImxhc3RuYW1lIjoibWVzYmFoIiwicGFzc3dvcmQiOiIkMmIkMTAkL3JIUWkwU2tNL0tVcU5XL3VNV1ZEZXBLSUhwWGV0VE9aYmNnckNCWGgxVGhXeVB4aHl2YUMifSwiaWF0IjoxNjQ3NjM3NjMzfQ.V1PIFKgysBIyRTUS8CmVaJGDkppwi4QMQ1LI_mcvATY
+
+### get a specific user with id
+GET http://localhost:3000/api/users/0e62a21e-5119-4986-8c34-6d7d3548a5ba
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMGU2MmEyMWUtNTExOS00OTg2LThjMzQtNmQ3ZDM1NDhhNWJhIiwiZmlyc3RuYW1lIjoic2RmYSIsImxhc3RuYW1lIjoibWVzYmFoIiwicGFzc3dvcmQiOiIkMmIkMTAkL3JIUWkwU2tNL0tVcU5XL3VNV1ZEZXBLSUhwWGV0VE9aYmNnckNCWGgxVGhXeVB4aHl2YUMifSwiaWF0IjoxNjQ3NjM3NjMzfQ.V1PIFKgysBIyRTUS8CmVaJGDkppwi4QMQ1LI_mcvATY
 
 
 ### add a user
@@ -11,50 +16,39 @@ POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-  "firstName": "khaled",
-  "lastName": "mesbah",
-  "password": "khalidSF46"
+  "firstname": "loda",
+  "lastname": "sf",
+  "password": "mesbah"
 }
-
-### authenticate a user
-POST http://localhost:3000/api/users/auth
-Content-Type: application/json
-
-{
-  "id": "4a8e3cf5-6d17-439a-9048-5039d623464e",
-  "firstname": "hager",
-  "lastname": "gaber",
-  "password": "hagesr"
-}
-
 
 ### update a user
-PUT  http://localhost:3000/api/users/0164ba30-65d8-4d13-a17d-71bc1d7eb61e
+PUT  http://localhost:3000/api/users/0e62a21e-5119-4986-8c34-6d7d3548a5ba
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMGU2MmEyMWUtNTExOS00OTg2LThjMzQtNmQ3ZDM1NDhhNWJhIiwiZmlyc3RuYW1lIjoic2RmYSIsImxhc3RuYW1lIjoibWVzYmFoIiwicGFzc3dvcmQiOiIkMmIkMTAkL3JIUWkwU2tNL0tVcU5XL3VNV1ZEZXBLSUhwWGV0VE9aYmNnckNCWGgxVGhXeVB4aHl2YUMifSwiaWF0IjoxNjQ3NjM3NjMzfQ.V1PIFKgysBIyRTUS8CmVaJGDkppwi4QMQ1LI_mcvATY
 Content-Type: application/json
 
 {
-  "firstName": "fasdf",
-  "lastName": "mesfsadfbah",
-  "password": "soadfa"
+  "firstname": "khaled",
+  "lastname": "mesbah",
+  "password": "ya"
 }
 
-### logging
-POST  http://localhost:3000/log
-Content-Type: application/json
+########PRODUCTS######PRODUCTS########PRODUCTS######
+########PRODUCTS######PRODUCTS########PRODUCTS######
+########PRODUCTS######PRODUCTS########PRODUCTS######
 
-{
-    "username":"loda"
-}
-
-###
-POST  http://localhost:3000/auth
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWQwYzExOGYtZTc0Ni00OWYxLTk4OWMtYmI2YTdkZWNkODYyIiwiZmlyc3RuYW1lIjoia2hhbGVkIiwibGFzdG5hbWUiOiJtZXNiYWgiLCJwYXNzd29yZCI6IiQyYiQxMCRkdnNIeVpLQ21SQ09YQlcyTW0uMU51STJVblJONHhkS2hscC54VDNWNkJaUnZxRnJVcFFlNiJ9LCJpYXQiOjE2NDc1MjYwNDV9.FOHgjMa2QxAZua9OeQs16AtiUmHc_5nTjTLPMCrPTwc
-###
-POST  http://localhost:3000/api/users/auth
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNWQwYzExOGYtZTc0Ni00OWYxLTk4OWMtYmI2YTdkZWNkODYyIiwiZmlyc3RuYW1lIjoia2hhbGVkIiwibGFzdG5hbWUiOiJtZXNiYWgiLCJwYXNzd29yZCI6IiQyYiQxMCRkdnNIeVpLQ21SQ09YQlcyTW0uMU51STJVblJONHhkS2hscC54VDNWNkJaUnZxRnJVcFFlNiJ9LCJpYXQiOjE2NDc1MjYwNDV9.FOHgjMa2QxAZua9OeQs16AtiUmHc_5nTjTLPMCrPTwc
-
-
-
-
-###################PRODUCTS###################
+### get all the products => index
 GET http://localhost:3000/api/products
+
+### get a specific product with id => show
+GET http://localhost:3000/api/products/2f3b44b8-7d1e-4026-a5c9-05d0b029144c
+
+
+### add a product
+POST http://localhost:3000/api/products
+Content-Type: application/json
+
+{
+  "name": "kahled",
+  "price": 21,
+  "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNmNmZDkzODctOTcyZi00ZTVkLWI5YzgtNjM5MjExMTYwMjRlIiwiZmlyc3RuYW1lIjoia2hhbGVkIiwibGFzdG5hbWUiOiJnYWJlciIsInBhc3N3b3JkIjoiJDJiJDEwJGVINUhHdXFGejhubmJ6LjR2MHN6eC5rSDlibHVOcG5xaHM3ZFF1VHA2VDBhaDNUdHp5cXBPIn0sImlhdCI6MTY0NzYzMTc0Mn0.PayUJkekVJ2Vtmm3IxJF1-V3czP45WQrCFs94ua8gcw"
+}

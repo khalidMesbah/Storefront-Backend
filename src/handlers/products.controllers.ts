@@ -1,7 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 import ProductModel from '../models/product.model';
-
-// import gr from '../utilities/generateRandom';
 import jwt from 'jsonwebtoken';
 import env from '../middlewares/config';
 const controller = new ProductModel();
@@ -28,9 +26,17 @@ class Controller {
 
   create = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const newUser = await controller.create(req.body);
-      const token = jwt.sign({ user: newUser }, env.tokenSecret as string);
-      res.json(token);
+      jwt.verify(req.body.token, env.tokenSecret as string);
+    } catch (error) {
+      console.log();
+      res
+        .status(401)
+        .json(`🚀🔥👉 ⚡ Controller ⚡ create= ⚡ error => ${error}`);
+      return;
+    }
+    try {
+      const result = await controller.create(req.body);
+      res.json(result);
     } catch (error) {
       next(error);
     }

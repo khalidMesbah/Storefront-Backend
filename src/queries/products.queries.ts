@@ -1,10 +1,10 @@
-const getUsers = 'SELECT id,firstName,LastName FROM users;';
-const getUser = 'SELECT id,firstName,LastName FROM users WHERE id=($1);';
-const addUser =
-  'INSERT INTO users (firstname , lastname , password) VALUES($1, $2, $3) RETURNING id,firstName,lastName,password;';
+const getProducts = 'SELECT * FROM products;';
+const getProduct = 'SELECT * FROM products WHERE id=($1);';
+const addProduct =
+  'INSERT INTO products ( name , price) VALUES($1, $2) RETURNING *;';
 
 export default {
-  getUsers,
-  getUser,
-  addUser,
+  getProducts,
+  getProduct,
+  addProduct,
 };

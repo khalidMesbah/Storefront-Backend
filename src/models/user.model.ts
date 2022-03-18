@@ -10,9 +10,6 @@ import { User } from '../types/user.type';
 /* 
 The model is represented as a class, each book row in the database will be an instance of the book model.
  */
-import bcrypt from 'bcrypt';
-import env from '../middlewares/config';
-
 import hash from '../utilities/hashPassword';
 import queries from '../queries/users.queries';
 
@@ -46,14 +43,14 @@ export default class UserStore {
       const conn = await Client.connect();
       const sql = queries.addUser;
       const result = await conn.query(sql, [
-        u.firstName,
-        u.lastName,
+        u.firstname,
+        u.lastname,
         hash(u.password),
       ]);
       conn.release();
       return result.rows[0];
     } catch (err) {
-      throw new Error(`Could not add new user ${u.firstName}. Error: ${err}`);
+      throw new Error(`Could not add new user ${u.firstname}. Error: ${err}`);
     }
   }
 
@@ -62,8 +59,8 @@ export default class UserStore {
       const conn = await Client.connect();
       const sql = queries.updateUser;
       const result = await conn.query(sql, [
-        u.firstName,
-        u.lastName,
+        u.firstname,
+        u.lastname,
         hash(u.password),
         id,
       ]);
@@ -87,22 +84,17 @@ export default class UserStore {
   }
 
   // authenticate a user
-  async authenticate(id: string, password: string): Promise<User | null> {
+  async authenticate(id: string): Promise<User> {
     try {
       const conn = await Client.connect();
       const sql = queries.authenticate;
       const result = await conn.query(sql, [id]);
-
-      if (result.rows.length) {
-        const user = result.rows[0];
-        if (bcrypt.compareSync(`${password}${env.pepper}`, user.password)) {
-          console.log(user);
-          return user;
-        }
-      }
-
       conn.release();
-      return null;
+      console.log(
+        `🚀🔥👉 ⚡ UserStore ⚡ authenticate ⚡ result.rows[0]`,
+        result.rows[0]
+      );
+      return result.rows[0];
     } catch (err) {
       throw new Error(`Could not authenticate user ${id}. Error: ${err}`);
     }

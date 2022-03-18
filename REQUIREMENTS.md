@@ -5,16 +5,16 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## API Endpoints
 #### Products
-- [ ] Index 
-- [ ] Show
-- [ ] Create [token required]
+- [x] Index 
+- [x] Show
+- [x] Create [token required]
 - [ ] [OPTIONAL] Top 5 most popular products 
 - [ ] [OPTIONAL] Products by category (args: product category)
 
 #### Users
-- [ ] Index [token required]
-- [ ] Show [token required]
-- [ ] Create N[token required] // token required === return token
+- [x] Index [token required]
+- [x] Show [token required]
+- [x] Create N[token required] // token required === return token
 
 #### Orders
 - [ ] Current Order by user (args: user id)[token required]
@@ -22,21 +22,21 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 ## Data Shapes
 #### Product
-- [ ]  id
-- [ ] name
-- [ ] price
+- [x] id
+- [x] name
+- [x] price
 - [ ] [OPTIONAL] category
 
 #### User
-- [ ] id
-- [ ] firstName
-- [ ] lastName
-- [ ] password
+- [x] id
+- [x] firstName
+- [x] lastName
+- [x] password
 
 #### Orders
-- [ ] id
-- [ ] id of each product in the order
-- [ ] quantity of each product in the order
-- [ ] user_id
-- [ ] status of order (active or complete)
+- [x] id
+- [x] id of each product in the order
+- [x] quantity of each product in the order
+- [x] user_id
+- [x] status of order (active or complete)
 

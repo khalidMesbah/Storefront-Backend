@@ -5,17 +5,14 @@
 “Maintains the relationship between Object and Database and handles validation, association, transactions” */
 import Client from '../databases/database';
 /*  Did you notice or wonder why its the books (plural) table in the database, but the book (singular) file for the model? That's because the database table will hold many books, but the model file is defining what a book is for our application. */
-import { User } from '../types/user.type';
-// models are a class in our code that can be used as a template to create items that are stored as rows in the table.
-
-import hash from '../utilities/hashPassword';
+import { Product } from '../types/product.type';
 import queries from '../queries/products.queries';
 
 export default class UserStore {
-  async index(): Promise<User[]> {
+  async index(): Promise<Product[]> {
     try {
       const conn = await Client.connect();
-      const sql = queries.getUsers;
+      const sql = queries.getProducts;
       const result = await conn.query(sql);
       conn.release();
       return result.rows;
@@ -24,32 +21,27 @@ export default class UserStore {
     }
   }
 
-  async show(id: string): Promise<User> {
+  async show(id: string): Promise<Product> {
     try {
       const conn = await Client.connect();
-      const sql = queries.getUser;
+      const sql = queries.getProduct;
       const result = await conn.query(sql, [id]);
       conn.release();
       return result.rows[0];
     } catch (err) {
-      throw new Error(`Could not find user ${id}. Error: ${err}`);
+      throw new Error(`Could not find Product ${id}. Error: ${err}`);
     }
   }
 
-  async create(u: User): Promise<User> {
+  async create(p: Product): Promise<Product> {
     try {
       const conn = await Client.connect();
-      const sql = queries.addUser;
-      const result = await conn.query(sql, [
-        u.firstName,
-        u.lastName,
-        hash(u.password),
-      ]);
+      const sql = queries.addProduct;
+      const result = await conn.query(sql, [p.name, p.price]);
       conn.release();
       return result.rows[0];
     } catch (err) {
-      throw new Error(`Could not add new user ${u.firstName}. Error: ${err}`);
+      throw new Error(`Could not add new Product ${p.name}. Error: ${err}`);
     }
   }
-
 }

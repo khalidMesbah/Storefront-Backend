@@ -5,9 +5,32 @@ import UserModel from '../models/user.model';
 import jwt from 'jsonwebtoken';
 import env from '../middlewares/config';
 const controller = new UserModel();
+function parseJwt(token: string) {
+  const base64Url = token.split('.')[1];
+  const base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+  const jsonPayload = decodeURIComponent(
+    atob(base64)
+      .split('')
+      .map(function (c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+      })
+      .join('')
+  );
+
+  return JSON.parse(jsonPayload);
+}
 
 class Controller {
   index = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const authorizationHeader = req.headers.authorization as string;
+      const token = authorizationHeader.split(' ')[1];
+      jwt.verify(token, env.tokenSecret as string);
+    } catch (err) {
+      res.status(401);
+      res.json('Access denied, invalid token');
+      return;
+    }
     try {
       const result = await controller.index();
       res.json(result);
@@ -17,6 +40,15 @@ class Controller {
   };
 
   show = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+      const authorizationHeader = req.headers.authorization as string;
+      const token = authorizationHeader.split(' ')[1];
+      jwt.verify(token, env.tokenSecret as string);
+    } catch (err) {
+      res.status(401);
+      res.json('Access denied, invalid token');
+      return;
+    }
     try {
       const result = await controller.show(req.params.id as string);
       if (typeof result === 'undefined') res.json("the user doesn't exist");
@@ -37,12 +69,54 @@ class Controller {
   };
 
   update = async (req: Request, res: Response, next: NextFunction) => {
+    // check if the user is a real user
+    let token;
     try {
-      const result = await controller.update(req.params.id as string, req.body);
-      if (typeof result === 'undefined') res.json("the user doesn't exist");
-      res.json(result);
+      const authorizationHeader = req.headers.authorization as string;
+      token = authorizationHeader.split(' ')[1];
+      jwt.verify(token, env.tokenSecret as string);
+    } catch (err) {
+      res.status(401);
+      res.json('Access denied, invalid token');
+      return;
+    }
+    // check if the user is the same user that will be updated
+    try {
+      const userInfo = await controller.authenticate(req.params.id);
+      const tokenInfo = parseJwt(token);
+      console.log(`🚀🔥👉 ⚡ Controller ⚡ update= ⚡ userInfo`, userInfo);
+      console.log(
+        `🚀🔥👉 ⚡ Controller ⚡ update= ⚡ tokenInfo.user`,
+        tokenInfo.user
+      );
+
+      if (
+        tokenInfo.user.firstname === userInfo.firstname &&
+        tokenInfo.user.lastname === userInfo.lastname &&
+        tokenInfo.user.password === userInfo.password
+      ) {
+        // update the user
+        try {
+          const result = await controller.update(req.params.id, req.body);
+          const newUser = await controller.authenticate(req.params.id);
+          const token = jwt.sign({ user: newUser }, env.tokenSecret as string);
+
+          res.json({ ...result, newtoken: token });
+          return;
+        } catch (error) {
+          next(error);
+        }
+        return;
+      } else {
+        res.json({
+          msg: 'you are not the same user',
+          token: tokenInfo.user,
+          user: userInfo,
+        });
+        return;
+      }
     } catch (error) {
-      next(error);
+      res.json(`🚀🔥👉 ⚡ Controller ⚡ update= ⚡ error => ${error}`);
     }
   };
 
@@ -51,20 +125,6 @@ class Controller {
       const result = await controller.delete(req.params.id as string);
       if (typeof result === 'undefined') res.json("the user doesn't exist");
       res.json(result);
-    } catch (error) {
-      next(error);
-    }
-  };
-
-  authenticate = async (req: Request, res: Response, next: NextFunction) => {
-    try {
-      const result = await controller.authenticate(
-        req.body.id,
-        req.body.password
-      );
-
-      if (result === null) res.json('Could not authenticate user');
-      res.send(result);
     } catch (error) {
       next(error);
     }

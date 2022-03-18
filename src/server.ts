@@ -31,7 +31,7 @@ import jwt from 'jsonwebtoken';
 //   { id: 1, username: 'khaled' },
 //   { id: 2, username: 'sara' },
 // ];
-app.post('/auth', (req: Request, res: Response) => {
+app.get('/auth', (req: Request, res: Response) => {
   try {
     const token = req.header('Authorization');
     const data = jwt.verify(token as string, env.tokenSecret as string);
