@@ -15,6 +15,7 @@ const Client = new Pool({
   password: env.pass,
   max: 100, // maximum number of requests
 });
+console.log(`🚀🔥👉 ⚡ env.db`, env.db);
 
 // add listener if(err)=>log(err)
 Client.on('error', (error: Error) => {

@@ -91,6 +91,10 @@ Authorization: Bearer <theToken>
 - [x] name
 - [x] price
 - [ ] [OPTIONAL] category
+``` sql
+create table sfafd()
+valur
+```
 ``` html
 store_test=# select * from products;
  id | name | price 
@@ -116,4 +120,21 @@ store_test=# select * from users;
 store_test=# select * from orders;
  id | prod_id | quan_prod | user_id | status 
 ----+---------+-----------+---------+--------
+```
+
+``` sql
+CREATE TABLE orders(
+    id SERIAL PRIMARY KEY,
+    status VARCHAR(64),
+    user_id integer REFERENCES users(id)
+);
+```
+  <!-- for the many to many relationship between orders and products table, I created the junction table: -->
+``` sql
+CREATE TABLE Order_products(
+    id SERIAL PRIMARY KEY,
+    quantity integer,
+    order_id bigint REFERENCES orders(id),
+    product_id bigint REFERENCES products (id)
+);
 ```

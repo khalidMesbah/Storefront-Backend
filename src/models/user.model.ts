@@ -10,6 +10,9 @@ import { User } from '../types/user.type';
 /* 
 The model is represented as a class, each book row in the database will be an instance of the book model.
  */
+
+//  Models are a class representation of a table in the API
+// A MODEL is the representation of a database table in an API.
 import hash from '../utilities/hashPassword';
 import queries from '../queries/users.queries';
 

@@ -1,23 +1,34 @@
 # Storefront Backend API
-Advanced Full-Stack Web Development Nanodegree Program
-
+Advanced Full-Stack Web Development Nanodegree Program - Building an API with Postgres and Express! 
 > ## About The Project
-- A RESTFUL API for a shopping application.
+- A RESTful JSON Node API backed by Postgres database for a shopping website.
 
-- The API offers several endpoints to access and manipulate data in the database through both CRUD and custom actions.
+- The API offers several endpoints to access and manipulate data in a Postgres database through both CRUD and custom actions.
+
+- PostgreSQL 
 
 - A detailed list of the endpoints and actions available can be found in the REQUIREMENTS.md file.
 
-
-
 > ## Functionalities
-- Connect to a postgres database.
+- Create a Postgres database with PostgreSQL.
+- Connect to a Postgres database.
+- Allow products to be created and stored in a database.
+- Allow users to sign up and sign in.
+- Allow usrs to login and register.
+- Require users to be signed in to perform certain actions.
+- Allow users to create orders and add products to orders.
 - Make crud operations to the database using a node.js API.
-- Hashing passwords using bcrypt package.
+- Password are stored hashed using bcrypt package.
+- A cart.
+- Informational endpoints to the API.
+- Perform CRUD operations on a database.
+- Every user can only update the data of himself.
+- list the most common products/orders and limit the number of responses.
+- 
 
 
 > ## How to setup and connect to the database - Databases Configurations
-We are using postgresql as our object-relational database management system to deal with the databases.
+We are using PostgreSQL as our object-relational database management system to deal with and manipulate databases.
 
 We need to make two databases:-
 - store_dev : for development
@@ -65,87 +76,88 @@ Usually i run them on the following ports:-
 
 > ## Scripts
 
-### `i` : To install all the dependencies needed for the project.
+`i` : To install all the dependencies needed for the project.
 ``` bash
     npm i
 ```
 
-### `migrate:up` : To Call the up migrations.
+`migrate:up` : To Call the up migrations.
 ``` bash
     npm run migrate:up
 ```
 
-### `migrate:down` : To call the down migrations.
+`migrate:down` : To call the down migrations.
 ``` bash
     npm run migrate:down
 ```
 
-### `migrate:reset` : To reset all migrations.
+`migrate:reset` : To reset all migrations.
 ``` bash
     npm run migrate:reset
 ```
 
-### `build` : To compile typescript.
+`build` : To compile typescript.
 
 ``` bash
     npm run build
 ```
 
-### `start` : To run the server.
+`start` : To run the server.
 
 ``` bash
     npm run start
 ```
 
-### `start:prod` : To compile typescript and run the server .
+`start:prod` : To compile typescript and run the server .
 
 ``` bash
     npm run start:prod
 ```
 
-### `prettify` : To format the code.
+`prettify` : To format the code.
 
 ``` bash
     npm run prettier
 ```
 
-### `lint` : To accelerate development and reduce errors.
+`lint` : To accelerate development and reduce errors.
 
 ``` bash
     npm run lint
 ```
 
-### `test` : To test the Project.      
+`test` : To test the Project.      
 
 ``` bash
     npm run test
 ```
 
-### `watch` : To run the server       
+`watch` : To run the server       
 
 ``` bash
     npm run watch
 ``` 
 
 > ## Technologies / Stack
-- Postgres
-- Node.js
-- Express
-- TypeScript
-- ejs - incoming
+- Postgres.
+- Node.js.
+- Express.
+- TypeScript.
+- ejs - incoming.
 
 > ## Middlewares
-- dotenv : for managing environment variables
-- db-migrate : for migrations
-- pg : for connecting to a database
-- jsonwebtoken : for working with JWTs
-- jasmine : for testing
-- morgan : for logging incoming requests to the server
-- helment : for securing the server
-- express.json : for parsing incoming requests
-- express-rate-limit : for limiting the number of requests to the server
-- bcrypt : for encrypting the passwords 
-- jwt : for authorization
+- dotenv : for managing environment variables.
+- db-migrate : for migrations.
+- pg : for connecting to a database.
+- jsonwebtoken : for working with JWTs.
+- jasmine : for testing.
+- morgan : for logging incoming requests to the server.
+- helment : for securing the server.
+- express : for CORS and route handling.
+- express.json : for parsing incoming requests.
+- express-rate-limit : for limiting the number of requests to the server.
+- bcrypt : for encrypting the passwords .
+- jwt : for authorization.
 
 > ## 1. Plan to Meet Requirements
 
@@ -206,3 +218,21 @@ Before submitting your project, spin it up and test each endpoint. If each one r
 - [ ] Migrations Folder
 - [ ] Model and Endpoint Tests
 - [ ] Relevant Supporting Files
+- [ ] REST structure for Express Endpoints
+- [ ] CRUD for Node models
+- [ ] CORS enabled API
+- [ ] API Testing
+- [ ] Password hashing for security
+- [ ] JWT's for authentication and protected endpoints
+- [ ] Connect database tables via foreign keys
+- [ ] Translate data requirements from stakeholders into a database schema.
+
+- [ ] Install dependencies (examples).
+- [ ] Declare the Application object inside server.js file.
+- [ ] Create .env file, declare the different environments inside database.json and instantiate the
+- [ ] database inside database.ts file.
+- [ ] Create the migrations and fill the migrations files in (up and down files for each table).
+- [ ] Create the models (functions of each table inside a separate model file).
+- [ ] Create the corresponding handlers.
+- [ ] Testing the models and the handlers.
+- [ ] Documentation (README.md file)
