@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import Controller from '../../../handlers/users.controllers';
+import Controller from '../../../handlers/users.handler';
 import authenticateToken from '../../../middlewares/authenticateToken';
 const controller = new Controller();
 const routes = Router();

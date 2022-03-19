@@ -44,4 +44,16 @@ export default class UserStore {
       throw new Error(`Could not add new Product ${p.name}. Error: ${err}`);
     }
   }
+
+  async delete(id: string): Promise<Product> {
+    try {
+      const conn = await Client.connect();
+      const sql = queries.removeProduct;
+      const result = await conn.query(sql, [id]);
+      conn.release();
+      return result.rows[0];
+    } catch (err) {
+      throw new Error(`Could not delete product ${id}. Error: ${err}`);
+    }
+  }
 }

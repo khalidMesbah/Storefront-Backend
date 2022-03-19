@@ -2,135 +2,139 @@
 Advanced Full-Stack Web Development Nanodegree Program
 
 > ## About The Project
-A RESTFUL API For an e-commerce backend based on three models: Products, Orders and Users.
+- A RESTFUL API for a shopping application.
 
-A detailed list of the endpoints and actions available can be found in the REQUIREMENTS.md file.
+- The API offers several endpoints to access and manipulate data in the database through both CRUD and custom actions.
 
-> ## Databases Configurations
+- A detailed list of the endpoints and actions available can be found in the REQUIREMENTS.md file.
+
+
+
+> ## Functionalities
+- Connect to a postgres database.
+- Make crud operations to the database using a node.js API.
+- Hashing passwords using bcrypt package.
+
+
+> ## How to setup and connect to the database - Databases Configurations
 We are using postgresql as our object-relational database management system to deal with the databases.
 
-we need to make two databases:-
+We need to make two databases:-
 - store_dev : for development
 - store_test : for testing
 
 ``` sql
-CREATE USER userName WITH PASSWORD 'userPassword';
-CREATE DATABASE store_dev;
-CREATE DATABASE store_test;
-\c store_dev;
-GRANT ALL PRIVILEGES ON DATABASE store_dev TO userName;
-\c store_test;
-GRANT ALL PRIVILEGES ON DATABASE store_test TO userName;
+    CREATE DATABASE store_dev;
+    CREATE DATABASE store_test;
 ```
 
+- Create a .env file according to the .env.example file to set up the environment variables.
+- Create a database.json file like the following :-
+``` json
+{
+    "defaultEnv": {"ENV": "NODE_ENV"},
+    "dev": {
+        "driver": "pg",
+        "host": {"ENV": "POSTGRES_HOST"},
+        "port": {"ENV": "POSTGRES_PORT"},
+        "database": {"ENV": "POSTGRES_DB"},
+        "user": {"ENV": "POSTGRES_USER"},
+        "password": {"ENV": "POSTGRES_PASSWORD"}
+    },
+    "test": {
+        "driver": "pg",
+        "host": {"ENV": "POSTGRES_HOST"},
+        "port": {"ENV": "POSTGRES_PORT"},
+        "database": {"ENV": "POSTGRES_DB_TEST"},
+        "user": {"ENV": "POSTGRES_USER"},
+        "password": {"ENV": "POSTGRES_PASSWORD"}
+    }
+}
+```
+
+- Run the `migrate:up` script :  To set up all the needed tables and their relationships
+- Run the `start` script : To run the server
+- Done
+
+> ## what ports the backend and database are running on
+They are running on the ports provided by the user in the .env file.
+
+Usually i run them on the following ports:-
+- The database is running on the port 5432
+- The backend is running on the port 3000
 
 > ## Scripts
 
-### install all the dependencies
+### `i` : To install all the dependencies needed for the project.
 ``` bash
     npm i
 ```
 
-### npm migrate:up : To set up all needed tables and their relationships
+### `migrate:up` : To Call the up migrations.
 ``` bash
-    npx db-migrate up
+    npm run migrate:up
 ```
 
-### build : to compile typescript
+### `migrate:down` : To call the down migrations.
+``` bash
+    npm run migrate:down
+```
+
+### `migrate:reset` : To reset all migrations.
+``` bash
+    npm run migrate:reset
+```
+
+### `build` : To compile typescript.
 
 ``` bash
     npm run build
 ```
 
-### run : to run the server
+### `start` : To run the server.
 
 ``` bash
     npm run start
 ```
 
-### build and run : to compile typescript and run the server 
+### `start:prod` : To compile typescript and run the server .
 
 ``` bash
     npm run start:prod
 ```
 
-### prettify : to format the code
+### `prettify` : To format the code.
 
 ``` bash
     npm run prettier
 ```
 
-### lint : to accelerate development and reduce errors
+### `lint` : To accelerate development and reduce errors.
 
 ``` bash
     npm run lint
 ```
 
-### test : to test our code        
+### `test` : To test the Project.      
 
 ``` bash
     npm run test
 ```
 
-> ## Functionalities
-- connect to a postgres database
-- make crud operations to the database using the api
-- incrypting passwords using bcrypt package
+### `watch` : To run the server       
 
-
-> ## how to setup and connect to the database
-- Create a .env according to the .env-example file to set you environment variables   
-- run the `migrate:up` script 
-- run the server 
-- done
-
-
-> ## what ports the backend and database are running on
-the port is 3000
-
-> ## Endpoints
-1. `/` : the endpoint that is responsible for displaying the home page
-
-   usage
-
-   <a href="http://localhost:3000/" target="_blank">http://localhost:3000/</a> 
-
-2. `/api/resize` : the endpoint that is responsible for resizing the image
-
-   usage
-
-   <a href="http://localhost:3000/api/resize?width=theWidth&height=theHeight&image=imageName" target="_blank">http://localhost:3000/api/resize?width=theWidth&height=theHeight&image=imageName</a>
-
-   example
-
-   <a href="http://localhost:3000/api/resize?width=1200&height=600&image=fjord.jpg" target="_blank">http://localhost:3000/api/resize?width=1200&height=600&image=fjord.jpg</a>
-
-3. `api/images` : the endpoint that is responsible for displaying the available images
-
-   <a href="http://localhost:3000/api/images" target="_blank">http://localhost:3000/api/images</a>
-
-4. `api/image/:id` : the endpoint that is responsible for displaying a specific image
-
-   <a href="http://localhost:3000/api/image/1" target="_blank">http://localhost:3000/api/image/1</a>
-
-   <a href="http://localhost:3000/api/image/5" target="_blank">http://localhost:3000/api/image/5</a>
-
-   <a href="http://localhost:3000/api/image/8" target="_blank">http://localhost:3000/api/image/8</a>
-
-   <a href="http://localhost:3000/api/image/0" target="_blank">http://localhost:3000/api/image/0</a>
-
-   <a href="http://localhost:3000/api/image" target="_blank">http://localhost:3000/api/image</a>
-
+``` bash
+    npm run watch
+``` 
 
 > ## Technologies / Stack
 - Postgres
 - Node.js
 - Express
 - TypeScript
-- [ ] ejs - incoming
-- [ ] 
+- ejs - incoming
 
-## Middlewares
+> ## Middlewares
 - dotenv : for managing environment variables
 - db-migrate : for migrations
 - pg : for connecting to a database
@@ -143,7 +147,7 @@ the port is 3000
 - bcrypt : for encrypting the passwords 
 - jwt : for authorization
 
-### 1. Plan to Meet Requirements
+> ## 1. Plan to Meet Requirements
 
 In this repo there is a `REQUIREMENTS.md` document which outlines what this API needs to supply for the frontend, as well as the agreed upon data shapes to be passed between front and backend. This is much like a document you might come across in real life when building or extending an API. 
 
@@ -157,28 +161,48 @@ Table: Books (id:varchar, title:varchar, author:varchar, published_year:varchar,
 
 **NOTE** It is important to remember that there might not be a one to one ratio between data shapes and database tables. Data shapes only outline the structure of objects being passed between frontend and API, the database may need multiple tables to store a single shape. 
 
-### 2.  DB Creation and Migrations
+> ## 2.  DB Creation and Migrations
 
 Now that you have the structure of the databse outlined, it is time to create the database and migrations. Add the npm packages dotenv and db-migrate that we used in the course and setup your Postgres database. If you get stuck, you can always revisit the database lesson for a reminder. 
 
 You must also ensure that any sensitive information is hashed with bcrypt. If any passwords are found in plain text in your application it will not pass.
 
-### 3. Models
+> ## 3. Models
 
 Create the models for each database table. The methods in each model should map to the endpoints in `REQUIREMENTS.md`. Remember that these models should all have test suites and mocks.
 
-### 4. Express Handlers
+> ## 4. Express Handlers
 
 Set up the Express handlers to route incoming requests to the correct model method. Make sure that the endpoints you create match up with the enpoints listed in `REQUIREMENTS.md`. Endpoints must have tests and be CORS enabled. 
 
-### 5. JWTs
+> ## 5. JWTs
 
 Add JWT functionality as shown in the course. Make sure that JWTs are required for the routes listed in `REQUIUREMENTS.md`.
 
-### 6. QA and `README.md`
+> ## 6. QA and `README.md`
 
 Before submitting, make sure that your project is complete with a `README.md`. Your `README.md` must include instructions for setting up and running your project including how you setup, run, and connect to your database. 
 
 Before submitting your project, spin it up and test each endpoint. If each one responds with data that matches the data shapes from the `REQUIREMENTS.md`, it is ready for submission!
 
-## Tasks
+> ## Tasks
+- [ ] complete the PROJECT SPECIFICATION in the rub
+- [ ] Draft a database schema that covers all the data requirements.
+- [ ] Draft a map of endpoints to expose for the frontend.
+- [ ] Create a connection to a Postgres database from the provided Node application.
+- [ ] Add tables and columns according to the database schema doc.
+- [ ] Create models that facilitate CRUD operations on the database tables.
+- [ ] Create a test suite for each model in Jasmine.
+- [ ] Create handler files for each model.
+- [ ] In each handler file, create RESTful endpoints for each model method.
+- [ ] Create a test suite that covers each endpoint with Jasmine.
+- [ ] You need to install the docker using the docker-compose.yml file provided in the repo. Note that you may need to update this file to fit your computer in order to use it locally.
+- [ ] Filled out README.md
+- [ ] Updated REQUIREMENTS.md
+- [ ] package.json
+- [ ] database.json
+- [ ] Model Folder
+- [ ] Handler Folder
+- [ ] Migrations Folder
+- [ ] Model and Endpoint Tests
+- [ ] Relevant Supporting Files

@@ -4,10 +4,10 @@
 
 ### get all the users
 GET http://localhost:3000/api/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNGQ0YjhlNzQtMWQyNC00MTE2LWI5ZTctMzFhODk4Y2JlN2QxIiwiZmlyc3RuYW1lIjoibG9kYSIsImxhc3RuYW1lIjoic2YiLCJwYXNzd29yZCI6IiQyYiQxMCR4NGcycDZ1N3l0NWJNYXpBRWJkVVV1YkVtYmUyb2w4a3pOQUtGd3NJOUtZdUJFQm9sMDhKYSJ9LCJpYXQiOjE2NDc2Mzg0NTZ9.rZ9qHqjCfO0ULN7RfWMTVwwLF_kDp8XeCMaNbYwI2KA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNzI3MTliNmEtZWU5Ni00NmU4LThmZjYtMmNkZmQ3OWZmZWVkIiwiZmlyc3RuYW1lIjoibG9kYSIsImxhc3RuYW1lIjoic2YiLCJwYXNzd29yZCI6IiQyYiQxMCRtSGpNRkx3SjRuT3U0aWk5dHVMVXVlVXlESFpJY2w4RXQ2UEt3WW9nWk5MUm96Ymhhby9CSyJ9LCJpYXQiOjE2NDc2OTE5MjZ9.RcDQkXog1n_J3y7JKTfA4xzjFc5bdw9keGapIcvb4QQ
 
 ### get a specific user with id
-GET http://localhost:3000/api/users/4d4b8e74-1d24-4116-b9e7-31a898cbe7d1
+GET http://localhost:3000/api/users/73f89b6f-8248-411f-9ae9-63901bb914ef
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNGQ0YjhlNzQtMWQyNC00MTE2LWI5ZTctMzFhODk4Y2JlN2QxIiwiZmlyc3RuYW1lIjoibG9kYSIsImxhc3RuYW1lIjoic2YiLCJwYXNzd29yZCI6IiQyYiQxMCR4NGcycDZ1N3l0NWJNYXpBRWJkVVV1YkVtYmUyb2w4a3pOQUtGd3NJOUtZdUJFQm9sMDhKYSJ9LCJpYXQiOjE2NDc2Mzg0NTZ9.rZ9qHqjCfO0ULN7RfWMTVwwLF_kDp8XeCMaNbYwI2KA
 
 
@@ -21,9 +21,9 @@ Content-Type: application/json
   "password": "mesbah"
 }
 
-### update a user
-PUT  http://localhost:3000/api/users/4d4b8e74-1d24-4116-b9e7-31a898cbe7d1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNGQ0YjhlNzQtMWQyNC00MTE2LWI5ZTctMzFhODk4Y2JlN2QxIiwiZmlyc3RuYW1lIjoia2FobGVkIiwibGFzdG5hbWUiOiJtZXNiYWgiLCJwYXNzd29yZCI6IiQyYiQxMCRpLjFORGJGSHZJdnZVSWtYOUJNZHMuazM2eXZrTjFjbnhKUU0uNk9nLkFvb3FnSktzeWcuVyJ9LCJpYXQiOjE2NDc2Mzg1MDd9.rzapUoibphE41fExxVhgEJCPZ9Bg8THoqxkC_JU7PJw
+### update a user using put request 
+PUT  http://localhost:3000/api/users/3342a0a0-c30a-44dc-80a9-67b356fa0dd5
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMzM0MmEwYTAtYzMwYS00NGRjLTgwYTktNjdiMzU2ZmEwZGQ1IiwiZmlyc3RuYW1lIjoibG9kYSIsImxhc3RuYW1lIjoic2YiLCJwYXNzd29yZCI6IiQyYiQxMCQ2VE96Lkt0MXlNalc5UVhQQ0F6TmsuLnhJVHB1YkQ1RjNZSWF4MlFaL0diNjBGZk5uMkk5aSJ9LCJpYXQiOjE2NDc2ODUwNzV9.yFolud3MZfA4L84yfREJ7rrDE9TqOureMk4EZvCYyYw
 Content-Type: application/json
 
 {
@@ -32,8 +32,20 @@ Content-Type: application/json
   "password": "ya"
 }
 
+### update a user using patch request 
+PATCH http://localhost:3000/api/users/73f89b6f-8248-411f-9ae9-63901bb914ef
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNzNmODliNmYtODI0OC00MTFmLTlhZTktNjM5MDFiYjkxNGVmIiwiZmlyc3RuYW1lIjoia2hhbGVkIiwibGFzdG5hbWUiOiJtZXNiYWgiLCJwYXNzd29yZCI6IiQyYiQxMCRleTU5T0NLVDNLazROeVV2TDV4emdPeVhKL2lMQVZRV2lPbFI0OWtDNUEwS3JTYW1CVi9xYSJ9LCJpYXQiOjE2NDc2ODU1MjR9.TxgqIWikuLvqYBizl7kSwRnIXPuYbq9vxYTO6hhLu5A
+Content-Type: application/json
+
+{
+  "firstname": "Khalid",
+  "lastname": "Mesbah",
+  "password": "ya"
+}
+
+
 ### delete a user
-DELETE   http://localhost:3000/api/users/4d4b8e74-1d24-4116-b9e7-31a898cbe7d1
+DELETE http://localhost:3000/api/users/4d4b8e74-1d24-4116-b9e7-31a898cbe7d1
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiZDVkMTdjOGUtZDZkNi00NDRhLTg0MTUtNzAwMGMzZGQxNGEzIiwiZmlyc3RuYW1lIjoib3NhbWEiLCJsYXN0bmFtZSI6Im1lc2JhaCIsInBhc3N3b3JkIjoiJDJiJDEwJHhVMTZ3WVhRZHdTemZTVmlRSUMwWC4vclhBTnVlOTVkdnZFSndPa29zd21RdEtwSkR6NGd5In0sImlhdCI6MTY0NzYzODMyMn0.DeTRXhGBiFCxa9l48Q29uxTQHZgCG7aYDzDrFJQ9iU0
 
 
@@ -45,15 +57,19 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiZ
 GET http://localhost:3000/api/products
 
 ### get a specific product with id => show
-GET http://localhost:3000/api/products/2f3b44b8-7d1e-4026-a5c9-05d0b029144c
+GET http://localhost:3000/api/products/8c1f6f43-32aa-4080-b856-2c243d15ed4a
 
 
 ### add a product
 POST http://localhost:3000/api/products
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMzM0MmEwYTAtYzMwYS00NGRjLTgwYTktNjdiMzU2ZmEwZGQ1IiwiZmlyc3RuYW1lIjoibG9kYSIsImxhc3RuYW1lIjoic2YiLCJwYXNzd29yZCI6IiQyYiQxMCQ2VE96Lkt0MXlNalc5UVhQQ0F6TmsuLnhJVHB1YkQ1RjNZSWF4MlFaL0diNjBGZk5uMkk5aSJ9LCJpYXQiOjE2NDc2ODUwNzV9.yFolud3MZfA4L84yfREJ7rrDE9TqOureMk4EZvCYyYw
 Content-Type: application/json
 
 {
-  "name": "kahled",
-  "price": 21,
-  "token":"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNmNmZDkzODctOTcyZi00ZTVkLWI5YzgtNjM5MjExMTYwMjRlIiwiZmlyc3RuYW1lIjoia2hhbGVkIiwibGFzdG5hbWUiOiJnYWJlciIsInBhc3N3b3JkIjoiJDJiJDEwJGVINUhHdXFGejhubmJ6LjR2MHN6eC5rSDlibHVOcG5xaHM3ZFF1VHA2VDBhaDNUdHp5cXBPIn0sImlhdCI6MTY0NzYzMTc0Mn0.PayUJkekVJ2Vtmm3IxJF1-V3czP45WQrCFs94ua8gcw"
+  "name": "loda",
+  "price":32
 }
+
+### delete a product
+DELETE http://localhost:3000/api/products/8c1f6f43-32aa-4080-b856-2c243d15ed4a
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiZDVkMTdjOGUtZDZkNi00NDRhLTg0MTUtNzAwMGMzZGQxNGEzIiwiZmlyc3RuYW1lIjoib3NhbWEiLCJsYXN0bmFtZSI6Im1lc2JhaCIsInBhc3N3b3JkIjoiJDJiJDEwJHhVMTZ3WVhRZHdTemZTVmlRSUMwWC4vclhBTnVlOTVkdnZFSndPa29zd21RdEtwSkR6NGd5In0sImlhdCI6MTY0NzYzODMyMn0.DeTRXhGBiFCxa9l48Q29uxTQHZgCG7aYDzDrFJQ9iU0
