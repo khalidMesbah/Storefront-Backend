@@ -8,7 +8,7 @@ import Client from '../databases/database';
 import { Product } from '../types/product.type';
 import queries from '../queries/products.queries';
 
-export default class UserStore {
+export default class ProductsTable {
   async index(): Promise<Product[]> {
     try {
       const conn = await Client.connect();

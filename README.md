@@ -28,16 +28,33 @@ Advanced Full-Stack Web Development Nanodegree Program - Building an API with Po
 
 
 > ## How to setup and connect to the database - Databases Configurations
+
+
+``` bash
+sudo su - postgres --> Switch to the postgres user 
+psql postgres --> Start psql 
+```
+
+``` sql
+CREATE USER userName WITH PASSWORD 'userPassword'; 
+CREATE DATABASE store_dev;
+\c store_dev
+GRANT ALL PRIVILEGES ON DATABASE store_dev TO userName;
+CREATE DATABASE store_test;
+\c store_test
+GRANT ALL PRIVILEGES ON DATABASE store_test TO userName;
+CREATE DATABASE store_prod;
+\c store_prod
+GRANT ALL PRIVILEGES ON DATABASE store_prod TO userName;
+\dt -- "No relations found."
+```
+
 We are using PostgreSQL as our object-relational database management system to deal with and manipulate databases.
 
 We need to make two databases:-
 - store_dev : for development
 - store_test : for testing
-
-``` sql
-    CREATE DATABASE store_dev;
-    CREATE DATABASE store_test;
-```
+- store_prod : for production
 
 - Create a .env file according to the .env.example file to set up the environment variables.
 - Create a database.json file like the following :-
@@ -59,6 +76,14 @@ We need to make two databases:-
         "database": {"ENV": "POSTGRES_DB_TEST"},
         "user": {"ENV": "POSTGRES_USER"},
         "password": {"ENV": "POSTGRES_PASSWORD"}
+    },
+    "prod": {
+    "driver": "pg",
+    "host": {"ENV": "POSTGRES_HOST"},
+    "port": {"ENV": "POSTGRES_PORT"},
+    "database": {"ENV": "POSTGRES_DB_PROD"},
+    "user": {"ENV": "POSTGRES_USER"},
+    "password": {"ENV": "POSTGRES_PASSWORD"}
     }
 }
 ```

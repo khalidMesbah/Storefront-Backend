@@ -15,20 +15,21 @@ const Client = new Pool({
   password: env.pass,
   max: 100, // maximum number of requests
 });
+
 console.log(`🚀🔥👉 ⚡ env.db`, env.db);
 
 // add listener if(err)=>log(err)
 Client.on('error', (error: Error) => {
   console.log('error in the database => ', error.message);
-});
-Client.on('connect', () => {
-  console.log('the database has been => connected');
-});
-Client.on('remove', () => {
-  console.log('the database has been => disconnected');
-});
-Client.on('acquire', () => {
-  console.log('the database has been => acquired');
-});
+})
+  .on('connect', () => {
+    console.log('the database has been => connected');
+  })
+  .on('remove', () => {
+    console.log('the database has been => disconnected');
+  })
+  .on('acquire', () => {
+    console.log('the database has been => acquired');
+  });
 
 export default Client;

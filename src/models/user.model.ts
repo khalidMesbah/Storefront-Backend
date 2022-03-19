@@ -3,20 +3,24 @@
 // The model is represented as a class, each book row in the database will be an instance of the book model.
 /* 
 “Maintains the relationship between Object and Database and handles validation, association, transactions” */
-import Client from '../databases/database';
+import Client from '../databases/database'; // imports the database connection
 /*  Did you notice or wonder why its the books (plural) table in the database, but the book (singular) file for the model? That's because the database table will hold many books, but the model file is defining what a book is for our application. */
-import { User } from '../types/user.type';
+import User from '../types/user.type';
 // models are a class in our code that can be used as a template to create items that are stored as rows in the table.
 /* 
 The model is represented as a class, each book row in the database will be an instance of the book model.
  */
-
+/* 
+ models are a class in our code that can be used as a template to create items that are stored as rows in the table. */
 //  Models are a class representation of a table in the API
 // A MODEL is the representation of a database table in an API.
+// A table in a database can be represented in code as a class
+// Each row can be an instance of this class
+// Each instance of this class will become a new row in the database table.
 import hash from '../utilities/hashPassword';
 import queries from '../queries/users.queries';
 
-export default class UserStore {
+export default class UsersTable {
   async index(): Promise<User[]> {
     try {
       const conn = await Client.connect();

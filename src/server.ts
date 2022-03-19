@@ -87,8 +87,8 @@ app.get('/cors', cors(corsOptions), (_req: Request, res: Response) => {
 // routing for /  path
 // if you will not use a parameter write it like that _req
 app.get('/', (_req: Request, res: Response) => {
-  res.json({
-    message: 'hello universe',
+  res.status(200).json({
+    message: 'hello universe 🌍',
   });
 });
 
