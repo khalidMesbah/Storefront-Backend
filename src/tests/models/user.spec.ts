@@ -1,59 +1,47 @@
 import UsersTable from '../../models/user.model';
-// import User from '../../types/user.type';
 // import Client from '../../databases/database';
-
 const usersTable = new UsersTable();
 
 describe('Users Model', () => {
-  it('should have an index method', () => {
-    expect(usersTable.index).toBeDefined();
-  });
+  it('test the index method', () => expect(usersTable.index).toBeDefined());
 
-  it('should have a show method', () => {
-    expect(usersTable.index).toBeDefined();
-  });
+  it('test the show method', () => expect(usersTable.index).toBeDefined());
 
-  it('should have a create method', () => {
-    expect(usersTable.index).toBeDefined();
-  });
+  it('test the create method', () => expect(usersTable.index).toBeDefined());
 
-  it('should have a update method', () => {
-    expect(usersTable.index).toBeDefined();
-  });
+  it('test the update method', () => expect(usersTable.index).toBeDefined());
 
-  it('should have a delete method', () => {
-    expect(usersTable.index).toBeDefined();
-  });
+  it('test the delete method', () => expect(usersTable.index).toBeDefined());
 
-  it('create method should add a book', async () => {
-    const { firstname, lastname } = await usersTable.create({
-      firstname: 'khaled',
-      lastname: 'mesbah',
+  it('create method should add a user', async () => {
+    const { first_name, last_name } = await usersTable.create({
+      first_name: 'khaled',
+      last_name: 'mesbah',
       password: 'password',
     });
-    expect([firstname, lastname]).toEqual(['khaled', 'mesbah']);
+    expect([first_name, last_name]).toEqual(['khaled', 'mesbah']);
   });
 
-  it('index method should return a list of books', async () => {
+  it('index method should return a list of users', async () => {
     const results = await usersTable.index();
     expect({
-      firstname: results[0].firstname,
-      lastname: results[0].lastname,
+      first_name: results[0].first_name,
+      last_name: results[0].last_name,
     }).toEqual({
-      firstname: 'khaled',
-      lastname: 'mesbah',
+      first_name: 'khaled',
+      last_name: 'mesbah',
     });
     expect(results.length).toBeGreaterThanOrEqual(1);
   });
 
-  it('show method should return the correct book', async () => {
+  it('show method should return the correct user', async () => {
     const results = await usersTable.index();
     const result = await usersTable.show(results[0].id as string);
-    const { firstname, lastname } = result;
-    expect([firstname, lastname]).toEqual(['khaled', 'mesbah']);
+    const { first_name, last_name } = result;
+    expect([first_name, last_name]).toEqual(['khaled', 'mesbah']);
   });
 
-  it('delete method should remove the book', async () => {
+  it('delete method should remove the user', async () => {
     const results = await usersTable.index();
     const result = await usersTable.delete(results[0].id as string);
     expect(await usersTable.show(result.id as string)).toBeUndefined();

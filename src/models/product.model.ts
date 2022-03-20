@@ -1,11 +1,5 @@
-// a model file with methods
-// the model file is defining what a book is for our application.
-// The model is represented as a class, each book row in the database will be an instance of the book model.
-/* 
-“Maintains the relationship between Object and Database and handles validation, association, transactions” */
 import Client from '../databases/database';
-/*  Did you notice or wonder why its the books (plural) table in the database, but the book (singular) file for the model? That's because the database table will hold many books, but the model file is defining what a book is for our application. */
-import { Product } from '../types/product.type';
+import Product from '../types/product.type';
 import queries from '../queries/products.queries';
 
 export default class ProductsTable {

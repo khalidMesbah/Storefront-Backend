@@ -1,14 +1,16 @@
+@user_uuid=82f30556-9203-4299-8d87-50bb10237795
+@user_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiODJmMzA1NTYtOTIwMy00Mjk5LThkODctNTBiYjEwMjM3Nzk1IiwiZmlyc3RfbmFtZSI6ImtoYWxlZCIsImxhc3RfbmFtZSI6Im1lc2JhaCIsInBhc3N3b3JkIjoiJDJiJDEwJE1nWmxjZ2xtY1RONEdJRlAzMUliVHVzcFlFVDM5bEdwbmd0NFdCdjRRNkJxVERIakZDWWo2In0sImlhdCI6MTY0NzgwNTEwMH0.QYVjtMggF4G1lH5aZIMC0ZYteFHy5kBkM5v-kyqkMeo
 ########USERS######USERS########USERS######
 ########USERS######USERS########USERS######
 ########USERS######USERS########USERS######
 
 ### get all the users
 GET http://localhost:3000/api/users
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNzI3MTliNmEtZWU5Ni00NmU4LThmZjYtMmNkZmQ3OWZmZWVkIiwiZmlyc3RuYW1lIjoibG9kYSIsImxhc3RuYW1lIjoic2YiLCJwYXNzd29yZCI6IiQyYiQxMCRtSGpNRkx3SjRuT3U0aWk5dHVMVXVlVXlESFpJY2w4RXQ2UEt3WW9nWk5MUm96Ymhhby9CSyJ9LCJpYXQiOjE2NDc2OTE5MjZ9.RcDQkXog1n_J3y7JKTfA4xzjFc5bdw9keGapIcvb4QQ
+Authorization: Bearer {{user_token}}
 
 ### get a specific user with id
-GET http://localhost:3000/api/users/73f89b6f-8248-411f-9ae9-63901bb914ef
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNGQ0YjhlNzQtMWQyNC00MTE2LWI5ZTctMzFhODk4Y2JlN2QxIiwiZmlyc3RuYW1lIjoibG9kYSIsImxhc3RuYW1lIjoic2YiLCJwYXNzd29yZCI6IiQyYiQxMCR4NGcycDZ1N3l0NWJNYXpBRWJkVVV1YkVtYmUyb2w4a3pOQUtGd3NJOUtZdUJFQm9sMDhKYSJ9LCJpYXQiOjE2NDc2Mzg0NTZ9.rZ9qHqjCfO0ULN7RfWMTVwwLF_kDp8XeCMaNbYwI2KA
+GET http://localhost:3000/api/users/{{user_uuid}}
+Authorization: Bearer {{user_token}}
 
 
 ### add a user
@@ -16,66 +18,105 @@ POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-  "firstname": "khaled",
-  "lastname": "mesbah",
-  "password": "mesbah"
+  "first_name": "khaled",
+  "last_name": "mesbah",
+  "password": "fasdfjkdslf"
 }
 
 ### update a user using put request 
-PUT  http://localhost:3000/api/users/3342a0a0-c30a-44dc-80a9-67b356fa0dd5
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMzM0MmEwYTAtYzMwYS00NGRjLTgwYTktNjdiMzU2ZmEwZGQ1IiwiZmlyc3RuYW1lIjoibG9kYSIsImxhc3RuYW1lIjoic2YiLCJwYXNzd29yZCI6IiQyYiQxMCQ2VE96Lkt0MXlNalc5UVhQQ0F6TmsuLnhJVHB1YkQ1RjNZSWF4MlFaL0diNjBGZk5uMkk5aSJ9LCJpYXQiOjE2NDc2ODUwNzV9.yFolud3MZfA4L84yfREJ7rrDE9TqOureMk4EZvCYyYw
+PUT  http://localhost:3000/api/users/{{user_uuid}}
+Authorization: Bearer {{user_token}}
 Content-Type: application/json
 
 {
-  "firstname": "sadfsadfsdf",
-  "lastname": "mesbah",
+  "first_name": "khalid",
+  "last_name": "sepaq",
   "password": "ya"
 }
 
 ### update a user using patch request 
-PATCH http://localhost:3000/api/users/73f89b6f-8248-411f-9ae9-63901bb914ef
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiNzNmODliNmYtODI0OC00MTFmLTlhZTktNjM5MDFiYjkxNGVmIiwiZmlyc3RuYW1lIjoia2hhbGVkIiwibGFzdG5hbWUiOiJtZXNiYWgiLCJwYXNzd29yZCI6IiQyYiQxMCRleTU5T0NLVDNLazROeVV2TDV4emdPeVhKL2lMQVZRV2lPbFI0OWtDNUEwS3JTYW1CVi9xYSJ9LCJpYXQiOjE2NDc2ODU1MjR9.TxgqIWikuLvqYBizl7kSwRnIXPuYbq9vxYTO6hhLu5A
+PATCH http://localhost:3000/api/users/{{user_uuid}}
+Authorization: Bearer {{user_token}}
 Content-Type: application/json
 
 {
-  "firstname": "Khalid",
-  "lastname": "Mesbah",
+  "first_name": "sara",
+  "last_name": "Mesbah",
   "password": "ya"
 }
 
 
 ### delete a user
-DELETE http://localhost:3000/api/users/4d4b8e74-1d24-4116-b9e7-31a898cbe7d1
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiZDVkMTdjOGUtZDZkNi00NDRhLTg0MTUtNzAwMGMzZGQxNGEzIiwiZmlyc3RuYW1lIjoib3NhbWEiLCJsYXN0bmFtZSI6Im1lc2JhaCIsInBhc3N3b3JkIjoiJDJiJDEwJHhVMTZ3WVhRZHdTemZTVmlRSUMwWC4vclhBTnVlOTVkdnZFSndPa29zd21RdEtwSkR6NGd5In0sImlhdCI6MTY0NzYzODMyMn0.DeTRXhGBiFCxa9l48Q29uxTQHZgCG7aYDzDrFJQ9iU0
+DELETE http://localhost:3000/api/users/{{user_uuid}}
+Authorization: Bearer {{user_token}}
 
+
+### authenticate a user
+GET http://localhost:3000/api/users/auth/{{user_uuid}}
+Content-Type: application/json
+
+{
+  "password": "ya"
+}
 
 ########PRODUCTS######PRODUCTS########PRODUCTS######
 ########PRODUCTS######PRODUCTS########PRODUCTS######
 ########PRODUCTS######PRODUCTS########PRODUCTS######
-
+@product_uuid=5cb95e32-a94d-4309-92e8-30c5b09f90d6
 ### get all the products => index
 GET http://localhost:3000/api/products
 
 ### get a specific product with id => show
-GET http://localhost:3000/api/products/8c1f6f43-32aa-4080-b856-2c243d15ed4a
+GET http://localhost:3000/api/products/{{product_uuid}}
 
 
 ### add a product
 POST http://localhost:3000/api/products
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiMzM0MmEwYTAtYzMwYS00NGRjLTgwYTktNjdiMzU2ZmEwZGQ1IiwiZmlyc3RuYW1lIjoibG9kYSIsImxhc3RuYW1lIjoic2YiLCJwYXNzd29yZCI6IiQyYiQxMCQ2VE96Lkt0MXlNalc5UVhQQ0F6TmsuLnhJVHB1YkQ1RjNZSWF4MlFaL0diNjBGZk5uMkk5aSJ9LCJpYXQiOjE2NDc2ODUwNzV9.yFolud3MZfA4L84yfREJ7rrDE9TqOureMk4EZvCYyYw
+Authorization: Bearer {{user_token}}
 Content-Type: application/json
 
 {
-  "name": "ssss",
+  "name": "mesbah",
   "price":32
 }
 
 ### delete a product
-DELETE http://localhost:3000/api/products/8c1f6f43-32aa-4080-b856-2c243d15ed4a
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiZDVkMTdjOGUtZDZkNi00NDRhLTg0MTUtNzAwMGMzZGQxNGEzIiwiZmlyc3RuYW1lIjoib3NhbWEiLCJsYXN0bmFtZSI6Im1lc2JhaCIsInBhc3N3b3JkIjoiJDJiJDEwJHhVMTZ3WVhRZHdTemZTVmlRSUMwWC4vclhBTnVlOTVkdnZFSndPa29zd21RdEtwSkR6NGd5In0sImlhdCI6MTY0NzYzODMyMn0.DeTRXhGBiFCxa9l48Q29uxTQHZgCG7aYDzDrFJQ9iU0
+DELETE http://localhost:3000/api/products/{{product_uuid}}
+Authorization: Bearer {{{{user_token}}}}
 
 ###
 GET http://localhost:3000/err
 
+########orders######orders########orders######
+########orders######orders########orders######
+########orders######orders########orders######
 
+@order_uuid=0bba73cf-0f80-4800-9695-b823ba5160bf
+### get all of the orders
+GET http://localhost:3000/api/orders
+
+### get a specific order
+GET http://localhost:3000/api/orders/{{order_uuid}}
+
+### add an order
+POST http://localhost:3000/api/orders
+Content-Type: application/json
+
+{
+  "status": "not active",
+  "user_id": "{{user_uuid}}"
+}
+
+
+### get all prodcuts for a specific order 
+GET http://localhost:3000/api/orders/{{order_uuid}}/products
+
+### add a product
+POST http://localhost:3000/api/orders/{{order_uuid}}/products
+Content-Type: application/json
+
+{
+  "quantity": 20,
+  "product_id": "{{product_uuid}}"
+}
 

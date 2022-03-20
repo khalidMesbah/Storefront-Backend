@@ -14,5 +14,5 @@ routes
   .put(authenticateToken, controller.update)
   .patch(authenticateToken, controller.update)
   .delete(authenticateToken, controller.delete);
-
+routes.get('/auth/:id', controller.authenticate);
 export default routes;

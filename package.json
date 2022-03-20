@@ -14,9 +14,9 @@
     "watch": "tsc-watch --esModuleInterop src/server.ts --outDir ./dist --onSuccess 'node ./dist/server.js'",
     "jasmine": "jasmine; exit 0",
     "test": "rm -r './dist' && tsc && export NODE_ENV=test && db-migrate up --env test && tsc && npm run jasmine && db-migrate reset -e test",
-    "migrate:up": "db-migrate up",
-    "migrate:down": "db-migrate down",
-    "migrate:reset": "db-migrate reset"
+    "mig:u": "db-migrate up",
+    "mig:d": "db-migrate down",
+    "mig:r": "db-migrate reset"
   },
   "author": "Khalid Mesbah",
   "license": "ISC",

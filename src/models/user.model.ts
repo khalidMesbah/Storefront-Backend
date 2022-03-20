@@ -1,25 +1,9 @@
-// a model file with methods
-// the model file is defining what a book is for our application.
-// The model is represented as a class, each book row in the database will be an instance of the book model.
-/* 
-“Maintains the relationship between Object and Database and handles validation, association, transactions” */
 import Client from '../databases/database'; // imports the database connection
-/*  Did you notice or wonder why its the books (plural) table in the database, but the book (singular) file for the model? That's because the database table will hold many books, but the model file is defining what a book is for our application. */
 import User from '../types/user.type';
-// models are a class in our code that can be used as a template to create items that are stored as rows in the table.
-/* 
-The model is represented as a class, each book row in the database will be an instance of the book model.
- */
-/* 
- models are a class in our code that can be used as a template to create items that are stored as rows in the table. */
-//  Models are a class representation of a table in the API
-// A MODEL is the representation of a database table in an API.
-// A table in a database can be represented in code as a class
-// Each row can be an instance of this class
-// Each instance of this class will become a new row in the database table.
 import hash from '../utilities/hashPassword';
 import queries from '../queries/users.queries';
-
+import bcrypt from 'bcrypt';
+import env from '../middlewares/config';
 export default class UsersTable {
   async index(): Promise<User[]> {
     try {
@@ -50,14 +34,14 @@ export default class UsersTable {
       const conn = await Client.connect();
       const sql = queries.addUser;
       const result = await conn.query(sql, [
-        u.firstname,
-        u.lastname,
+        u.first_name,
+        u.last_name,
         hash(u.password),
       ]);
       conn.release();
       return result.rows[0];
     } catch (err) {
-      throw new Error(`Could not add new user ${u.firstname}. Error: ${err}`);
+      throw new Error(`Could not add new user ${u.first_name}. Error: ${err}`);
     }
   }
 
@@ -66,8 +50,8 @@ export default class UsersTable {
       const conn = await Client.connect();
       const sql = queries.updateUser;
       const result = await conn.query(sql, [
-        u.firstname,
-        u.lastname,
+        u.first_name,
+        u.last_name,
         hash(u.password),
         id,
       ]);
@@ -91,19 +75,33 @@ export default class UsersTable {
   }
 
   // authenticate a user
-  async authenticate(id: string): Promise<User> {
+  async authenticate(id: string, _password: string): Promise<User | null> {
     try {
       const conn = await Client.connect();
       const sql = queries.authenticate;
       const result = await conn.query(sql, [id]);
+
+      let user;
+      if (result.rows.length)
+        if (bcrypt.compareSync(_password + env.pepper, result.rows[0].password))
+          user = result.rows[0];
+
       conn.release();
-      console.log(
-        `🚀🔥👉 ⚡ UserStore ⚡ authenticate ⚡ result.rows[0]`,
-        result.rows[0]
-      );
-      return result.rows[0];
+      return user || null;
     } catch (err) {
       throw new Error(`Could not authenticate user ${id}. Error: ${err}`);
+    }
+  }
+
+  async getAll(id: string): Promise<User> {
+    try {
+      const conn = await Client.connect();
+      const sql = queries.getAll;
+      const result = await conn.query(sql, [id]);
+      conn.release();
+      return result.rows[0];
+    } catch (err) {
+      throw new Error(`Could not getAll data from a user ${id}. Error: ${err}`);
     }
   }
 }

@@ -12,7 +12,7 @@ import env from './middlewares/config';
 const app: Application = express();
 const PORT = env.port || 3000;
 
-app.use(cors()); // for cross-origin resource sharing
+app.use(cors()); // to make our api puclic to the universe
 
 app.use(express.json()); // to parse incoming json
 

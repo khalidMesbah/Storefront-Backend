@@ -1,7 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
 import ProductModel from '../models/product.model';
-import jwt from 'jsonwebtoken';
-import env from '../middlewares/config';
 const controller = new ProductModel();
 
 class Controller {

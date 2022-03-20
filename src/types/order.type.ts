@@ -1,7 +1,6 @@
-export type Order = {
+type Order = {
   id?: string;
-  product_id: string;
-  productQuantity: number;
+  status: string;
   user_id: string;
-  status: boolean;
 };
+export default Order;

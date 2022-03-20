@@ -10,18 +10,25 @@ Advanced Full-Stack Web Development Nanodegree Program - Building an API with Po
 - A detailed list of the endpoints and actions available can be found in the REQUIREMENTS.md file.
 
 > ## Functionalities
+- Connected to a Postgres database.
+- [ ] RESTful API that supports CRUD for all entities in the database
+- Perform CRUD operations on a database.
+- Implemented RESTful API structure.
+- Created Express functions for incoming requests.
+- Organized Express routes into handlers.
+- Mapped RESTful routes to model methods.
+- Added endpoint tests.
 - Create a Postgres database with PostgreSQL.
-- Connect to a Postgres database.
+- Available to public using CORS.
+- Secure.
+- Password are stored hashed using bcrypt package.
 - Allow products to be created and stored in a database.
 - Allow users to sign up and sign in.
 - Allow usrs to login and register.
 - Require users to be signed in to perform certain actions.
 - Allow users to create orders and add products to orders.
 - Make crud operations to the database using a node.js API.
-- Password are stored hashed using bcrypt package.
-- A cart.
-- Informational endpoints to the API.
-- Perform CRUD operations on a database.
+- Added a cart.
 - Every user can only update the data of himself.
 - list the most common products/orders and limit the number of responses.
 - 

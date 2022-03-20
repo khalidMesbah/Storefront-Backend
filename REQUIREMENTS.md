@@ -5,27 +5,6 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 > ## API Endpoints
 > To try the endpoints install the REST Client Extentions and run the requests in the request.rest file.
-### Products
-Index
-``` http
-GET http://localhost:3000/api/products/
-```
-Show 
-``` http
-GET http://localhost:3000/api/products/:uuid
-```
-Create [token required] :
-``` http
-POST http://localhost:3000/api/products
-Authorization: Bearer <theToken>
-{
-    "name": "productName",
-    "price": 0000
-}
-```
-- [ ] [OPTIONAL] Top 5 most popular products 
-- [ ] [OPTIONAL] Products by category (args: product category)
-
 ### Users
 Index [token required] : get all the users
 ``` http
@@ -77,6 +56,27 @@ delete
 DELETE http://localhost:3000/api/users/:uuid
 Authorization: Bearer <theToken>
 ```
+### Products
+Index
+``` http
+GET http://localhost:3000/api/products/
+```
+Show 
+``` http
+GET http://localhost:3000/api/products/:uuid
+```
+Create [token required] :
+``` http
+POST http://localhost:3000/api/products
+Authorization: Bearer <theToken>
+{
+    "name": "productName",
+    "price": 0000
+}
+```
+- [ ] [OPTIONAL] Top 5 most popular products 
+- [ ] [OPTIONAL] Products by category (args: product category)
+
 ### Orders
 Current Order by user (args: user id)[token required]
 ``` http
@@ -85,56 +85,85 @@ Authorization: Bearer <theToken>
 ```
 - [ ] [OPTIONAL] Completed Orders by user (args: user id)[token required]
 
+### Order_products
+
+
 > ## Data Shapes
+
+### User
+- [x] id
+- [x] firstName
+- [x] lastName
+- [x] password
+``` sql
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE users (
+    id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+    first_name VARCHAR NOT NULL,
+    last_name VARCHAR NOT NULL,
+    password VARCHAR NOT NULL
+);
+```
+``` html
+store_dev=# select * from users;
+ id | firstname | lastname | password 
+----+-----------+----------+----------
+```
 ### Product
 - [x] id
 - [x] name
 - [x] price
 - [ ] [OPTIONAL] category
 ``` sql
-create table sfafd()
-valur
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE products(
+    id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+    name VARCHAR NOT NULL,
+    price INTEGER NOT NULL
+);
 ```
 ``` html
-store_test=# select * from products;
+store_dev=# select * from products;
  id | name | price 
 ----+------+-------
 ```
-### User
-- [x] id
-- [x] firstName
-- [x] lastName
-- [x] password
-``` html
-store_test=# select * from users;
- id | firstname | lastname | password 
-----+-----------+----------+----------
-```
 ### Orders
 - [x] id
-- [x] id of each product in the order
-- [x] quantity of each product in the order
 - [x] user_id
 - [x] status of order (active or complete)
+``` sql
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE orders(
+    id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+    status VARCHAR(64) NOT NULL,
+    user_id uuid REFERENCES users(id)
+);
+```
 ``` html 
-store_test=# select * from orders;
- id | prod_id | quan_prod | user_id | status 
-----+---------+-----------+---------+--------
+store_dev=# select * from orders;
+ id | status | user_id 
+----+--------+---------
 ```
 
+<mark>The order_products junction table : for the many to many relationship between orders and products tables</mark>
+### order_products
+- [x] id of each product in the order
+- [x] quantity of each product in the order
 ``` sql
-CREATE TABLE orders(
-    id SERIAL PRIMARY KEY,
-    status VARCHAR(64),
-    user_id integer REFERENCES users(id)
-);
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+CREATE TABLE order_products (
+    id uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+    quantity INTEGER ,
+    order_id uuid REFERENCES orders(id),
+    product_id uuid REFERENCES products(id)
+)
 ```
-  <!-- for the many to many relationship between orders and products table, I created the junction table: -->
-``` sql
-CREATE TABLE Order_products(
-    id SERIAL PRIMARY KEY,
-    quantity integer,
-    order_id bigint REFERENCES orders(id),
-    product_id bigint REFERENCES products (id)
-);
+``` html
+store_dev=# select * from order_products;
+ id | quantity | order_id | product_id 
+----+----------+----------+------------
 ```

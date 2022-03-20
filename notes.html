@@ -6,35 +6,96 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Notes</title>
+    <style>
+        html {
+            background: #333;
+            color: #fff;
+        }
+
+        h2 {
+            text-shadow: 1px 2px red;
+        }
+    </style>
 </head>
 
 <body>
-    <h2>how to connect to a database</h2>
-    <h2>models</h2>
-    <p>
-        Models are a main component in our API,
-    </p>
-    <h2> Integration vs Unit Testing</h2>
+    <div>
+        <h2>how to connect to a database</h2>
 
-    <p>I touch on this topic in the video but it deserves a little more explanation. This isn't a course on testing so
-        I'm not going too far into it, but understanding the main differences between these is important.</p>
-    <p>A unit test, tests a small chunk of code in your application. Unit tests are for the individual functions or
-        classes in your code, to make sure each one is doing what you need. These are small, typically fast to write,
-        and can really save you time when trying to understand where a problem is happening in the program.</p>
-    <p>An integration test checks how the individual pieces of your application logic work together. The span of one
-        integration test will cover multiple chunks of code (that can and should each have their own unit tests) and
-        make sure that working correctly together in a flow or process.</p>
-    <p>I refer to the tests we wrote in this section as integration tests because they test a flow in the application
-        from model to database and back. Its not a large process, so they won't look very different from unit tests, but
-        it is a good opportunity to talk about the differences.</p>
-    <blockquote>
+    </div>
 
-        Migration - The record of a database schema change that also includes the logic to enact and rollback that
-        change.
-        Integration Test - Tests a flow or process in the application that spans multiple units of individual functions
-        or classes.
+    <div>
+        <h2>models</h2>
+        <p>Models are a main component in our API</p>
+        <p>the model file is defining what a book/user/product/order is for our application.</p>
+        <p><mark>The model is represented as a class</mark>, each book row in the database will be an instance of the
+            book model.</p>
+        models are a class in our code that can be used as a template to create items that are stored as rows in the
+        table.
+        <p>The model is represented as a class, each book row in the database will be an instance of the book model.</p>
+        <p> Models are a class representation of a table in the API</p>
+        <p>A MODEL is the representation of a database table in an API.</p>
+        <p>A table in a database can be represented in code as a class</p>
+        <p>Each row can be an instance of this class</p>
+        <p> Each instance of this class will become a new row in the database table.</p>
+    </div>
 
-    </blockquote>
+    <div>
+        <h2> Integration vs Unit Testing</h2>
+
+        <p>A unit test, tests a small chunk of code in your application. Unit tests are for the individual functions or
+            classes in your code, to make sure each one is doing what you need. These are small, typically fast to
+            write,
+            and can really save you time when trying to understand where a problem is happening in the program.</p>
+        <p>An integration test checks how the individual pieces of your application logic work together. The span of one
+            integration test will cover multiple chunks of code (that can and should each have their own unit tests) and
+            make sure that working correctly together in a flow or process.</p>
+        <p>I refer to the tests we wrote in this section as integration tests because they test a flow in the
+            application
+            from model to database and back. Its not a large process, so they won't look very different from unit tests,
+            but
+            it is a good opportunity to talk about the differences.</p>
+    </div>
+    <div>
+        <h2>RESTful API</h2>
+        <iframe width="560" height="315" src="https://www.youtube.com/embed/StluoYh6ruU" title="YouTube video player"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen></iframe>
+        <br>
+        <q>A common pattern for organazing an API endpoints</q>
+        <p>REST is useful for providing a predictable, industry standard, well-organized way to structure API endpoints.
+        </p>
+        <p>REST implies a specific set of API endpoints for every entity in the app</p>
+        <p>There are five actionable RESTful routes for APIs:</p>
+        <ul>
+            <li>INDEX</li>
+            <li>SHOW</li>
+            <li>CREATE</li>
+            <li>EDIT</li>
+            <li>DELETE</li>
+        </ul>
+    </div>
+
+    <div>
+        <h2>CORS</h2>
+        <p>CORS stands for Cross Origin Resource Sharing and is an important factor in making and handling API requests</p>
+        <p>only found in browsers to make the web a safer place</p>
+        <q>to make our api puclic to the universe</q>
+
+
+    </div>
+
+    <div>
+        <h2>middlewares</h2>
+        <p>any function that runs between two other functions in a progressive chain  </p>
+        <pre>
+            app.get('/test-cors', cors(corsoptions), function (req, res, next) {
+                res.json({msg: 'This is CORS-enabled with a middle ware'})
+            })
+            cors(corsoptions) => is a middleware
+        </pre>
+    </div>
 </body>
 
 </html>
