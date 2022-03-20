@@ -38,13 +38,13 @@ export default class OrderTable {
       const conn = await Client.connect();
       const sql = queries.addProduct;
       const result = await conn.query(sql, [quantity, order_id, product_id]);
-      console.log(`🚀🔥👉 ⚡ OrderTable ⚡ result`, result.rows[0]);
       conn.release();
       return result.rows[0];
     } catch (err) {
       throw new Error(`Could not add product. Error: ${err}`);
     }
   }
+
   async show(id: string): Promise<Order> {
     try {
       const conn = await Client.connect();

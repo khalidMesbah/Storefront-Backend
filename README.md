@@ -35,13 +35,18 @@ Advanced Full-Stack Web Development Nanodegree Program - Building an API with Po
 
 
 > ## How to setup and connect to the database - Databases Configurations
+> > We are using PostgreSQL as our object-relational database management system to deal with and manipulate databases.
 
-
+Open the psql command-line tool:-
 ``` bash
 sudo su - postgres --> Switch to the postgres user 
 psql postgres --> Start psql 
 ```
+We need to make two databases:-
+- store_dev : for development
+- store_test : for testing
 
+Run the following Queries:-
 ``` sql
 CREATE USER userName WITH PASSWORD 'userPassword'; 
 CREATE DATABASE store_dev;
@@ -50,21 +55,11 @@ GRANT ALL PRIVILEGES ON DATABASE store_dev TO userName;
 CREATE DATABASE store_test;
 \c store_test
 GRANT ALL PRIVILEGES ON DATABASE store_test TO userName;
-CREATE DATABASE store_prod;
-\c store_prod
-GRANT ALL PRIVILEGES ON DATABASE store_prod TO userName;
-\dt -- "No relations found."
 ```
 
-We are using PostgreSQL as our object-relational database management system to deal with and manipulate databases.
+Create a .env file according to the .env.example file to set up the environment variables.
 
-We need to make two databases:-
-- store_dev : for development
-- store_test : for testing
-- store_prod : for production
-
-- Create a .env file according to the .env.example file to set up the environment variables.
-- Create a database.json file like the following :-
+Create a database.json file like the following :-
 ``` json
 {
     "defaultEnv": {"ENV": "NODE_ENV"},
@@ -83,21 +78,13 @@ We need to make two databases:-
         "database": {"ENV": "POSTGRES_DB_TEST"},
         "user": {"ENV": "POSTGRES_USER"},
         "password": {"ENV": "POSTGRES_PASSWORD"}
-    },
-    "prod": {
-    "driver": "pg",
-    "host": {"ENV": "POSTGRES_HOST"},
-    "port": {"ENV": "POSTGRES_PORT"},
-    "database": {"ENV": "POSTGRES_DB_PROD"},
-    "user": {"ENV": "POSTGRES_USER"},
-    "password": {"ENV": "POSTGRES_PASSWORD"}
     }
 }
 ```
-
+- Install the project's dependencies `npm i`.
 - Run the `migrate:up` script :  To set up all the needed tables and their relationships
 - Run the `start` script : To run the server
-- Done
+- Done 👐
 
 > ## what ports the backend and database are running on
 They are running on the ports provided by the user in the .env file.
@@ -108,70 +95,42 @@ Usually i run them on the following ports:-
 
 > ## Scripts
 
-`i` : To install all the dependencies needed for the project.
 ``` bash
-    npm i
+    npm i # To install all the dependencies needed for the project.
 ```
-
-`migrate:up` : To Call the up migrations.
 ``` bash
-    npm run migrate:up
+    npm run migrate:up # To Call the up migrations.
 ```
-
-`migrate:down` : To call the down migrations.
 ``` bash
-    npm run migrate:down
+    npm run migrate:down # To call the down migrations.
 ```
-
-`migrate:reset` : To reset all migrations.
 ``` bash
-    npm run migrate:reset
+    npm run migrate:reset # To reset all migrations.
 ```
-
-`build` : To compile typescript.
-
 ``` bash
-    npm run build
+    npm run build # To compile typescript.
 ```
-
-`start` : To run the server.
-
 ``` bash
-    npm run start
+    npm run start # To run the server.
 ```
-
-`start:prod` : To compile typescript and run the server .
-
 ``` bash
-    npm run start:prod
+    npm run watch # To run the watcher.
 ```
-
-`prettify` : To format the code.
-
 ``` bash
-    npm run prettier
+    npm run start:prod # To compile typescript and run the server .
 ```
-
-`lint` : To accelerate development and reduce errors.
-
 ``` bash
-    npm run lint
+    npm run prettier # To format the code.
 ```
-
-`test` : To test the Project.      
-
 ``` bash
-    npm run test
+    npm run lint # To accelerate development and reduce errors.
 ```
-
-`watch` : To run the server       
-
 ``` bash
-    npm run watch
-``` 
+    npm run test # To test the Project.
+```
 
 > ## Technologies / Stack
-- Postgres.
+- PostgreSQL.
 - Node.js.
 - Express.
 - TypeScript.
@@ -258,7 +217,8 @@ Before submitting your project, spin it up and test each endpoint. If each one r
 - [ ] JWT's for authentication and protected endpoints
 - [ ] Connect database tables via foreign keys
 - [ ] Translate data requirements from stakeholders into a database schema.
-
+- [ ] EXTRA: Add logic to ensure that products cannot be added to orders
+that are closed.
 - [ ] Install dependencies (examples).
 - [ ] Declare the Application object inside server.js file.
 - [ ] Create .env file, declare the different environments inside database.json and instantiate the

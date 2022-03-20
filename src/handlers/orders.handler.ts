@@ -33,6 +33,7 @@ class Controller {
       next(error);
     }
   };
+
   show = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const result = await controller.show(req.params.id as string);
