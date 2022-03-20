@@ -14,6 +14,27 @@
     <p>
         Models are a main component in our API,
     </p>
+    <h2> Integration vs Unit Testing</h2>
+
+    <p>I touch on this topic in the video but it deserves a little more explanation. This isn't a course on testing so
+        I'm not going too far into it, but understanding the main differences between these is important.</p>
+    <p>A unit test, tests a small chunk of code in your application. Unit tests are for the individual functions or
+        classes in your code, to make sure each one is doing what you need. These are small, typically fast to write,
+        and can really save you time when trying to understand where a problem is happening in the program.</p>
+    <p>An integration test checks how the individual pieces of your application logic work together. The span of one
+        integration test will cover multiple chunks of code (that can and should each have their own unit tests) and
+        make sure that working correctly together in a flow or process.</p>
+    <p>I refer to the tests we wrote in this section as integration tests because they test a flow in the application
+        from model to database and back. Its not a large process, so they won't look very different from unit tests, but
+        it is a good opportunity to talk about the differences.</p>
+    <blockquote>
+
+        Migration - The record of a database schema change that also includes the logic to enact and rollback that
+        change.
+        Integration Test - Tests a flow or process in the application that spans multiple units of individual functions
+        or classes.
+
+    </blockquote>
 </body>
 
 </html>

@@ -16,8 +16,8 @@ POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-  "firstname": "loda",
-  "lastname": "sf",
+  "firstname": "khaled",
+  "lastname": "mesbah",
   "password": "mesbah"
 }
 
@@ -73,3 +73,9 @@ Content-Type: application/json
 ### delete a product
 DELETE http://localhost:3000/api/products/8c1f6f43-32aa-4080-b856-2c243d15ed4a
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiZDVkMTdjOGUtZDZkNi00NDRhLTg0MTUtNzAwMGMzZGQxNGEzIiwiZmlyc3RuYW1lIjoib3NhbWEiLCJsYXN0bmFtZSI6Im1lc2JhaCIsInBhc3N3b3JkIjoiJDJiJDEwJHhVMTZ3WVhRZHdTemZTVmlRSUMwWC4vclhBTnVlOTVkdnZFSndPa29zd21RdEtwSkR6NGd5In0sImlhdCI6MTY0NzYzODMyMn0.DeTRXhGBiFCxa9l48Q29uxTQHZgCG7aYDzDrFJQ9iU0
+
+###
+GET http://localhost:3000/err
+
+
+

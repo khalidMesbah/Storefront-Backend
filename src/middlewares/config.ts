@@ -11,7 +11,9 @@ export default {
   db:
     process.env.NODE_ENV === 'dev'
       ? process.env.POSTGRES_DB
-      : process.env.POSTGRES_DB_TEST,
+      : process.env.NODE_ENV === 'test'
+      ? process.env.POSTGRES_DB_TEST
+      : process.env.POSTGRES_DB_PROD,
   dbport: process.env.POSTGRES_PORT,
   user: process.env.POSTGRES_USER,
   pass: process.env.POSTGRES_PASSWORD,
