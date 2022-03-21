@@ -6,9 +6,9 @@ const controller = new Controller();
 const routes = Router();
 
 routes.route('/').get(controller.index).post(controller.create);
-routes.route('/:id').get(controller.show);
+routes.route('/:uuid').get(controller.show).delete(controller.delete);
 routes
-  .route('/:id/products')
+  .route('/:uuid/products')
   .post(controller.addProduct)
   .get(controller.indexProduct);
 

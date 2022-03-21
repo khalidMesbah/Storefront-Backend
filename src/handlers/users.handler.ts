@@ -74,12 +74,37 @@ class Controller {
   };
 
   delete = async (req: Request, res: Response, next: NextFunction) => {
+    // check if the user is the same user that will be updated
     try {
-      const result = await controller.delete(req.params.id as string);
-      if (typeof result === 'undefined') res.json("the user doesn't exist");
-      res.json(result);
+      const userInfo = await controller.getAll(req.params.id); // get the user's info from the database
+      const tokenInfo = parseJwt(
+        String(req.headers.authorization).split(' ')[1] as string
+      ); // get the users info from the token
+      // if data from token === data from database =>update successfully
+      if (
+        tokenInfo.user.first_name === userInfo.first_name &&
+        tokenInfo.user.last_name === userInfo.last_name &&
+        tokenInfo.user.password === userInfo.password
+      ) {
+        // update the user
+        try {
+          const result = await controller.delete(req.params.id as string);
+          res.json(result);
+          return;
+        } catch (error) {
+          next(error);
+        }
+        return;
+      } else {
+        res.json({
+          msg: 'you are not the same user',
+          token: tokenInfo.user,
+          user: userInfo,
+        });
+        return;
+      }
     } catch (error) {
-      next(error);
+      next();
     }
   };
 

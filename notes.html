@@ -79,7 +79,8 @@
 
     <div>
         <h2>CORS</h2>
-        <p>CORS stands for Cross Origin Resource Sharing and is an important factor in making and handling API requests</p>
+        <p>CORS stands for Cross Origin Resource Sharing and is an important factor in making and handling API requests
+        </p>
         <p>only found in browsers to make the web a safer place</p>
         <q>to make our api puclic to the universe</q>
 
@@ -88,13 +89,36 @@
 
     <div>
         <h2>middlewares</h2>
-        <p>any function that runs between two other functions in a progressive chain  </p>
+        <p>any function that runs between two other functions in a progressive chain </p>
         <pre>
             app.get('/test-cors', cors(corsoptions), function (req, res, next) {
                 res.json({msg: 'This is CORS-enabled with a middle ware'})
             })
             cors(corsoptions) => is a middleware
         </pre>
+    </div>
+
+
+    <div>
+        <h2>Creating a Service</h2>
+        <p>At this point, I would say that our needs for this application have grown beyond our simple model - handler
+            architecture. It would not make sense to cram this query onto the products table, or any of the other
+            options discussed above. This JOIN query is business logic that does not belong in any model or handler, so
+            we are going to put it in a new place, called a service.
+
+            I will add a services folder as a sibling of models and handlers. Services will have a file called
+            dashboard.ts. Here, we can add various methods that get information from the database in the form of
+            specialized select queries or joins. One thing is very important - the dashboard will run SQL queries to
+            READ information from the database, but any actions on the database should be done through a model. This
+            dashboard file is simply allowing us to isolate our informational queries together in one place, rather than
+            spread them out across all the models. Since what information is shown in the dashboard is likely to change
+            often, this will cut down time to edit dashboard queries when needed. This also fits conceptually, because a
+            model is supposed to be the representation of your database table in the Node application, it should not be
+            concerned with getting the 5 most recently added products, for example.
+
+            <q> A service file is a place to write extra business logic that does not belong in a handler or a model or
+                orchestrates changes with multiple models.</q>
+        </p>
     </div>
 </body>
 

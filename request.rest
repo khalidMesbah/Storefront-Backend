@@ -1,8 +1,8 @@
-@user_uuid=82f30556-9203-4299-8d87-50bb10237795
-@user_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkIjoiODJmMzA1NTYtOTIwMy00Mjk5LThkODctNTBiYjEwMjM3Nzk1IiwiZmlyc3RfbmFtZSI6ImtoYWxlZCIsImxhc3RfbmFtZSI6Im1lc2JhaCIsInBhc3N3b3JkIjoiJDJiJDEwJE1nWmxjZ2xtY1RONEdJRlAzMUliVHVzcFlFVDM5bEdwbmd0NFdCdjRRNkJxVERIakZDWWo2In0sImlhdCI6MTY0NzgwNTEwMH0.QYVjtMggF4G1lH5aZIMC0ZYteFHy5kBkM5v-kyqkMeo
 ########USERS######USERS########USERS######
 ########USERS######USERS########USERS######
 ########USERS######USERS########USERS######
+@user_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkX3BrIjoiOTQzZTcwYmUtYjJjNi00MTQzLWE2NTgtYjI5MmY4ZjFmY2YxIiwiZmlyc3RfbmFtZSI6InNtc20iLCJsYXN0X25hbWUiOiJtZXNiYWgiLCJwYXNzd29yZCI6IiQyYiQxMCQ4b2hrVnFDTi9LRXMyeUZKM3p1eGwuVHhLWFhoY1BBcWh6MHlWWjFKbkNTVnQvRVZEODJiSyJ9LCJpYXQiOjE2NDc4ODI5OTJ9.VoFljTzRY_HE0t7qn6V97oVR1PzzCQortRxxdz8WIig
+@user_uuid=943e70be-b2c6-4143-a658-b292f8f1fcf1
 
 ### get all the users
 GET http://localhost:3000/api/users
@@ -18,7 +18,7 @@ POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-  "first_name": "khaled",
+  "first_name": "smsm",
   "last_name": "mesbah",
   "password": "fasdfjkdslf"
 }
@@ -40,7 +40,7 @@ Authorization: Bearer {{user_token}}
 Content-Type: application/json
 
 {
-  "first_name": "sara",
+  "first_name": "papa",
   "last_name": "Mesbah",
   "password": "ya"
 }
@@ -56,13 +56,13 @@ GET http://localhost:3000/api/users/auth/{{user_uuid}}
 Content-Type: application/json
 
 {
-  "password": "ya"
+  "password": "fasdfjkdslf"
 }
 
 ########PRODUCTS######PRODUCTS########PRODUCTS######
 ########PRODUCTS######PRODUCTS########PRODUCTS######
 ########PRODUCTS######PRODUCTS########PRODUCTS######
-@product_uuid=5cb95e32-a94d-4309-92e8-30c5b09f90d6
+@product_uuid=75622b4c-c091-4af2-81cc-30fcbe8da1a6
 ### get all the products => index
 GET http://localhost:3000/api/products
 
@@ -76,22 +76,19 @@ Authorization: Bearer {{user_token}}
 Content-Type: application/json
 
 {
-  "name": "mesbah",
-  "price":32
+  "name": "botato",
+  "price":221
 }
 
 ### delete a product
 DELETE http://localhost:3000/api/products/{{product_uuid}}
-Authorization: Bearer {{{{user_token}}}}
-
-###
-GET http://localhost:3000/err
+Authorization: Bearer {{user_token}}
 
 ########orders######orders########orders######
 ########orders######orders########orders######
 ########orders######orders########orders######
 
-@order_uuid=0bba73cf-0f80-4800-9695-b823ba5160bf
+@order_uuid=a02e415a-a8fa-4dea-a8af-80b907f2041f
 ### get all of the orders
 GET http://localhost:3000/api/orders
 
@@ -103,20 +100,48 @@ POST http://localhost:3000/api/orders
 Content-Type: application/json
 
 {
-  "status": "not active",
-  "user_id": "{{user_uuid}}"
+  "status": "alice",
+  "user_id_FK": "{{user_uuid}}"
 }
 
 
 ### get all prodcuts for a specific order 
 GET http://localhost:3000/api/orders/{{order_uuid}}/products
 
-### add a product
+### add a product to a specific order
 POST http://localhost:3000/api/orders/{{order_uuid}}/products
 Content-Type: application/json
 
 {
-  "quantity": 20,
-  "product_id": "{{product_uuid}}"
+  "quantity": 123,
+  "product_id_FK": "{{product_uuid}}"
+}
+### delete a specific order
+DELETE http://localhost:3000/api/orders/{{order_uuid}}
+
+
+########dashboard######dashboard########dashboard######
+########dashboard######dashboard########dashboard######
+########dashboard######dashboard########dashboard######
+
+### get all products that have been included in orders
+GET http://localhost:3000/api/dashboard/getAllProductsInOrders
+
+### get all users that have made orders
+GET http://localhost:3000/api/dashboard/getUsersWithOrders
+
+### get the <number> most expensive products
+GET http://localhost:3000/api/dashboard/getMostExpProducts
+Content-Type: application/json
+
+{
+  "limit":5
 }
 
+### get the <number> most Poplular products
+GET http://localhost:3000/api/dashboard/getmostPopProducts
+Content-Type: application/json
+
+{
+  "limit":5
+}

@@ -17,11 +17,12 @@ export default class OrderTable {
       throw new Error(`Could not get orders. Error: ${err}`);
     }
   }
-  async indexProducts(): Promise<Order[]> {
+
+  async indexProducts(uuid: string): Promise<Order[]> {
     try {
       const conn = await Client.connect();
       const sql = queries.getOrderProducts;
-      const result = await conn.query(sql);
+      const result = await conn.query(sql, [uuid]);
       conn.release();
       return result.rows;
     } catch (err) {
@@ -31,49 +32,55 @@ export default class OrderTable {
 
   async addProduct(
     quantity: number,
-    order_id: string,
-    product_id: string
+    order_id_FK: string,
+    product_id_FK: string
   ): Promise<Order> {
     try {
       const conn = await Client.connect();
       const sql = queries.addProduct;
-      const result = await conn.query(sql, [quantity, order_id, product_id]);
-      conn.release();
-      return result.rows[0];
-    } catch (err) {
-      throw new Error(`Could not add product. Error: ${err}`);
-    }
-  }
-
-  async show(id: string): Promise<Order> {
-    try {
-      const conn = await Client.connect();
-      const sql = queries.getOrder;
-      const result = await conn.query(sql, [id]);
-      conn.release();
-      return result.rows[0];
-    } catch (err) {
-      throw new Error(`Could not find order ${id}. Error: ${err}`);
-    }
-  }
-
-  async create(status: string, user_id: string): Promise<Order> {
-    try {
-      const conn = await Client.connect();
-      const sql = queries.addOrder;
-      const result = await conn.query(sql, [status, user_id]);
+      const result = await conn.query(sql, [
+        quantity,
+        order_id_FK,
+        product_id_FK,
+      ]);
       conn.release();
       return result.rows[0];
     } catch (err) {
       throw new Error(
-        `Could not add new order for user ${user_id}. Error: ${err}`
+        `Could not add a new product for order ${order_id_FK}. Error: ${err}`
+      );
+    }
+  }
+
+  async show(id_PK: string): Promise<Order> {
+    try {
+      const conn = await Client.connect();
+      const sql = queries.getOrder;
+      const result = await conn.query(sql, [id_PK]);
+      conn.release();
+      return result.rows[0];
+    } catch (err) {
+      throw new Error(`Could not find order ${id_PK}. Error: ${err}`);
+    }
+  }
+
+  async create(status: string, user_id_FK: string): Promise<Order> {
+    try {
+      const conn = await Client.connect();
+      const sql = queries.addOrder;
+      const result = await conn.query(sql, [status, user_id_FK]);
+      conn.release();
+      return result.rows[0];
+    } catch (err) {
+      throw new Error(
+        `Could not add new order for user ${user_id_FK}. Error: ${err}`
       );
     }
   }
   /* 
 
 
-  async update(id: string, o: Order): Promise<Order> {
+  async update(id_PK: string, o: Order): Promise<Order> {
     try {
       const conn = await Client.connect();
       const sql = queries.updateOrder;
@@ -81,33 +88,21 @@ export default class OrderTable {
         o.first_name,
         o.last_name,
         hash(o.password),
-        id,
+        id_PK,
       ]);
       conn.release();
       return result.rows[0];
     } catch (err) {
-      throw new Error(`Could not update order ${id}. Error: ${err}`);
-    }
-  }
-
-  async delete(id: string): Promise<Order> {
-    try {
-      const conn = await Client.connect();
-      const sql = queries.removeOrder;
-      const result = await conn.query(sql, [id]);
-      conn.release();
-      return result.rows[0];
-    } catch (err) {
-      throw new Error(`Could not delete order ${id}. Error: ${err}`);
+      throw new Error(`Could not update order ${id_PK}. Error: ${err}`);
     }
   }
 
   // authenticate a order
-  async authenticate(id: string, _password: string): Promise<Order | null> {
+  async authenticate(id_PK: string, _password: string): Promise<Order | null> {
     try {
       const conn = await Client.connect();
       const sql = queries.authenticate;
-      const result = await conn.query(sql, [id]);
+      const result = await conn.query(sql, [id_PK]);
 
       let order;
       if (result.rows.length)
@@ -117,21 +112,32 @@ export default class OrderTable {
       conn.release();
       return order || null;
     } catch (err) {
-      throw new Error(`Could not authenticate order ${id}. Error: ${err}`);
+      throw new Error(`Could not authenticate order ${id_PK}. Error: ${err}`);
     }
   }
 
-  async getAll(id: string): Promise<Order> {
+  async getAll(id_PK: string): Promise<Order> {
     try {
       const conn = await Client.connect();
       const sql = queries.getAll;
-      const result = await conn.query(sql, [id]);
+      const result = await conn.query(sql, [id_PK]);
       conn.release();
       return result.rows[0];
     } catch (err) {
       throw new Error(
-        `Could not getAll data from a order ${id}. Error: ${err}`
+        `Could not getAll data from a order ${id_PK}. Error: ${err}`
       );
     }
   } */
+  async delete(id_PK: string): Promise<Order> {
+    try {
+      const conn = await Client.connect();
+      const sql = queries.removeOrder;
+      const result = await conn.query(sql, [id_PK]);
+      conn.release();
+      return result.rows[0];
+    } catch (err) {
+      throw new Error(`Could not delete order ${id_PK}. Error: ${err}`);
+    }
+  }
 }

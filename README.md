@@ -189,14 +189,7 @@ Before submitting, make sure that your project is complete with a `README.md`. Y
 Before submitting your project, spin it up and test each endpoint. If each one responds with data that matches the data shapes from the `REQUIREMENTS.md`, it is ready for submission!
 
 > ## Tasks
-- [ ] complete the PROJECT SPECIFICATION in the rub
-- [ ] Draft a database schema that covers all the data requirements.
-- [ ] Draft a map of endpoints to expose for the frontend.
-- [ ] Create a connection to a Postgres database from the provided Node application.
-- [ ] Add tables and columns according to the database schema doc.
-- [ ] Create models that facilitate CRUD operations on the database tables.
 - [ ] Create a test suite for each model in Jasmine.
-- [ ] Create handler files for each model.
 - [ ] In each handler file, create RESTful endpoints for each model method.
 - [ ] Create a test suite that covers each endpoint with Jasmine.
 - [ ] You need to install the docker using the docker-compose.yml file provided in the repo. Note that you may need to update this file to fit your computer in order to use it locally.
@@ -228,3 +221,8 @@ that are closed.
 - [ ] Create the corresponding handlers.
 - [ ] Testing the models and the handlers.
 - [ ] Documentation (README.md file)
+
+> # Suggestions to Make Your Project Stand Out!
+- [ ] In addition to the endpoints required in the project, add any missing CRUD endpoints with authentication if needed for that data
+- [ ] Add a users 5 most recent purchases to the data being sent back from the user show endpoint (/users/id)
+- [ ] Add a popular products endpoint that sends back the 5 most commonly ordered items
