@@ -41,6 +41,7 @@ class Controller {
       next(error);
     }
   };
+
   getMostPopProducts = async (
     req: Request,
     res: Response,
@@ -48,6 +49,19 @@ class Controller {
   ) => {
     try {
       const result = await controller.mostPopProducts(req.body.limit);
+      res.json(result);
+    } catch (error) {
+      next(error);
+    }
+  };
+
+  getCurrentOrderByUser = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    try {
+      const result = await controller.CurrentOrderByUser(req.params.uuid);
       res.json(result);
     } catch (error) {
       next(error);

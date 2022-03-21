@@ -77,25 +77,22 @@ export default class OrderTable {
       );
     }
   }
-  /* 
 
-
-  async update(id_PK: string, o: Order): Promise<Order> {
+  async update(status: string, id_PK: string): Promise<Order> {
     try {
       const conn = await Client.connect();
       const sql = queries.updateOrder;
-      const result = await conn.query(sql, [
-        o.first_name,
-        o.last_name,
-        hash(o.password),
-        id_PK,
-      ]);
+      const result = await conn.query(sql, [status, id_PK]);
       conn.release();
       return result.rows[0];
     } catch (err) {
       throw new Error(`Could not update order ${id_PK}. Error: ${err}`);
     }
   }
+  /* 
+
+
+
 
   // authenticate a order
   async authenticate(id_PK: string, _password: string): Promise<Order | null> {
@@ -115,19 +112,6 @@ export default class OrderTable {
       throw new Error(`Could not authenticate order ${id_PK}. Error: ${err}`);
     }
   }
-
-  async getAll(id_PK: string): Promise<Order> {
-    try {
-      const conn = await Client.connect();
-      const sql = queries.getAll;
-      const result = await conn.query(sql, [id_PK]);
-      conn.release();
-      return result.rows[0];
-    } catch (err) {
-      throw new Error(
-        `Could not getAll data from a order ${id_PK}. Error: ${err}`
-      );
-    }
   } */
   async delete(id_PK: string): Promise<Order> {
     try {

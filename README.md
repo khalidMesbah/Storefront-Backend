@@ -11,7 +11,7 @@ Advanced Full-Stack Web Development Nanodegree Program - Building an API with Po
 
 > ## Functionalities
 - Connected to a Postgres database.
-- [ ] RESTful API that supports CRUD for all entities in the database
+- RESTful API that supports CRUD for all entities in the database
 - Perform CRUD operations on a database.
 - Implemented RESTful API structure.
 - Created Express functions for incoming requests.
@@ -225,4 +225,4 @@ that are closed.
 > # Suggestions to Make Your Project Stand Out!
 - [ ] In addition to the endpoints required in the project, add any missing CRUD endpoints with authentication if needed for that data
 - [ ] Add a users 5 most recent purchases to the data being sent back from the user show endpoint (/users/id)
-- [ ] Add a popular products endpoint that sends back the 5 most commonly ordered items
+- [x] Add a popular products endpoint that sends back the 5 most commonly ordered items

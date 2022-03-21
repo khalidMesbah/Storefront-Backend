@@ -5,7 +5,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 > ## API Endpoints
 > To try the endpoints install the REST Client Extentions and run the requests in the request.rest file.
-### <div style="font-size:20px;color: #cfc547;text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgba(81,67,21,0.8), 0px 4px 7px rgba(81,67,21,0.8);">***Users***</div>
+### <div style="color: #cfc547;text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgba(81,67,21,0.8), 0px 4px 7px rgba(81,67,21,0.8);">***Users Routes***</div>
 
 Index [token required] : get all the users
 ``` http
@@ -63,8 +63,7 @@ DELETE http://localhost:3000/api/users/<uuid>
 Authorization: Bearer <theToken>
 ```
 
----
-### <div style="font-size:20px;color: #cfc547;text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgba(81,67,21,0.8), 0px 4px 7px rgba(81,67,21,0.8);">***Products***</div>
+### <div style="color: #cfc547;text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgba(81,67,21,0.8), 0px 4px 7px rgba(81,67,21,0.8);">***Products Routes***</div>
 Index
 ``` http
 GET http://localhost:3000/api/products/
@@ -95,20 +94,23 @@ Authorization: Bearer <thetoken>
 
 - [x] [OPTIONAL] Top 5 most popular products 
 - [ ] [OPTIONAL] Products by category (args: product category)
----
-### <div style="font-size:20px;color: #cfc547;text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgba(81,67,21,0.8), 0px 4px 7px rgba(81,67,21,0.8);">***Orders***</div>
-Current Order by user (args: user id)[token required]
+
+### <div style="color: #cfc547;text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgba(81,67,21,0.8), 0px 4px 7px rgba(81,67,21,0.8);">***Orders Routes***</div>
+
+- [ ] Current Order by user (args: user id)[token required]
 ``` http
 GET http://localhost:3000/api/orders/<uuid>
 Authorization: Bearer <theToken>
 ```
 - [ ] [OPTIONAL] Completed Orders by user (args: user id)[token required]
+
+### <div style="color: #cfc547;text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgba(81,67,21,0.8), 0px 4px 7px rgba(81,67,21,0.8);">***dashboard Routes***</div>
+
 ---
-### <div style="font-size:20px;color: #cfc547;text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgba(81,67,21,0.8), 0px 4px 7px rgba(81,67,21,0.8);">***Order_products***</div>
+<br>
 
-
-> ## Tables' structures
-### <div style="font-size:20px;color: #cfc547;text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgba(81,67,21,0.8), 0px 4px 7px rgba(81,67,21,0.8);">***users***</div>
+> ## Tables' structures - Data shapes - Database Schema
+### <div style="color: #cfc547;text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgba(81,67,21,0.8), 0px 4px 7px rgba(81,67,21,0.8);">***users Schema***</div>
 - [x] id_PK
 - [x] first_name
 - [x] last_name
@@ -128,8 +130,8 @@ store_dev=# select * from users ;
  id_pk | first_name | last_name | password 
 -------+------------+-----------+----------
 ```
----
-### <div style="font-size:20px;color: #cfc547;text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgba(81,67,21,0.8), 0px 4px 7px rgba(81,67,21,0.8);">***products***</div>
+
+### <div style="color: #cfc547;text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgba(81,67,21,0.8), 0px 4px 7px rgba(81,67,21,0.8);">***products Schema***</div>
 - [x] id_PK
 - [x] name
 - [x] price
@@ -148,8 +150,8 @@ store_dev=# select * from products ;
  id_pk | name | price 
 -------+------+-------
 ```
----
-### <div style="font-size:20px;color: #cfc547;text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgba(81,67,21,0.8), 0px 4px 7px rgba(81,67,21,0.8);">***Orders***</div>
+
+### <div style="color: #cfc547;text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgba(81,67,21,0.8), 0px 4px 7px rgba(81,67,21,0.8);">***Orders Schema***</div>
 - [x] id_PK
 - [x] status of order (active or complete)
 - [x] user_id_FK
@@ -167,8 +169,8 @@ store_dev=# select * from orders ;
  id_pk | status | user_id_fk 
 -------+--------+------------
 ```
----
-### <div style="font-size:20px;color: #cfc547;text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgba(81,67,21,0.8), 0px 4px 7px rgba(81,67,21,0.8);">***order_products***</div> 
+
+### <div style="color: #cfc547;text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgba(81,67,21,0.8), 0px 4px 7px rgba(81,67,21,0.8);">***order_products Schema***</div> 
 The order_products junction table : for the many to many relationship between orders and products tables
 - [x] id_PK
 - [x] quantity of each product in the order

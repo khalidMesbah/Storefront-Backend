@@ -23,7 +23,7 @@ export default class UsersTable {
       const sql = queries.getUser;
       const result = await conn.query(sql, [id_PK]);
       conn.release();
-      return result.rows[0];
+      return { ...result.rows[0], 'recent purchases': 323 };
     } catch (err) {
       throw new Error(`Could not find user ${id_PK}. Error: ${err}`);
     }

@@ -1,9 +1,10 @@
 import Client from '../../databases/database';
 
-type a = { name: string; price: number; order_id_FK: string };
 export class Dashboard {
   // Get all products that have been included in orders
-  async productsInOrders(): Promise<a[]> {
+  async productsInOrders(): Promise<
+    { name: string; price: number; order_id_FK: string }[]
+  > {
     try {
       const conn = await Client.connect();
       const sql =
@@ -19,7 +20,9 @@ export class Dashboard {
   }
 
   // get the <number> most expensive products
-  async mostExpProducts(limit: number): Promise<a[]> {
+  async mostExpProducts(
+    limit: number
+  ): Promise<{ name: string; price: number }[]> {
     try {
       const conn = await Client.connect();
       const sql =
@@ -61,6 +64,23 @@ export class Dashboard {
     } catch (err) {
       throw new Error(
         `unable get the top ${limit} most pupular products: ${err}`
+      );
+    }
+  }
+
+  // top <number> most pupular products
+  async CurrentOrderByUser(
+    uuid: string
+  ): Promise<{ name: string; num: number }[]> {
+    try {
+      const conn = await Client.connect();
+      const sql = `SELECT name ,count(*) FROM products INNER JOIN order_products ON products.id_PK = order_products.product_id_FK GROUP BY name order By 2 DESC LIMIT ($1)`;
+      const result = await conn.query(sql, [uuid]);
+      conn.release();
+      return result.rows;
+    } catch (err) {
+      throw new Error(
+        `unable get the top ${uuid} most pupular products: ${err}`
       );
     }
   }
