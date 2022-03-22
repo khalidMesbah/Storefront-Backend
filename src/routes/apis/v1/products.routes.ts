@@ -7,11 +7,18 @@ const routes = Router();
 
 routes
   .route('/')
-  .get(controller.index)
+  .get(authenticateToken, controller.index)
   .post(authenticateToken, controller.create);
 routes
-  .route('/:id')
+  .route('/:uuid')
   .get(controller.show)
-  .delete(authenticateToken, controller.delete);
+  .delete(authenticateToken, controller.delete)
+  .put(authenticateToken, controller.update)
+  .patch(authenticateToken, controller.update);
+routes.get(
+  '/indexByCategory/:category',
+  authenticateToken,
+  controller.getIndexByCategory
+);
 
 export default routes;

@@ -9,10 +9,10 @@ routes
   .get(authenticateToken, controller.index)
   .post(controller.create);
 routes
-  .route('/:id')
+  .route('/:uuid')
   .get(authenticateToken, controller.show)
   .put(authenticateToken, controller.update)
   .patch(authenticateToken, controller.update)
   .delete(authenticateToken, controller.delete);
-routes.get('/auth/:id', controller.authenticate);
+routes.get('/auth/:uuid', controller.authenticate);
 export default routes;

@@ -11,19 +11,31 @@ export default class ProductsTable {
       conn.release();
       return result.rows;
     } catch (err) {
-      throw new Error(`Could not get products.queries. Error: ${err}`);
+      throw new Error(`Could not get products Error: ${err}`);
     }
   }
 
-  async show(id: string): Promise<Product> {
+  async indexByCategory(category: string): Promise<Product[]> {
+    try {
+      const conn = await Client.connect();
+      const sql = queries.getProductsByCategory;
+      const result = await conn.query(sql, [category]);
+      conn.release();
+      return result.rows;
+    } catch (err) {
+      throw new Error(`Could not get products by category Error: ${err}`);
+    }
+  }
+
+  async show(uuid: string): Promise<Product> {
     try {
       const conn = await Client.connect();
       const sql = queries.getProduct;
-      const result = await conn.query(sql, [id]);
+      const result = await conn.query(sql, [uuid]);
       conn.release();
       return result.rows[0];
     } catch (err) {
-      throw new Error(`Could not find Product ${id}. Error: ${err}`);
+      throw new Error(`Could not find Product ${uuid}. Error: ${err}`);
     }
   }
 
@@ -31,7 +43,7 @@ export default class ProductsTable {
     try {
       const conn = await Client.connect();
       const sql = queries.addProduct;
-      const result = await conn.query(sql, [p.name, p.price]);
+      const result = await conn.query(sql, [p.name, p.price, p.category]);
       conn.release();
       return result.rows[0];
     } catch (err) {
@@ -39,15 +51,32 @@ export default class ProductsTable {
     }
   }
 
-  async delete(id: string): Promise<Product> {
+  async update(p: Product): Promise<Product> {
     try {
       const conn = await Client.connect();
-      const sql = queries.removeProduct;
-      const result = await conn.query(sql, [id]);
+      const sql = queries.updateProduct;
+      const result = await conn.query(sql, [
+        p.name,
+        p.price,
+        p.category,
+        p.uuid,
+      ]);
       conn.release();
       return result.rows[0];
     } catch (err) {
-      throw new Error(`Could not delete product ${id}. Error: ${err}`);
+      throw new Error(`Could not update product ${p.uuid}. Error: ${err}`);
+    }
+  }
+
+  async delete(uuid: string): Promise<Product> {
+    try {
+      const conn = await Client.connect();
+      const sql = queries.removeProduct;
+      const result = await conn.query(sql, [uuid]);
+      conn.release();
+      return result.rows[0];
+    } catch (err) {
+      throw new Error(`Could not delete product ${uuid}. Error: ${err}`);
     }
   }
 }

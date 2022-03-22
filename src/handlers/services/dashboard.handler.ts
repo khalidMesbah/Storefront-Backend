@@ -67,6 +67,19 @@ class Controller {
       next(error);
     }
   };
+
+  getCompletedOrdersByUser = async (
+    req: Request,
+    res: Response,
+    next: NextFunction
+  ) => {
+    try {
+      const result = await controller.completedOrdersByUser(req.params.uuid);
+      res.json(result);
+    } catch (error) {
+      next(error);
+    }
+  };
 }
 
 export default Controller;

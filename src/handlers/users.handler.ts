@@ -17,7 +17,7 @@ class Controller {
 
   show = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const result = await controller.show(req.params.id);
+      const result = await controller.show(req.params.uuid);
       if (typeof result === 'undefined') res.json("the user doesn't exist");
       res.json(result);
     } catch (error) {
@@ -38,7 +38,7 @@ class Controller {
   update = async (req: Request, res: Response, next: NextFunction) => {
     // check if the user is the same user that will be updated
     try {
-      const userInfo = await controller.getAll(req.params.id); // get the user's info from the database
+      const userInfo = await controller.getAll(req.params.uuid); // get the user's info from the database
       const tokenInfo = parseJwt(
         String(req.headers.authorization).split(' ')[1] as string
       ); // get the users info from the token
@@ -50,8 +50,8 @@ class Controller {
       ) {
         // update the user
         try {
-          const result = await controller.update(req.params.id, req.body);
-          const newUser = await controller.getAll(req.params.id);
+          const result = await controller.update(req.params.uuid, req.body);
+          const newUser = await controller.getAll(req.params.uuid);
           const token = jwt.sign({ user: newUser }, env.tokenSecret as string);
 
           res.json({ ...result, newtoken: token });
@@ -76,7 +76,7 @@ class Controller {
   delete = async (req: Request, res: Response, next: NextFunction) => {
     // check if the user is the same user that will be updated
     try {
-      const userInfo = await controller.getAll(req.params.id); // get the user's info from the database
+      const userInfo = await controller.getAll(req.params.uuid); // get the user's info from the database
       const tokenInfo = parseJwt(
         String(req.headers.authorization).split(' ')[1] as string
       ); // get the users info from the token
@@ -88,7 +88,7 @@ class Controller {
       ) {
         // update the user
         try {
-          const result = await controller.delete(req.params.id as string);
+          const result = await controller.delete(req.params.uuid as string);
           res.json(result);
           return;
         } catch (error) {
@@ -111,7 +111,7 @@ class Controller {
   authenticate = async (req: Request, res: Response, next: NextFunction) => {
     try {
       const result = await controller.authenticate(
-        req.params.id as string,
+        req.params.uuid as string,
         req.body.password
       );
       if (typeof result === 'undefined') res.json("the user doesn't exist");

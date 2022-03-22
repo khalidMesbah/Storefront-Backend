@@ -1,6 +1,6 @@
 type Order = {
-  id?: string;
+  uuid?: string;
   status: string;
-  user_id: string;
+  user_id_FK: string;
 };
 export default Order;

@@ -92,18 +92,22 @@ DELETE http://localhost:3000/api/products/<uuid>
 Authorization: Bearer <thetoken>
 ```
 
-- [x] [OPTIONAL] Top 5 most popular products 
-- [ ] [OPTIONAL] Products by category (args: product category)
+- [x] [OPTIONAL] Products by category (args: product category)
 
 ### <div style="color: #cfc547;text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgba(81,67,21,0.8), 0px 4px 7px rgba(81,67,21,0.8);">***Orders Routes***</div>
 
-- [ ] Current Order by user (args: user id)[token required]
+- [x] Current Order by user (args: user id)[token required]
 ``` http
-GET http://localhost:3000/api/orders/<uuid>
-Authorization: Bearer <theToken>
+GET http://localhost:3000/api/dashboard/getCurrentOrderByUser/{{user_uuid}}
+Authorization: Bearer {{user_token}}
 ```
-- [ ] [OPTIONAL] Completed Orders by user (args: user id)[token required]
+- [x] [OPTIONAL] Completed Orders by user (args: user id)[token required]
+```http
+GET http://localhost:3000/api/dashboard/getCompletedOrdersByUser/{{user_uuid}}
+Authorization: Bearer {{user_token}}
+```
 
+- [x] [OPTIONAL] Top 5 most popular products 
 ### <div style="color: #cfc547;text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgba(81,67,21,0.8), 0px 4px 7px rgba(81,67,21,0.8);">***dashboard Routes***</div>
 
 ---
@@ -135,7 +139,7 @@ store_dev=# select * from users ;
 - [x] id_PK
 - [x] name
 - [x] price
-- [ ] [OPTIONAL] category
+- [x] [OPTIONAL] category
 ``` sql
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 

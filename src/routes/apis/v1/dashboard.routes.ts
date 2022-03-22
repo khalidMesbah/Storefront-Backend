@@ -30,4 +30,9 @@ routes.get(
   authenticateToken,
   controller.getCurrentOrderByUser
 );
+routes.get(
+  '/getCompletedOrdersByUser/:uuid',
+  authenticateToken,
+  controller.getCompletedOrdersByUser
+);
 export default routes;

@@ -1,8 +1,11 @@
 ########USERS######USERS########USERS##############USERS######USERS########USERS######
 ########USERS######USERS########USERS##############USERS######USERS########USERS######
 ########USERS######USERS########USERS##############USERS######USERS########USERS######
-@user_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7ImlkX3BrIjoiOTlkNTE4YzctMzBkZC00YzZhLTliOGYtYWU2YTc1ZjkwNDI1IiwiZmlyc3RfbmFtZSI6ImtoYWxpZCIsImxhc3RfbmFtZSI6InNlcGFxIiwicGFzc3dvcmQiOiIkMmIkMTAkN21NVHU2L3V5RTFBeUQzRXpHR0IuLmVZODZvRnJFc0NndXF6QTBQUEJLTjBBOXdXQ0RGZWEifSwiaWF0IjoxNjQ3OTAwNjE0fQ.AFr8BvXulg9i22dYtP5-ocsYuc2z6S2VHtgKoRqNa_U
-@user_uuid=99d518c7-30dd-4c6a-9b8f-ae6a75f90425
+# @user_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJzX2lkX3BrIjoiZGYyNDc1ZmUtYjJmNi00MWFhLWI3OTUtODg4YWIxNmE5NmVkIiwiZmlyc3RfbmFtZSI6InBhcGEiLCJsYXN0X25hbWUiOiJtZXNiYWgiLCJwYXNzd29yZCI6IiQyYiQxMCRaaDhNaFAudFo0OHJLcjJtWUJRLzFPeDhQNllJQS5DTHlpMTN4RTZCSGh0SS9OR1BWQUdnUyJ9LCJpYXQiOjE2NDc5Mzc3Njd9.MM-7VLWI8K58V3WO7-r8yQNFG13NhsZ0oPRL8CGvFrY
+@user_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJzX2lkX3BrIjoiZTczOGVjOGEtZmNmNy00YjA1LTkzNDgtZDljY2ZhZGI3YzU4IiwiZmlyc3RfbmFtZSI6ImxvZGEiLCJsYXN0X25hbWUiOiJzZXBhcSIsInBhc3N3b3JkIjoiJDJiJDEwJGdMYUh2ei8uVlVuemd0Lkhra0l3ME9IMHZkczJiZVJNVWdxUXoyRUhKamxidk9KMlpSTDMuIn0sImlhdCI6MTY0Nzk1MDQ1OH0.p1C8hXB5mZ4wQ1asBHyKB2PpyChY3u9vGeQuuxwaQuI
+
+# @user_uuid=8d736d19-c7ac-4d72-9ba2-965b18ad1578
+@user_uuid=e738ec8a-fcf7-4b05-9348-d9ccfadb7c58
 
 ### get all the users
 GET http://localhost:3000/api/users
@@ -18,9 +21,9 @@ POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-  "first_name": "smsm",
+  "first_name": "ssssssssssss",
   "last_name": "mesbah",
-  "password": "fasdfjkdslf"
+  "password": "passme"
 }
 
 ### update a user using put request 
@@ -29,7 +32,7 @@ Authorization: Bearer {{user_token}}
 Content-Type: application/json
 
 {
-  "first_name": "khalid",
+  "first_name": "loda",
   "last_name": "sepaq",
   "password": "ya"
 }
@@ -40,7 +43,7 @@ Authorization: Bearer {{user_token}}
 Content-Type: application/json
 
 {
-  "first_name": "papa",
+  "first_name": "Khalid",
   "last_name": "Mesbah",
   "password": "ya"
 }
@@ -56,19 +59,20 @@ GET http://localhost:3000/api/users/auth/{{user_uuid}}
 Content-Type: application/json
 
 {
-  "password": "fasdfjkdslf"
+  "password": "ya"
 }
 
 ########PRODUCTS######PRODUCTS########PRODUCTS##############PRODUCTS######PRODUCTS########PRODUCTS######
 ########PRODUCTS######PRODUCTS########PRODUCTS##############PRODUCTS######PRODUCTS########PRODUCTS######
 ########PRODUCTS######PRODUCTS########PRODUCTS##############PRODUCTS######PRODUCTS########PRODUCTS######
-@product_uuid=75622b4c-c091-4af2-81cc-30fcbe8da1a6
+@product_uuid=c796ea1f-cea7-4717-9378-7940ab99624b
 ### get all the products => index
 GET http://localhost:3000/api/products
+Authorization: Bearer {{user_token}}
 
 ### get a specific product with id => show
 GET http://localhost:3000/api/products/{{product_uuid}}
-
+Authorization: Bearer {{user_token}}
 
 ### add a product
 POST http://localhost:3000/api/products
@@ -76,19 +80,45 @@ Authorization: Bearer {{user_token}}
 Content-Type: application/json
 
 {
-  "name": "botato",
-  "price":221
+  "name": "osama",
+  "price":15,
+  "category":"vegetables"
 }
 
 ### delete a product
 DELETE http://localhost:3000/api/products/{{product_uuid}}
 Authorization: Bearer {{user_token}}
 
+### update a product using put http request
+PUT http://localhost:3000/api/products/{{product_uuid}}
+Authorization: Bearer {{user_token}}
+Content-Type: application/json
+
+{
+  "name": "cucamber",
+  "price":1152,
+  "category":"vegetables"
+}
+### update a product using patch http request
+PATCH http://localhost:3000/api/products/{{product_uuid}}
+Authorization: Bearer {{user_token}}
+Content-Type: application/json
+
+{
+  "name": "cucamber",
+  "price":15,
+  "category":"fruits"
+}
+
+### get all products by category
+GET http://localhost:3000/api/products/indexByCategory/vegetables
+Authorization: Bearer {{user_token}}
+
 ########ORDERS######ORDERS########ORDERS##############ORDERS######ORDERS########ORDERS######
 ########ORDERS######ORDERS########ORDERS##############ORDERS######ORDERS########ORDERS######
 ########ORDERS######ORDERS########ORDERS##############ORDERS######ORDERS########ORDERS######
 
-@order_uuid=f0a2fc1c-f895-43a6-b0a2-8d1de2ec52de
+@order_uuid=a75e3bad-360a-4b3b-a0db-2885dee5ea5d
 ### get all of the orders
 GET http://localhost:3000/api/orders
 Authorization: Bearer {{user_token}}
@@ -96,6 +126,16 @@ Authorization: Bearer {{user_token}}
 ### get a specific order
 GET http://localhost:3000/api/orders/{{order_uuid}}
 Authorization: Bearer {{user_token}}
+
+### add an order
+POST http://localhost:3000/api/orders
+Authorization: Bearer {{user_token}}
+Content-Type: application/json
+
+{
+  "status": "active",
+  "user_id_FK": "{{user_uuid}}"
+}
 
 ### update a specific order using the patch http request
 PATCH  http://localhost:3000/api/orders/{{order_uuid}}
@@ -115,18 +155,6 @@ Content-Type: application/json
   "status":"active"
 }
 
-
-### add an order
-POST http://localhost:3000/api/orders
-Authorization: Bearer {{user_token}}
-Content-Type: application/json
-
-{
-  "status": "alice",
-  "user_id_FK": "{{user_uuid}}"
-}
-
-
 ### get all prodcuts for a specific order 
 GET http://localhost:3000/api/orders/{{order_uuid}}/products
 Authorization: Bearer {{user_token}}
@@ -137,7 +165,7 @@ Authorization: Bearer {{user_token}}
 Content-Type: application/json
 
 {
-  "quantity": 123,
+  "quantity": 1,
   "product_id_FK": "{{product_uuid}}"
 }
 ### delete a specific order
@@ -169,6 +197,10 @@ Content-Type: application/json
 GET http://localhost:3000/api/dashboard/getmostPopProducts
 Authorization: Bearer {{user_token}}
 
-### get the current order by user uuid
+### get the current order by user 
 GET http://localhost:3000/api/dashboard/getCurrentOrderByUser/{{user_uuid}}
+Authorization: Bearer {{user_token}}
+
+### get the completed orders by user 
+GET http://localhost:3000/api/dashboard/getCompletedOrdersByUser/{{user_uuid}}
 Authorization: Bearer {{user_token}}

@@ -1,12 +1,17 @@
 const getProducts = 'SELECT * FROM products;';
-const getProduct = 'SELECT * FROM products WHERE id_PK=($1);';
+const getProductsByCategory = 'SELECT * FROM products WHERE category = ($1);';
+const getProduct = 'SELECT * FROM products WHERE products_id_PK=($1);';
 const addProduct =
-  'INSERT INTO products ( name , price) VALUES($1, $2) RETURNING *;';
+  'INSERT INTO products ( name, price, category) VALUES($1, $2, $3) RETURNING *;';
 const removeProduct =
-  'DELETE FROM products WHERE id_PK=($1) RETURNING id_PK,name,price;';
+  'DELETE FROM products WHERE products_id_PK=($1) RETURNING *;';
+const updateProduct =
+  'UPDATE products SET name =($1), price = $2, category = ($3) WHERE products_id_PK = ($4) RETURNING *;';
 export default {
   getProducts,
   getProduct,
   addProduct,
   removeProduct,
+  updateProduct,
+  getProductsByCategory,
 };

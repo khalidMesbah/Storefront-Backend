@@ -17,15 +17,17 @@ export default class UsersTable {
     }
   }
 
-  async show(id_PK: string): Promise<User> {
+  async show(users_id_PK: string): Promise<User> {
     try {
       const conn = await Client.connect();
       const sql = queries.getUser;
-      const result = await conn.query(sql, [id_PK]);
+      const sql2 = queries.getRecentPurchases;
+      const result = await conn.query(sql, [users_id_PK]);
+      const recentPurchases = await conn.query(sql2, [users_id_PK]);
       conn.release();
-      return { ...result.rows[0], 'recent purchases': 323 };
+      return { ...result.rows[0], theRecentPurchases: recentPurchases.rows };
     } catch (err) {
-      throw new Error(`Could not find user ${id_PK}. Error: ${err}`);
+      throw new Error(`Could not find user ${users_id_PK}. Error: ${err}`);
     }
   }
 
@@ -45,7 +47,7 @@ export default class UsersTable {
     }
   }
 
-  async update(id_PK: string, u: User): Promise<User> {
+  async update(users_id_PK: string, u: User): Promise<User> {
     try {
       const conn = await Client.connect();
       const sql = queries.updateUser;
@@ -53,33 +55,36 @@ export default class UsersTable {
         u.first_name,
         u.last_name,
         hash(u.password),
-        id_PK,
+        users_id_PK,
       ]);
       conn.release();
       return result.rows[0];
     } catch (err) {
-      throw new Error(`Could not update user ${id_PK}. Error: ${err}`);
+      throw new Error(`Could not update user ${users_id_PK}. Error: ${err}`);
     }
   }
 
-  async delete(id_PK: string): Promise<User> {
+  async delete(users_id_PK: string): Promise<User> {
     try {
       const conn = await Client.connect();
       const sql = queries.removeUser;
-      const result = await conn.query(sql, [id_PK]);
+      const result = await conn.query(sql, [users_id_PK]);
       conn.release();
       return result.rows[0];
     } catch (err) {
-      throw new Error(`Could not delete user ${id_PK}. Error: ${err}`);
+      throw new Error(`Could not delete user ${users_id_PK}. Error: ${err}`);
     }
   }
 
   // authenticate a user
-  async authenticate(id_PK: string, _password: string): Promise<User | null> {
+  async authenticate(
+    users_id_PK: string,
+    _password: string
+  ): Promise<User | null> {
     try {
       const conn = await Client.connect();
       const sql = queries.authenticate;
-      const result = await conn.query(sql, [id_PK]);
+      const result = await conn.query(sql, [users_id_PK]);
 
       let user;
       if (result.rows.length)
@@ -89,20 +94,22 @@ export default class UsersTable {
       conn.release();
       return user || null;
     } catch (err) {
-      throw new Error(`Could not authenticate user ${id_PK}. Error: ${err}`);
+      throw new Error(
+        `Could not authenticate user ${users_id_PK}. Error: ${err}`
+      );
     }
   }
 
-  async getAll(id_PK: string): Promise<User> {
+  async getAll(users_id_PK: string): Promise<User> {
     try {
       const conn = await Client.connect();
       const sql = queries.getAll;
-      const result = await conn.query(sql, [id_PK]);
+      const result = await conn.query(sql, [users_id_PK]);
       conn.release();
       return result.rows[0];
     } catch (err) {
       throw new Error(
-        `Could not getAll data from a user ${id_PK}. Error: ${err}`
+        `Could not getAll data from a user ${users_id_PK}. Error: ${err}`
       );
     }
   }
