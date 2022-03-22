@@ -3,7 +3,7 @@ const getUser =
   'SELECT users_id_PK,first_name,last_name FROM users WHERE users_id_PK = ($1);';
 const getAll = 'SELECT * FROM users WHERE users_id_PK=($1);';
 const addUser =
-  'INSERT INTO users (first_name , last_name , password) VALUES($1, $2, $3) RETURNING users_id_PK,first_name,last_name,password;';
+  'INSERT INTO users (first_name , last_name , password) VALUES($1, $2, $3) RETURNING *;';
 const updateUser =
   'UPDATE users SET first_name = ($1), last_name = ($2), password = ($3) WHERE users_id_PK = ($4) RETURNING *;';
 const removeUser =

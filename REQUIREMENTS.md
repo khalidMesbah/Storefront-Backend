@@ -5,7 +5,7 @@ These are the notes from a meeting with the frontend developer that describe wha
 
 > ## API Endpoints
 > To try the endpoints install the REST Client Extentions and run the requests in the request.rest file.
-### <div style="color: #cfc547;text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgba(81,67,21,0.8), 0px 4px 7px rgba(81,67,21,0.8);">***Users Routes***</div>
+### ***Users Routes***
 
 Index [token required] : get all the users
 ``` http
@@ -63,7 +63,7 @@ DELETE http://localhost:3000/api/users/<uuid>
 Authorization: Bearer <theToken>
 ```
 
-### <div style="color: #cfc547;text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgba(81,67,21,0.8), 0px 4px 7px rgba(81,67,21,0.8);">***Products Routes***</div>
+### ***Products Routes***
 Index
 ``` http
 GET http://localhost:3000/api/products/
@@ -94,7 +94,7 @@ Authorization: Bearer <thetoken>
 
 - [x] [OPTIONAL] Products by category (args: product category)
 
-### <div style="color: #cfc547;text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgba(81,67,21,0.8), 0px 4px 7px rgba(81,67,21,0.8);">***Orders Routes***</div>
+### ***Orders Routes***
 
 - [x] Current Order by user (args: user id)[token required]
 ``` http
@@ -108,13 +108,13 @@ Authorization: Bearer {{user_token}}
 ```
 
 - [x] [OPTIONAL] Top 5 most popular products 
-### <div style="color: #cfc547;text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgba(81,67,21,0.8), 0px 4px 7px rgba(81,67,21,0.8);">***dashboard Routes***</div>
+### ***dashboard Routes***
 
 ---
 <br>
 
 > ## Tables' structures - Data shapes - Database Schema
-### <div style="color: #cfc547;text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgba(81,67,21,0.8), 0px 4px 7px rgba(81,67,21,0.8);">***users Schema***</div>
+### ***users Schema***
 - [x] id_PK
 - [x] first_name
 - [x] last_name
@@ -135,7 +135,7 @@ store_dev=# select * from users ;
 -------+------------+-----------+----------
 ```
 
-### <div style="color: #cfc547;text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgba(81,67,21,0.8), 0px 4px 7px rgba(81,67,21,0.8);">***products Schema***</div>
+### ***products Schema***
 - [x] id_PK
 - [x] name
 - [x] price
@@ -155,7 +155,7 @@ store_dev=# select * from products ;
 -------+------+-------
 ```
 
-### <div style="color: #cfc547;text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgba(81,67,21,0.8), 0px 4px 7px rgba(81,67,21,0.8);">***Orders Schema***</div>
+### ***Orders Schema***
 - [x] id_PK
 - [x] status of order (active or complete)
 - [x] user_id_FK
@@ -174,7 +174,7 @@ store_dev=# select * from orders ;
 -------+--------+------------
 ```
 
-### <div style="color: #cfc547;text-shadow: 3px 0px 7px rgba(81,67,21,0.8), -3px 0px 7px rgba(81,67,21,0.8), 0px 4px 7px rgba(81,67,21,0.8);">***order_products Schema***</div> 
+### ***order_products Schema*** 
 The order_products junction table : for the many to many relationship between orders and products tables
 - [x] id_PK
 - [x] quantity of each product in the order

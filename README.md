@@ -9,7 +9,7 @@ Advanced Full-Stack Web Development Nanodegree Program - Building an API with Po
 
 - A detailed list of the endpoints and actions available can be found in the REQUIREMENTS.md file.
 
-> ## Functionalities
+> ## Functionalities - Features
 - Connected to a Postgres database.
 - RESTful API that supports CRUD for all entities in the database
 - Perform CRUD operations on a database.
@@ -31,7 +31,6 @@ Advanced Full-Stack Web Development Nanodegree Program - Building an API with Po
 - Added a cart.
 - Every user can only update the data of himself.
 - list the most common products/orders and limit the number of responses.
-- 
 
 
 > ## How to setup and connect to the database - Databases Configurations
@@ -48,13 +47,13 @@ We need to make two databases:-
 
 Run the following Queries:-
 ``` sql
-CREATE USER userName WITH PASSWORD 'userPassword'; 
+CREATE USER user_name WITH PASSWORD 'user_password'; 
 CREATE DATABASE store_dev;
 \c store_dev
-GRANT ALL PRIVILEGES ON DATABASE store_dev TO userName;
+GRANT ALL PRIVILEGES ON DATABASE store_dev TO user_name;
 CREATE DATABASE store_test;
 \c store_test
-GRANT ALL PRIVILEGES ON DATABASE store_test TO userName;
+GRANT ALL PRIVILEGES ON DATABASE store_test TO user_name;
 ```
 
 Create a .env file according to the .env.example file to set up the environment variables.
@@ -134,14 +133,26 @@ Usually i run them on the following ports:-
 - Node.js.
 - Express.
 - TypeScript.
+- Jasmine.
 - ejs - incoming.
 
 > ## Middlewares
+- authenticateToken
+- error.middleware
+- verifyAuthToken
+- logger
+- cors
+- morgan
+- helmet
+- rateLimit
+> ## Dependencies and Dev-Dependencies
+- Prettier : for code formating.
+- Eslint : for improving style and structure.
 - dotenv : for managing environment variables.
 - db-migrate : for migrations.
 - pg : for connecting to a database.
 - jsonwebtoken : for working with JWTs.
-- jasmine : for testing.
+- jasmine : for test driven development.
 - morgan : for logging incoming requests to the server.
 - helment : for securing the server.
 - express : for CORS and route handling.
@@ -149,80 +160,19 @@ Usually i run them on the following ports:-
 - express-rate-limit : for limiting the number of requests to the server.
 - bcrypt : for encrypting the passwords .
 - jwt : for authorization.
-
-> ## 1. Plan to Meet Requirements
-
-In this repo there is a `REQUIREMENTS.md` document which outlines what this API needs to supply for the frontend, as well as the agreed upon data shapes to be passed between front and backend. This is much like a document you might come across in real life when building or extending an API. 
-
-Your first task is to read the requirements and update the document with the following:
-- Determine the RESTful route for each endpoint listed. Add the RESTful route and HTTP verb to the document so that the frontend developer can begin to build their fetch requests.    
-**Example**: A SHOW route: 'blogs/:id' [GET] 
-
-- Design the Postgres database tables based off the data shape requirements. Add to the requirements document the database tables and columns being sure to mark foreign keys.   
-**Example**: You can format this however you like but these types of information should be provided
-Table: Books (id:varchar, title:varchar, author:varchar, published_year:varchar, publisher_id:string[foreign key to publishers table], pages:number)
-
-**NOTE** It is important to remember that there might not be a one to one ratio between data shapes and database tables. Data shapes only outline the structure of objects being passed between frontend and API, the database may need multiple tables to store a single shape. 
-
-> ## 2.  DB Creation and Migrations
-
-Now that you have the structure of the databse outlined, it is time to create the database and migrations. Add the npm packages dotenv and db-migrate that we used in the course and setup your Postgres database. If you get stuck, you can always revisit the database lesson for a reminder. 
-
-You must also ensure that any sensitive information is hashed with bcrypt. If any passwords are found in plain text in your application it will not pass.
-
-> ## 3. Models
-
-Create the models for each database table. The methods in each model should map to the endpoints in `REQUIREMENTS.md`. Remember that these models should all have test suites and mocks.
-
-> ## 4. Express Handlers
-
-Set up the Express handlers to route incoming requests to the correct model method. Make sure that the endpoints you create match up with the enpoints listed in `REQUIREMENTS.md`. Endpoints must have tests and be CORS enabled. 
-
-> ## 5. JWTs
-
-Add JWT functionality as shown in the course. Make sure that JWTs are required for the routes listed in `REQUIUREMENTS.md`.
-
-> ## 6. QA and `README.md`
-
-Before submitting, make sure that your project is complete with a `README.md`. Your `README.md` must include instructions for setting up and running your project including how you setup, run, and connect to your database. 
-
-Before submitting your project, spin it up and test each endpoint. If each one responds with data that matches the data shapes from the `REQUIREMENTS.md`, it is ready for submission!
+- TypeScript : for reducing type errors.
+- Supertest : ...
+- ....
 
 > ## Tasks
 - [ ] Create a test suite for each model in Jasmine.
-- [ ] In each handler file, create RESTful endpoints for each model method.
 - [ ] Create a test suite that covers each endpoint with Jasmine.
-- [ ] You need to install the docker using the docker-compose.yml file provided in the repo. Note that you may need to update this file to fit your computer in order to use it locally.
-- [ ] Filled out README.md
-- [ ] Updated REQUIREMENTS.md
-- [ ] package.json
-- [ ] database.json
-- [ ] Model Folder
-- [ ] Handler Folder
-- [ ] Migrations Folder
 - [ ] Model and Endpoint Tests
-- [ ] Relevant Supporting Files
-- [ ] REST structure for Express Endpoints
-- [ ] CRUD for Node models
-- [ ] CORS enabled API
-- [ ] API Testing
-- [ ] Password hashing for security
-- [ ] JWT's for authentication and protected endpoints
-- [ ] Connect database tables via foreign keys
-- [ ] Translate data requirements from stakeholders into a database schema.
 - [ ] EXTRA: Add logic to ensure that products cannot be added to orders
 that are closed.
-- [ ] Install dependencies (examples).
-- [ ] Declare the Application object inside server.js file.
-- [ ] Create .env file, declare the different environments inside database.json and instantiate the
-- [ ] database inside database.ts file.
-- [ ] Create the migrations and fill the migrations files in (up and down files for each table).
-- [ ] Create the models (functions of each table inside a separate model file).
-- [ ] Create the corresponding handlers.
 - [ ] Testing the models and the handlers.
-- [ ] Documentation (README.md file)
 
 > # Suggestions to Make Your Project Stand Out!
-- [ ] In addition to the endpoints required in the project, add any missing CRUD endpoints with authentication if needed for that data
-- [ ] Add a users 5 most recent purchases to the data being sent back from the user show endpoint (/users/id)
+- [x] In addition to the endpoints required in the project, add any missing CRUD endpoints with authentication if needed for that data
+- [x] Add a users 5 most recent purchases to the data being sent back from the user show endpoint (/users/id)
 - [x] Add a popular products endpoint that sends back the 5 most commonly ordered items

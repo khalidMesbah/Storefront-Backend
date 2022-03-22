@@ -2,10 +2,10 @@
 ########USERS######USERS########USERS##############USERS######USERS########USERS######
 ########USERS######USERS########USERS##############USERS######USERS########USERS######
 # @user_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJzX2lkX3BrIjoiZGYyNDc1ZmUtYjJmNi00MWFhLWI3OTUtODg4YWIxNmE5NmVkIiwiZmlyc3RfbmFtZSI6InBhcGEiLCJsYXN0X25hbWUiOiJtZXNiYWgiLCJwYXNzd29yZCI6IiQyYiQxMCRaaDhNaFAudFo0OHJLcjJtWUJRLzFPeDhQNllJQS5DTHlpMTN4RTZCSGh0SS9OR1BWQUdnUyJ9LCJpYXQiOjE2NDc5Mzc3Njd9.MM-7VLWI8K58V3WO7-r8yQNFG13NhsZ0oPRL8CGvFrY
-@user_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJzX2lkX3BrIjoiZTczOGVjOGEtZmNmNy00YjA1LTkzNDgtZDljY2ZhZGI3YzU4IiwiZmlyc3RfbmFtZSI6ImxvZGEiLCJsYXN0X25hbWUiOiJzZXBhcSIsInBhc3N3b3JkIjoiJDJiJDEwJGdMYUh2ei8uVlVuemd0Lkhra0l3ME9IMHZkczJiZVJNVWdxUXoyRUhKamxidk9KMlpSTDMuIn0sImlhdCI6MTY0Nzk1MDQ1OH0.p1C8hXB5mZ4wQ1asBHyKB2PpyChY3u9vGeQuuxwaQuI
+@user_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJzX2lkX3BrIjoiN2UxNzJiNDgtYjRhNy00N2ViLWE2ZGQtNzcwMmYzMGFmYjc5IiwiZmlyc3RfbmFtZSI6InNzc3Nzc3Nzc3NzcyIsImxhc3RfbmFtZSI6Im1lc2JhaCIsInBhc3N3b3JkIjoiJDJiJDEwJGUyUFFiVE9yNXYzWlR1ZjI2Zkd5c2VJRERRODNoejhsbEIyYTNwS1B1Um9PL3RKN2VaTEtXIn0sImlhdCI6MTY0Nzk3NDEzMX0.LUo1illsSkZyMAdcevvHAebxfb3dmgfBpCApm7VlfCs
 
 # @user_uuid=8d736d19-c7ac-4d72-9ba2-965b18ad1578
-@user_uuid=e738ec8a-fcf7-4b05-9348-d9ccfadb7c58
+@user_uuid=7e172b48-b4a7-47eb-a6dd-7702f30afb79
 
 ### get all the users
 GET http://localhost:3000/api/users
@@ -59,7 +59,7 @@ GET http://localhost:3000/api/users/auth/{{user_uuid}}
 Content-Type: application/json
 
 {
-  "password": "ya"
+  "password": "passme"
 }
 
 ########PRODUCTS######PRODUCTS########PRODUCTS##############PRODUCTS######PRODUCTS########PRODUCTS######

@@ -1,9 +1,6 @@
 import Client from '../databases/database'; // imports the database connection
 import Order from '../types/order.type';
-// import hash from '../utilities/hashPassword';
 import queries from '../queries/orders.queries';
-// import bcrypt from 'bcrypt';
-// import env from '../middlewares/config';
 
 export default class OrderTable {
   async index(): Promise<Order[]> {
@@ -89,30 +86,7 @@ export default class OrderTable {
       throw new Error(`Could not update order ${id_PK}. Error: ${err}`);
     }
   }
-  /* 
 
-
-
-
-  // authenticate a order
-  async authenticate(id_PK: string, _password: string): Promise<Order | null> {
-    try {
-      const conn = await Client.connect();
-      const sql = queries.authenticate;
-      const result = await conn.query(sql, [id_PK]);
-
-      let order;
-      if (result.rows.length)
-        if (bcrypt.compareSync(_password + env.pepper, result.rows[0].password))
-          order = result.rows[0];
-
-      conn.release();
-      return order || null;
-    } catch (err) {
-      throw new Error(`Could not authenticate order ${id_PK}. Error: ${err}`);
-    }
-  }
-  } */
   async delete(id_PK: string): Promise<Order> {
     try {
       const conn = await Client.connect();

@@ -60,7 +60,7 @@ app.use((_req: Request, res: Response) => {
 }); // for handling the errors due to wrong pathes  => it it at the end of your file
 
 app.listen(PORT, () => {
-  console.log(`starting app on: ${PORT}`);
+  console.log(`the server is running on => http://localhost:${PORT}`);
 });
 
 export default app;

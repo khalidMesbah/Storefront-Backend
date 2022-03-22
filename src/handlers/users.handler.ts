@@ -4,7 +4,7 @@ import UserModel from '../models/user.model';
 import jwt from 'jsonwebtoken';
 import env from '../middlewares/config';
 const controller = new UserModel();
-import parseJwt from '../utilities/pareJWT';
+import parseJwt from '../utilities/parseJWT';
 class Controller {
   index = async (_req: Request, res: Response, next: NextFunction) => {
     try {
