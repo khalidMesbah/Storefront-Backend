@@ -17,7 +17,7 @@ export default class UsersTable {
     }
   }
 
-  async show(users_id_PK: string): Promise<User> {
+  async show(users_id_PK: string): Promise<User | undefined> {
     try {
       const conn = await Client.connect();
       const sql = queries.getUser;
@@ -25,7 +25,9 @@ export default class UsersTable {
       const result = await conn.query(sql, [users_id_PK]);
       const recentPurchases = await conn.query(sql2, [users_id_PK]);
       conn.release();
-      return { ...result.rows[0], theRecentPurchases: recentPurchases.rows };
+      if (result.rows[0]) {
+        return { ...result.rows[0], theRecentPurchases: recentPurchases.rows };
+      }
     } catch (err) {
       throw new Error(`Could not find user ${users_id_PK}. Error: ${err}`);
     }

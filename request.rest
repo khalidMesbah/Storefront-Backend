@@ -2,10 +2,10 @@
 ########USERS######USERS########USERS##############USERS######USERS########USERS######
 ########USERS######USERS########USERS##############USERS######USERS########USERS######
 # @user_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJzX2lkX3BrIjoiZGYyNDc1ZmUtYjJmNi00MWFhLWI3OTUtODg4YWIxNmE5NmVkIiwiZmlyc3RfbmFtZSI6InBhcGEiLCJsYXN0X25hbWUiOiJtZXNiYWgiLCJwYXNzd29yZCI6IiQyYiQxMCRaaDhNaFAudFo0OHJLcjJtWUJRLzFPeDhQNllJQS5DTHlpMTN4RTZCSGh0SS9OR1BWQUdnUyJ9LCJpYXQiOjE2NDc5Mzc3Njd9.MM-7VLWI8K58V3WO7-r8yQNFG13NhsZ0oPRL8CGvFrY
-@user_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJzX2lkX3BrIjoiN2UxNzJiNDgtYjRhNy00N2ViLWE2ZGQtNzcwMmYzMGFmYjc5IiwiZmlyc3RfbmFtZSI6InNzc3Nzc3Nzc3NzcyIsImxhc3RfbmFtZSI6Im1lc2JhaCIsInBhc3N3b3JkIjoiJDJiJDEwJGUyUFFiVE9yNXYzWlR1ZjI2Zkd5c2VJRERRODNoejhsbEIyYTNwS1B1Um9PL3RKN2VaTEtXIn0sImlhdCI6MTY0Nzk3NDEzMX0.LUo1illsSkZyMAdcevvHAebxfb3dmgfBpCApm7VlfCs
+@user_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJzX2lkX3BrIjoiNGNjMTAxZTMtM2JjYi00NTJlLTgyNmYtMDliY2MzMTFkM2UxIiwiZmlyc3RfbmFtZSI6ImtoYWxpZCIsImxhc3RfbmFtZSI6Im1lc2JhaCIsInBhc3N3b3JkIjoiJDJiJDEwJHdZRWt2RmFmZ2JEaVBadkFIQnJDbC4zbjNRdkE1TGVhRHRXNXA0L0d4c3NyUTVBTElucGVHIn0sImlhdCI6MTY0Nzk4NzE1OH0.rvrrLfja2lETI0AWdHps6yU7rM9hHLvVROqWNV0G_OE
 
 # @user_uuid=8d736d19-c7ac-4d72-9ba2-965b18ad1578
-@user_uuid=7e172b48-b4a7-47eb-a6dd-7702f30afb79
+@user_uuid=4cc101e3-3bcb-452e-826f-09bcc311d3e1
 
 ### get all the users
 GET http://localhost:3000/api/users
@@ -21,7 +21,7 @@ POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-  "first_name": "ssssssssssss",
+  "first_name": "khalid",
   "last_name": "mesbah",
   "password": "passme"
 }
@@ -33,8 +33,8 @@ Content-Type: application/json
 
 {
   "first_name": "loda",
-  "last_name": "sepaq",
-  "password": "ya"
+  "last_name": "sebaq",
+  "password": "secret_password"
 }
 
 ### update a user using patch request 
@@ -48,12 +48,6 @@ Content-Type: application/json
   "password": "ya"
 }
 
-
-### delete a user
-DELETE http://localhost:3000/api/users/{{user_uuid}}
-Authorization: Bearer {{user_token}}
-
-
 ### authenticate a user
 GET http://localhost:3000/api/users/auth/{{user_uuid}}
 Content-Type: application/json
@@ -61,6 +55,10 @@ Content-Type: application/json
 {
   "password": "passme"
 }
+
+### delete a user
+DELETE http://localhost:3000/api/users/{{user_uuid}}
+Authorization: Bearer {{user_token}}
 
 ########PRODUCTS######PRODUCTS########PRODUCTS##############PRODUCTS######PRODUCTS########PRODUCTS######
 ########PRODUCTS######PRODUCTS########PRODUCTS##############PRODUCTS######PRODUCTS########PRODUCTS######
