@@ -1,4 +1,5 @@
 import Client from '../../databases/database';
+import queries from '../../queries/services/dashboard.queries';
 
 export class Dashboard {
   // Get all products that have been included in orders
@@ -7,8 +8,7 @@ export class Dashboard {
   > {
     try {
       const conn = await Client.connect();
-      const sql =
-        'SELECT name,price,order_id_FK FROM products INNER JOIN order_products ON products.products_id_PK = order_products.product_id_FK;';
+      const sql = queries.productsInOrders;
       const result = await conn.query(sql);
       conn.release();
       return result.rows;
@@ -25,8 +25,7 @@ export class Dashboard {
   ): Promise<{ name: string; price: number }[]> {
     try {
       const conn = await Client.connect();
-      const sql =
-        'SELECT name,price FROM products GROUP BY name,price order By 2 DESC LIMIT ($1);';
+      const sql = queries.mostExpProducts;
       const result = await conn.query(sql, [limit]);
       conn.release();
       return result.rows;
@@ -41,8 +40,7 @@ export class Dashboard {
   async usersWithOrders(): Promise<{ firstName: string; lastName: string }[]> {
     try {
       const conn = await Client.connect();
-      const sql =
-        'SELECT * FROM users INNER JOIN orders ON users.users_id_PK = orders.user_id_FK;';
+      const sql = queries.usersWithOrders;
       const result = await conn.query(sql);
       conn.release();
       return result.rows;
@@ -57,8 +55,7 @@ export class Dashboard {
   ): Promise<{ name: string; num: number }[]> {
     try {
       const conn = await Client.connect();
-      const sql =
-        'SELECT name ,count(*) FROM products INNER JOIN order_products ON products.products_id_PK = order_products.product_id_FK GROUP BY name order By 2 DESC LIMIT ($1)';
+      const sql = queries.mostPopProducts;
       const result = await conn.query(sql, [limit]);
       conn.release();
       return result.rows;
@@ -70,13 +67,12 @@ export class Dashboard {
   }
 
   // the current acitve ordere
-  async CurrentOrderByUser(
+  async currentOrderByUser(
     uuid: string
   ): Promise<{ name: string; num: number }[]> {
     try {
       const conn = await Client.connect();
-      const sql =
-        "SELECT * FROM orders WHERE user_id_FK = ($1) AND status = 'active';";
+      const sql = queries.CurrentOrderByUser;
       const result = await conn.query(sql, [uuid]);
       conn.release();
       return result.rows[0];
@@ -93,8 +89,7 @@ export class Dashboard {
   ): Promise<{ name: string; num: number }[]> {
     try {
       const conn = await Client.connect();
-      const sql =
-        "SELECT * FROM orders WHERE user_id_FK = ($1) AND status = 'complete';";
+      const sql = queries.completedOrdersByUser;
       const result = await conn.query(sql, [uuid]);
       conn.release();
       return result.rows;

@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import env from '../middlewares/config';
+import env from '../configs/config';
 import { Request, Response, NextFunction } from 'express';
 const verifyAuthToken = (req: Request, res: Response, next: NextFunction) => {
   try {

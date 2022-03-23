@@ -1,1 +1,0 @@
--- run these commands in your terminal after creating the tables and the databases

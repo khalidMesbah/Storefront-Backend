@@ -1,11 +1,6 @@
-// import our environment variables
-import env from '../middlewares/config';
+import env from '../configs/config';
+import { Pool } from 'pg'; // import pool (a connection or set of connections to the database) from the postgres libirary to connect to a database
 
-// pool : a connection or set of connections to the database
-// pool is just a connection to the database.
-import { Pool } from 'pg'; // postgres libirary
-
-// using pool to connect to a database
 // the parameters we need to connect to the database
 const Client = new Pool({
   host: env.host,
@@ -18,18 +13,17 @@ const Client = new Pool({
 
 console.log(`🚀🔥👉 ⚡ env.db`, env.db);
 
-// add listener if(err)=>log(err)
 Client.on('error', (error: Error) => {
   console.log('error in the database => ', error.message);
-});
-// .on('connect', () => {
-//   console.log('the database has been => connected');
-// })
-// .on('remove', () => {
-//   console.log('the database has been => disconnected');
-// })
-// .on('acquire', () => {
-//   console.log('the database has been => acquired');
-// });
+})
+  .on('connect', () => {
+    console.log('the database has been => connected');
+  })
+  .on('remove', () => {
+    console.log('the database has been => disconnected');
+  })
+  .on('acquire', () => {
+    console.log('the database has been => acquired');
+  });
 
 export default Client;

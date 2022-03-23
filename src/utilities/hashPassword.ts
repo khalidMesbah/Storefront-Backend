@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import env from '../middlewares/config';
+import env from '../configs/config';
 
 const hash = (pass: string): string => {
   return bcrypt.hashSync(

@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import env from './config';
+import env from '../configs/config';
 import jwt from 'jsonwebtoken';
 
 const authenticateToken = (req: Request, res: Response, next: NextFunction) => {

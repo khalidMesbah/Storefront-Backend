@@ -7,115 +7,254 @@ These are the notes from a meeting with the frontend developer that describe wha
 > To try the endpoints install the REST Client Extentions and run the requests in the request.rest file.
 ### ***Users Routes***
 
-Index [token required] : get all the users
+`Index` [token required] : get all the users.
 ``` http
 GET http://localhost:3000/api/users
-Authorization: Bearer <theToken>
+Authorization: Bearer {{user_token}}
 ```
 
-Show [token required] : get a specific user with uuid
+`Show` [token required] : get a specific user with uuid.
 ``` http
-GET http://localhost:3000/api/users/<uuid>
-Authorization: Bearer <theToken>
+GET http://localhost:3000/api/users/{{user_uuid}}
+Authorization: Bearer {{user_token}}
 ```
 
-Create [token required] : add a user
+`Create` [token required] : add a user => returns a token.
 ``` http
 POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-  "first_name": "fn",
-  "last_name": "ls",
-  "password": "pass"
+  "first_name": "Khalid",
+  "last_name": "Mesbah",
+  "password": "my_secret_password"
 }
 ```
 
-update using put : update a user using put http method, note that the token must be for the same user with the uuid provided as parameter
+`Update` [token required] : update a user using put http method, note that the token must be for the same user with the uuid provided as parameter => returns a new token for the user.
 ``` http
-PUT http://localhost:3000/api/users/<uuid>
-Authorization: Bearer <theToken>
+PUT http://localhost:3000/api/users/{{user_uuid}}
+Authorization: Bearer {{user_token}}
 Content-Type: application/json
 
 {
-  "first_name": "new_fn",
-  "last_name": "new_ln",
-  "password": "new_pass"
+  "first_name": "Loda",
+  "last_name": "Sebaq",
+  "password": "secret_password"
 }
 ```
 
-update using : update a user using patch http method, note that the token must be for the same user with the uuid provided as parameter
+`Update` [token required] : update a user using patch http method, note that the token must be for the same user with the uuid provided as parameter => returns a new token for the user.
 ``` http
-PATCH http://localhost:3000/api/users/<uuid>
-Authorization: Bearer <theToken>
+PATCH http://localhost:3000/api/users/{{user_uuid}}
+Authorization: Bearer {{user_token}}
 Content-Type: application/json
 
 {
-  "first_name": "new_fn",
-  "last_name": "new_ln",
-  "password": "new_pass"
+  "first_name": "Khalid",
+  "last_name": "Mesbah",
+  "password": "password"
 }
 ```
 
-delete : delete a user, note that the token must be for the same user with the uuid provided as a parameter
+`Authenticate` : authenticate a user => if the password is correct => return all the user's info ;else => return null.
 ``` http
-DELETE http://localhost:3000/api/users/<uuid>
-Authorization: Bearer <theToken>
+GET http://localhost:3000/api/users/auth/{{user_uuid}}
+Content-Type: application/json
+
+{
+  "password": "password"
+}
+```
+
+`Delete` [token required] : delete a user, note that the token must be for the same user with the uuid provided as a parameter.
+``` http
+DELETE http://localhost:3000/api/users/{{user_uuid}}
+Authorization: Bearer {{user_token}}
 ```
 
 ### ***Products Routes***
-Index
+`Index` [token required] : get all the products.
 ``` http
-GET http://localhost:3000/api/products/
+GET http://localhost:3000/api/products
+Authorization: Bearer {{user_token}}
 ```
 
-Show 
+`Show` [token required] : get a specific product with uuid.
 ``` http
-GET http://localhost:3000/api/products/<uuid>
+GET http://localhost:3000/api/products/{{product_uuid}}
+Authorization: Bearer {{user_token}}
 ```
 
-Create [token required] :
+`IndexByCategory/{{category}}` [token required] : get all the products by category.
+``` http
+GET http://localhost:3000/api/products/indexByCategory/vegetables
+Authorization: Bearer {{user_token}}
+```
+
+`Create` [token required] : create a new product.
 ``` http
 POST http://localhost:3000/api/products
-Authorization: Bearer <theToken>
+Authorization: Bearer {{user_token}}
 Content-Type: application/json
 
 {
-  "name": "product_name",
-  "price": 000
+  "name": "apples",
+  "price":115,
+  "category":"fruits"
 }
 ```
 
-Delete [token required] :
+`Update` [token required] : update a product using put http method.
 ``` http
-DELETE http://localhost:3000/api/products/<uuid>
-Authorization: Bearer <thetoken>
+PUT http://localhost:3000/api/products/{{product_uuid}}
+Authorization: Bearer {{user_token}}
+Content-Type: application/json
+
+{
+  "name": "cucamber",
+  "price":1152,
+  "category":"vegetables"
+}
 ```
 
-- [x] [OPTIONAL] Products by category (args: product category)
+`Update` [token required] : update a product using patch http method.
+``` http
+PATCH http://localhost:3000/api/products/{{product_uuid}}
+Authorization: Bearer {{user_token}}
+Content-Type: application/json
+
+{
+  "name": "cucamber",
+  "price":115,
+  "category":"fruits"
+}
+```
+
+`Delete` [token required] : to delete a specific order.
+``` http
+DELETE http://localhost:3000/api/products/{{product_uuid}}
+Authorization: Bearer {{user_token}}
+```
 
 ### ***Orders Routes***
+`Index` [token required] : to get all of the orders.
+```http
+GET http://localhost:3000/api/orders
+Authorization: Bearer {{user_token}}
+```
 
-- [x] Current Order by user (args: user id)[token required]
+`Show` [token required] : get a specific order.
+```http
+GET http://localhost:3000/api/orders/{{order_uuid}}
+Authorization: Bearer {{user_token}}
+```
+
+`Create` [token required] : create a new order.
+```http
+POST http://localhost:3000/api/orders
+Authorization: Bearer {{user_token}}
+Content-Type: application/json
+
+{
+  "status": "active",
+  "user_id_FK": "{{user_uuid}}"
+}
+```
+
+`Update` [token required] : update an order using put http method => update order's status to be active.
 ``` http
+PUT  http://localhost:3000/api/orders/{{order_uuid}}
+Authorization: Bearer {{user_token}}
+Content-Type: application/json
+
+{
+  "status":"active"
+}
+```
+
+`Update` [token required] : update an order using patch http method => update order's status to be complete.
+``` http
+PATCH  http://localhost:3000/api/orders/{{order_uuid}}
+Authorization: Bearer {{user_token}}
+Content-Type: application/json
+
+{
+  "status":"complete"
+}
+```
+
+`AddProductToOrder` [token required] : add a product to a specific order.
+```http
+POST http://localhost:3000/api/orders/{{order_uuid}}/products
+Authorization: Bearer {{user_token}}
+Content-Type: application/json
+
+{
+  "quantity": 2222,
+  "product_id_FK": "{{product_uuid}}"
+}
+```
+
+`GetProductsOfOrders` [token required] : get all prodcuts of a specific order.
+```http
+GET http://localhost:3000/api/orders/{{order_uuid}}/products
+Authorization: Bearer {{user_token}}
+```
+
+`Delete` [token required] : delete a specific order.
+```http
+DELETE http://localhost:3000/api/orders/{{order_uuid}}
+Authorization: Bearer {{user_token}}
+```
+
+### ***dashboard Routes***
+`getAllProductsInOrders` [token required] : to get all products that have been included in orders.
+``` http
+GET http://localhost:3000/api/dashboard/getAllProductsInOrders
+Authorization: Bearer {{user_token}}
+```
+
+`getUsersWithOrders` [token required] : to get all users that have made orders.
+```http
+GET http://localhost:3000/api/dashboard/getUsersWithOrders
+Authorization: Bearer {{user_token}}
+```
+
+`getMostExpProducts` [token required] : to get the {{number}} most expensive products.
+```http
+GET http://localhost:3000/api/dashboard/getMostExpProducts
+Authorization: Bearer {{user_token}}
+Content-Type: application/json
+
+{
+  "limit":5
+}
+```
+
+`getmostPopProducts` [token required] : to get the most popular products.
+```http
+GET http://localhost:3000/api/dashboard/getmostPopProducts
+Authorization: Bearer {{user_token}}
+```
+
+`getCurrentOrderByUser` [token required] : get the current order for a user => the first order whose status is marked as active.
+```http
 GET http://localhost:3000/api/dashboard/getCurrentOrderByUser/{{user_uuid}}
 Authorization: Bearer {{user_token}}
 ```
-- [x] [OPTIONAL] Completed Orders by user (args: user id)[token required]
+`getCompletedOrdersByUser` [token required] : get the completed orders by user.
 ```http
 GET http://localhost:3000/api/dashboard/getCompletedOrdersByUser/{{user_uuid}}
 Authorization: Bearer {{user_token}}
 ```
-
-- [x] [OPTIONAL] Top 5 most popular products 
-### ***dashboard Routes***
 
 ---
 <br>
 
 > ## Tables' structures - Data shapes - Database Schema
 ### ***users Schema***
-- [x] id_PK
+- [x] users_id_PK
 - [x] first_name
 - [x] last_name
 - [x] password
@@ -123,75 +262,76 @@ Authorization: Bearer {{user_token}}
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TABLE users (
-    id_PK uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+    users_id_PK uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
     first_name VARCHAR NOT NULL,
     last_name VARCHAR NOT NULL,
     password VARCHAR NOT NULL
 );
 ```
 ``` html
-store_dev=# select * from users ;
- id_pk | first_name | last_name | password 
--------+------------+-----------+----------
+store_dev=# SELECT * FROM users;
+ users_id_pk | first_name | last_name | password 
+-------------+------------+-----------+----------
 ```
 
 ### ***products Schema***
-- [x] id_PK
+- [x] products_id_PK
 - [x] name
 - [x] price
-- [x] [OPTIONAL] category
+- [x] category
 ``` sql
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TABLE products(
-    id_PK uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+    products_id_PK uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
     name VARCHAR NOT NULL,
-    price INTEGER NOT NULL
+    price INTEGER NOT NULL,
+    category VARCHAR NOT NULL
 );
 ```
 ``` html
-store_dev=# select * from products ;
- id_pk | name | price 
--------+------+-------
+store_dev=# SELECT * FROM products;
+ products_id_pk | name | price | category 
+----------------+------+-------+----------
 ```
 
 ### ***Orders Schema***
-- [x] id_PK
-- [x] status of order (active or complete)
+- [x] orders_id_PK
+- [x] status => of order (active or complete)
 - [x] user_id_FK
 ``` sql
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TABLE orders(
-    id_PK uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+    orders_id_PK uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
     status VARCHAR(15) NOT NULL,
-    user_id_FK uuid REFERENCES users(id_PK)
+    user_id_FK uuid REFERENCES users(users_id_PK)
 );
 ```
 ``` html 
-store_dev=# select * from orders ;
- id_pk | status | user_id_fk 
--------+--------+------------
+store_dev=# SELECT * FROM orders;
+ orders_id_pk | status | user_id_fk 
+--------------+--------+------------
 ```
 
 ### ***order_products Schema*** 
 The order_products junction table : for the many to many relationship between orders and products tables
-- [x] id_PK
-- [x] quantity of each product in the order
-- [x] order_id_FK : the id of the order
-- [x] product_id_FK : the id of each product in the order
+- [x] order_products_id_PK
+- [x] quantity : the quantity of each product in the order
+- [x] order_id_FK : the uuid of the order
+- [x] product_id_FK : the uuid of each product in the order
 ``` sql
 CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
 CREATE TABLE order_products (
-    id_PK uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
+    order_products_id_PK uuid DEFAULT uuid_generate_v4() PRIMARY KEY,
     quantity INTEGER ,
-    order_id_FK uuid REFERENCES orders(id_PK),
-    product_id_FK uuid REFERENCES products(id_PK)
-)
+    order_id_FK uuid REFERENCES orders(orders_id_PK),
+    product_id_FK uuid REFERENCES products(products_id_PK)
+);
 ```
 ``` html
-store_dev=# select * from order_products ;
- id_pk | quantity | order_id_fk | product_id_fk 
--------+----------+-------------+---------------
+store_dev=# SELECT * FROM order_products;
+ order_products_id_pk | quantity | order_id_fk | product_id_fk 
+----------------------+----------+-------------+---------------
 ```

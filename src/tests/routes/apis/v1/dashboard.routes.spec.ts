@@ -406,7 +406,7 @@ describe('<=======test===***dashboard***===routes=======>', () => {
     ]);
   });
 
-  it('test GET api/dashboard/getmostPopProducts', async () => {
+  it('test GET api/dashboard/getmostPopProducts: to get the most popular products', async () => {
     const res = await request
       .get('/api/dashboard/getmostPopProducts')
       .set('Authorization', 'Bearer ' + user_token);
@@ -421,7 +421,7 @@ describe('<=======test===***dashboard***===routes=======>', () => {
     ]);
   });
 
-  it('test GET /api/dashboard/getCurrentOrderByUser/:uuid: get the current order by user', async () => {
+  it('test GET /api/dashboard/getCurrentOrderByUser/:uuid: get the current order for a user', async () => {
     const res = await request
       .get(`/api/dashboard/getCurrentOrderByUser/${user_uuid}`)
       .set('Authorization', 'Bearer ' + user_token);
@@ -448,7 +448,7 @@ describe('<=======test===***dashboard***===routes=======>', () => {
     });
   });
 
-  it('test GET /api/dashboard/getCompletedOrdersByUser/:uuid: get the completed orders by user ', async () => {
+  it('test GET /api/dashboard/getCompletedOrdersByUser/:uuid: get the completed orders for a user ', async () => {
     const res = await request
       .get(`/api/dashboard/getCompletedOrdersByUser/${user_uuid}`)
       .set('Authorization', 'Bearer ' + user_token);

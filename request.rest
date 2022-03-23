@@ -1,8 +1,8 @@
 ########USERS######USERS########USERS##############USERS######USERS########USERS######
 ########USERS######USERS########USERS##############USERS######USERS########USERS######
 ########USERS######USERS########USERS##############USERS######USERS########USERS######
-@user_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJzX2lkX3BrIjoiZWU4Y2ZkZjEtZWJmNi00NzgzLWE5ZGEtNDJhMmQ2ZDU5NjU2IiwiZmlyc3RfbmFtZSI6IktoYWxpZCIsImxhc3RfbmFtZSI6Ik1lc2JhaCIsInBhc3N3b3JkIjoiJDJiJDEwJGkucUtXaXFTd0xvdzN2M1p5ZndEWGVVVU5kb28yN0RKRkU3RnphYlBvZVV6NlNYVG5NNTZ1In0sImlhdCI6MTY0ODAzOTYyMn0.m2PGQ5Leb4GcwBsWGSIB-c1xTGr06f6dzxNWbBWG7mE
-@user_uuid=ee8cfdf1-ebf6-4783-a9da-42a2d6d59656
+@user_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJzX2lkX3BrIjoiYzE3MzI1MmMtZWM4YS00MTdjLTg0OTMtZDE4YzJlNjQwZGE2IiwiZmlyc3RfbmFtZSI6IktoYWxpZCIsImxhc3RfbmFtZSI6Ik1lc2JhaCIsInBhc3N3b3JkIjoiJDJiJDEwJG5wMTBxaC5jZGEwaXk1MndYYUl2dC5zQnYwL1BvdjI4UXVwWmRrUHFBTlVQOVlNL0lrQU5xIn0sImlhdCI6MTY0ODA2MTk0Nn0.gULhX0QdLtl2W4yEUFx_L0vKkqz9hPYDsHSEvIcEt3c
+@user_uuid=c173252c-ec8a-417c-8493-d18c2e640da6
 
 ### get all the users
 GET http://localhost:3000/api/users
@@ -23,13 +23,13 @@ Content-Type: application/json
 }
 
 ### update a user using put request 
-PUT  http://localhost:3000/api/users/{{user_uuid}}
+PUT http://localhost:3000/api/users/{{user_uuid}}
 Authorization: Bearer {{user_token}}
 Content-Type: application/json
 
 {
-  "first_name": "loda",
-  "last_name": "sebaq",
+  "first_name": "Loda",
+  "last_name": "Sebaq",
   "password": "secret_password"
 }
 
@@ -41,7 +41,7 @@ Content-Type: application/json
 {
   "first_name": "Khalid",
   "last_name": "Mesbah",
-  "password": "ya"
+  "password": "password"
 }
 
 ### authenticate a user
@@ -49,17 +49,17 @@ GET http://localhost:3000/api/users/auth/{{user_uuid}}
 Content-Type: application/json
 
 {
-  "password": "my_secret_password"
+  "password": "password"
 }
 
 ### delete a user
-DELETE http://localhost:3000/api/users/{{user_uuid}}
+DELETE http://localhost:3000/api/users/{{user_uuid}} ############################
 Authorization: Bearer {{user_token}}
 
 ########PRODUCTS######PRODUCTS########PRODUCTS##############PRODUCTS######PRODUCTS########PRODUCTS######
 ########PRODUCTS######PRODUCTS########PRODUCTS##############PRODUCTS######PRODUCTS########PRODUCTS######
 ########PRODUCTS######PRODUCTS########PRODUCTS##############PRODUCTS######PRODUCTS########PRODUCTS######
-@product_uuid=29e4f2ca-d0ba-44b7-875b-ca488a253886
+@product_uuid=66a48d76-47f9-44aa-96ab-208b2cb5075a
 ### get all the products => index
 GET http://localhost:3000/api/products
 Authorization: Bearer {{user_token}}
@@ -89,8 +89,8 @@ Authorization: Bearer {{user_token}}
 Content-Type: application/json
 
 {
-  "name": "cucamber",
-  "price":1152,
+  "name": "bananas",
+  "price":3421,
   "category":"vegetables"
 }
 
@@ -113,7 +113,7 @@ Authorization: Bearer {{user_token}}
 ########ORDERS######ORDERS########ORDERS##############ORDERS######ORDERS########ORDERS######
 ########ORDERS######ORDERS########ORDERS##############ORDERS######ORDERS########ORDERS######
 
-@order_uuid=9b726683-ed16-4ee6-905d-f92e58ca8a60
+@order_uuid=7cf3d60d-cfb0-4e5f-b262-ba3bc9aab652
 ### get all of the orders
 GET http://localhost:3000/api/orders
 Authorization: Bearer {{user_token}}
@@ -122,7 +122,7 @@ Authorization: Bearer {{user_token}}
 GET http://localhost:3000/api/orders/{{order_uuid}}
 Authorization: Bearer {{user_token}}
 
-### add an order
+### create an order
 POST http://localhost:3000/api/orders
 Authorization: Bearer {{user_token}}
 Content-Type: application/json

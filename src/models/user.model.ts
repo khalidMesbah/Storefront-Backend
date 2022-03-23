@@ -3,7 +3,8 @@ import User from '../types/user.type';
 import hash from '../utilities/hashPassword';
 import queries from '../queries/users.queries';
 import bcrypt from 'bcrypt';
-import env from '../middlewares/config';
+import env from '../configs/config';
+
 export default class UsersTable {
   async index(): Promise<User[]> {
     try {

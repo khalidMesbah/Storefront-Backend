@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import UserModel from '../models/user.model';
 
 import jwt from 'jsonwebtoken';
-import env from '../middlewares/config';
+import env from '../configs/config';
 const controller = new UserModel();
 import parseJwt from '../utilities/parseJWT';
 class Controller {

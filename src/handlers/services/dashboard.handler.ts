@@ -61,7 +61,7 @@ class Controller {
     next: NextFunction
   ) => {
     try {
-      const result = await controller.CurrentOrderByUser(req.params.uuid);
+      const result = await controller.currentOrderByUser(req.params.uuid);
       res.json(result);
     } catch (error) {
       next(error);
