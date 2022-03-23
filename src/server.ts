@@ -1,6 +1,6 @@
 import express, { Request, Response, Application } from 'express';
 // import bodyParser from 'body-parser';
-import morgan from 'morgan';
+// import morgan from 'morgan';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import errorMiddleware from './middlewares/error.middleware';
@@ -16,7 +16,7 @@ app.use(cors()); // to make our api puclic to the universe
 
 app.use(express.json()); // to parse incoming json
 
-app.use(morgan('dev')); // http request logger middleware
+// app.use(morgan('dev')); // http request logger middleware
 
 app.use(helmet()); // http security middleware
 
@@ -33,7 +33,7 @@ app.use(
 ); // a middleware for limiting the number of requests
 
 // testing the database
-db.connect().then(async client => {
+/* db.connect().then(async client => {
   try {
     const res = await client.query('SELECT NOW()');
     client.release();
@@ -43,7 +43,7 @@ db.connect().then(async client => {
     throw new Error('opsy error from the error middleware');
   }
 });
-
+ */
 // routing
 app.get('/', (_req: Request, res: Response) => {
   res.status(200).json({

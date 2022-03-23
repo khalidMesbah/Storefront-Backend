@@ -68,8 +68,12 @@ Authorization: Bearer {{user_token}}
 GET http://localhost:3000/api/products
 Authorization: Bearer {{user_token}}
 
-### get a specific product with id => show
+### get a specific product with uuid => show
 GET http://localhost:3000/api/products/{{product_uuid}}
+Authorization: Bearer {{user_token}}
+
+### get all products by category
+GET http://localhost:3000/api/products/indexByCategory/vegetables
 Authorization: Bearer {{user_token}}
 
 ### add a product
@@ -83,10 +87,6 @@ Content-Type: application/json
   "category":"vegetables"
 }
 
-### delete a product
-DELETE http://localhost:3000/api/products/{{product_uuid}}
-Authorization: Bearer {{user_token}}
-
 ### update a product using put http request
 PUT http://localhost:3000/api/products/{{product_uuid}}
 Authorization: Bearer {{user_token}}
@@ -97,6 +97,7 @@ Content-Type: application/json
   "price":1152,
   "category":"vegetables"
 }
+
 ### update a product using patch http request
 PATCH http://localhost:3000/api/products/{{product_uuid}}
 Authorization: Bearer {{user_token}}
@@ -108,8 +109,8 @@ Content-Type: application/json
   "category":"fruits"
 }
 
-### get all products by category
-GET http://localhost:3000/api/products/indexByCategory/vegetables
+### delete a product
+DELETE http://localhost:3000/api/products/{{product_uuid}}
 Authorization: Bearer {{user_token}}
 
 ########ORDERS######ORDERS########ORDERS##############ORDERS######ORDERS########ORDERS######
