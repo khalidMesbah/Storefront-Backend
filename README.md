@@ -8,7 +8,7 @@ Advanced Full-Stack Web Development Nanodegree Program - Building an API with Po
 - PostgreSQL is object-relational database management system.
 
 - A detailed list of the endpoints and actions available can be found in the [REQUIREMENTS.md](REQUIREMENTS.md) file.
-  - You can test them alive in the [request.res](request.rest) file.
+  - You can test them alive in the [request.rest](request.rest) file.
     - download REST Client Extention => id: humao.rest-client.
     - Tap on `Send Request` button above every endpoint.
     - You're Welcome 🤝.
