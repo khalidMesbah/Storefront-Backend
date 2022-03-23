@@ -26,7 +26,7 @@ export class Dashboard {
     try {
       const conn = await Client.connect();
       const sql =
-        'SELECT name, price FROM products ORDER BY price DESC LIMIT ($1);';
+        'SELECT name,price FROM products GROUP BY name,price order By 2 DESC LIMIT ($1);';
       const result = await conn.query(sql, [limit]);
       conn.release();
       return result.rows;

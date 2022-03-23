@@ -64,12 +64,19 @@ class Controller {
 
   addProduct = async (req: Request, res: Response, next: NextFunction) => {
     try {
-      const result = await controller.addProduct(
-        req.body.quantity,
-        req.params.uuid,
-        req.body.product_id_FK
-      );
-      res.json(result);
+      const orderStatus = await controller.show(req.params.uuid);
+      if (orderStatus.status === 'active') {
+        const result = await controller.addProduct(
+          req.body.quantity,
+          req.params.uuid,
+          req.body.product_id_FK
+        );
+        res.json(result);
+      } else {
+        res.json(
+          'sorry you can not add a new product because the order is completed'
+        );
+      }
     } catch (error) {
       next(error);
     }

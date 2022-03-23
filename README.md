@@ -9,16 +9,13 @@ Advanced Full-Stack Web Development Nanodegree Program - Building an API with Po
 
 - A detailed list of the endpoints and actions available can be found in the REQUIREMENTS.md file.
 
-> ## Functionalities - Features
+> ## More
 - Connected to a Postgres database.
-- RESTful API that supports CRUD for all entities in the database
-- Perform CRUD operations on a database.
-- Implemented RESTful API structure.
+- RESTful API that supports CRUD for all entities in the database.
 - Created Express functions for incoming requests.
 - Organized Express routes into handlers.
 - Mapped RESTful routes to model methods.
 - Added endpoint tests.
-- Create a Postgres database with PostgreSQL.
 - Available to public using CORS.
 - Secure.
 - Password are stored hashed using bcrypt package.
@@ -27,11 +24,39 @@ Advanced Full-Stack Web Development Nanodegree Program - Building an API with Po
 - Allow usrs to login and register.
 - Require users to be signed in to perform certain actions.
 - Allow users to create orders and add products to orders.
-- Make crud operations to the database using a node.js API.
 - Added a cart.
 - Every user can only update the data of himself.
 - list the most common products/orders and limit the number of responses.
-
+> ## Functionalities - Features
+- users
+  - add a user
+  - get all the users
+  - get a specific user with uuid
+  - update a user
+  - authenticate a user
+  - delete a user
+- products
+  - add a product
+  - get all the products
+  - get a specific product with uuid
+  - get all products by category
+  - update a product
+  - delete a product
+- orders
+  - add an order
+  - get all of the orders
+  - get a specific order
+  - update a specific order
+  - add a product to a specific order
+  - get all prodcuts of a specific order
+  - delete a specific order
+- dashboard
+  - get all products that have been included in orders
+  - get all users that have made orders
+  - get the <number> most expensive products
+  - get the most popular products
+  - get the current order for a user
+  - get the completed orders for a user
 
 > ## How to setup and connect to the database - Databases Configurations
 > > We are using PostgreSQL as our object-relational database management system to deal with and manipulate databases.

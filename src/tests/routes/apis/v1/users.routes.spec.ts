@@ -7,34 +7,35 @@ describe('<=======test===***users***===routes=======>', () => {
   let user_uuid: string;
 
   it('test POST /api/users endpoint : add a user ', async () => {
-    const response = await request.post('/api/users').send({
+    const res = await request.post('/api/users').send({
       first_name: 'Khalid',
       last_name: 'Mesbah',
       password: 'passme',
     });
-    user_token = response.body;
-    expect(response.status).toBe(200);
+    expect(res.status).toBe(200);
+    user_token = res.body;
   });
 
   it('test GET /api/users endpoint : get all users ', async () => {
-    const response = await request
+    const res = await request
       .get('/api/users')
       .set('Authorization', 'Bearer ' + user_token);
-    user_uuid = response.body[0].users_id_pk;
-    expect(response.status).toBe(200);
-    expect(response.body[0]).toEqual({
-      users_id_pk: response.body[0].users_id_pk,
+    expect(res.status).toBe(200);
+    user_uuid = res.body[0].users_id_pk;
+    expect(res.body[0]).toEqual({
+      users_id_pk: res.body[0].users_id_pk,
       first_name: 'Khalid',
       last_name: 'Mesbah',
     });
   });
 
   it('test GET /api/users/:uuid : get a specific user', async () => {
-    const response = await request
+    const res = await request
       .get(`/api/users/${user_uuid}`)
       .set('Authorization', 'Bearer ' + user_token);
-    expect(response.body).toEqual({
-      users_id_pk: response.body.users_id_pk,
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      users_id_pk: res.body.users_id_pk,
       first_name: 'Khalid',
       last_name: 'Mesbah',
       theRecentPurchases: [],
@@ -42,7 +43,7 @@ describe('<=======test===***users***===routes=======>', () => {
   });
 
   it('test PUT /api/users/:uuid : update a specific user', async () => {
-    const response = await request
+    const res = await request
       .put(`/api/users/${user_uuid}`)
       .set('Authorization', 'Bearer ' + user_token)
       .send({
@@ -50,18 +51,19 @@ describe('<=======test===***users***===routes=======>', () => {
         last_name: 'sebaq',
         password: 'secret_password',
       });
-    user_token = response.body.newtoken;
-    expect(response.body).toEqual({
-      users_id_pk: response.body.users_id_pk,
+    expect(res.status).toBe(200);
+    user_token = res.body.newtoken;
+    expect(res.body).toEqual({
+      users_id_pk: res.body.users_id_pk,
       first_name: 'loda',
       last_name: 'sebaq',
-      password: response.body.password,
-      newtoken: response.body.newtoken,
+      password: res.body.password,
+      newtoken: res.body.newtoken,
     });
   });
 
   it('test PATCH /api/users/:uuid : update a specific user', async () => {
-    const response = await request
+    const res = await request
       .patch(`/api/users/${user_uuid}`)
       .set('Authorization', 'Bearer ' + user_token)
       .send({
@@ -69,43 +71,47 @@ describe('<=======test===***users***===routes=======>', () => {
         last_name: 'Mesbah',
         password: 'new_secret_password',
       });
-    user_token = response.body.newtoken;
-    expect(response.body).toEqual({
-      users_id_pk: response.body.users_id_pk,
+    expect(res.status).toBe(200);
+    user_token = res.body.newtoken;
+    expect(res.body).toEqual({
+      users_id_pk: res.body.users_id_pk,
       first_name: 'Khalid',
       last_name: 'Mesbah',
-      password: response.body.password,
-      newtoken: response.body.newtoken,
+      password: res.body.password,
+      newtoken: res.body.newtoken,
     });
   });
 
   it('test GET /api/users/:uuid using PATCH: authenticate a specific user', async () => {
-    const response = await request.get(`/api/users/auth/${user_uuid}`).send({
+    const res = await request.get(`/api/users/auth/${user_uuid}`).send({
       password: 'new_secret_password',
     });
-    expect(response.body).toEqual({
-      users_id_pk: response.body.users_id_pk,
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      users_id_pk: res.body.users_id_pk,
       first_name: 'Khalid',
       last_name: 'Mesbah',
-      password: response.body.password,
+      password: res.body.password,
     });
   });
 
   it('test DELETE /api/users/:uuid : delete a specific user', async () => {
-    const response = await request
+    const res = await request
       .delete(`/api/users/${user_uuid}`)
       .set('Authorization', 'Bearer ' + user_token);
-    expect(response.body).toEqual({
-      users_id_pk: response.body.users_id_pk,
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
+      users_id_pk: res.body.users_id_pk,
       first_name: 'Khalid',
       last_name: 'Mesbah',
     });
   });
 
   it("test GET /api/users/:uuid : can't get a specific user because it has been deleted", async () => {
-    const response = await request
+    const res = await request
       .get(`/api/users/${user_uuid}`)
       .set('Authorization', 'Bearer ' + user_token);
-    expect(response.body).toEqual("the user doesn't exist");
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual("the user doesn't exist");
   });
 });

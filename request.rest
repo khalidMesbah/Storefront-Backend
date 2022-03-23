@@ -1,29 +1,25 @@
 ########USERS######USERS########USERS##############USERS######USERS########USERS######
 ########USERS######USERS########USERS##############USERS######USERS########USERS######
 ########USERS######USERS########USERS##############USERS######USERS########USERS######
-# @user_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJzX2lkX3BrIjoiZGYyNDc1ZmUtYjJmNi00MWFhLWI3OTUtODg4YWIxNmE5NmVkIiwiZmlyc3RfbmFtZSI6InBhcGEiLCJsYXN0X25hbWUiOiJtZXNiYWgiLCJwYXNzd29yZCI6IiQyYiQxMCRaaDhNaFAudFo0OHJLcjJtWUJRLzFPeDhQNllJQS5DTHlpMTN4RTZCSGh0SS9OR1BWQUdnUyJ9LCJpYXQiOjE2NDc5Mzc3Njd9.MM-7VLWI8K58V3WO7-r8yQNFG13NhsZ0oPRL8CGvFrY
-@user_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJzX2lkX3BrIjoiYTQwNzFkMzQtNDE3My00ZDIxLTlkNWMtNzBmMmViYjUwMzI2IiwiZmlyc3RfbmFtZSI6ImtoYWxpZCIsImxhc3RfbmFtZSI6Im1lc2JhaCIsInBhc3N3b3JkIjoiJDJiJDEwJC9jSHIxQVVDZXp0Q1RLaVJuczZ3bGVOMm9FTXNRRURoRC54Q0lNV3NMcFFGSGRPVEQ2M0JPIn0sImlhdCI6MTY0ODAzNDcxMX0.onh1tbXRuMJOUxxfMy5uubFfjF-vhvXNuzuqe1tdiaQ
-
-# @user_uuid=8d736d19-c7ac-4d72-9ba2-965b18ad1578
-@user_uuid=a4071d34-4173-4d21-9d5c-70f2ebb50326
+@user_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJzX2lkX3BrIjoiZWU4Y2ZkZjEtZWJmNi00NzgzLWE5ZGEtNDJhMmQ2ZDU5NjU2IiwiZmlyc3RfbmFtZSI6IktoYWxpZCIsImxhc3RfbmFtZSI6Ik1lc2JhaCIsInBhc3N3b3JkIjoiJDJiJDEwJGkucUtXaXFTd0xvdzN2M1p5ZndEWGVVVU5kb28yN0RKRkU3RnphYlBvZVV6NlNYVG5NNTZ1In0sImlhdCI6MTY0ODAzOTYyMn0.m2PGQ5Leb4GcwBsWGSIB-c1xTGr06f6dzxNWbBWG7mE
+@user_uuid=ee8cfdf1-ebf6-4783-a9da-42a2d6d59656
 
 ### get all the users
 GET http://localhost:3000/api/users
 Authorization: Bearer {{user_token}}
 
-### get a specific user with id
+### get a specific user with uuid
 GET http://localhost:3000/api/users/{{user_uuid}}
 Authorization: Bearer {{user_token}}
-
 
 ### add a user
 POST http://localhost:3000/api/users
 Content-Type: application/json
 
 {
-  "first_name": "khalid",
-  "last_name": "mesbah",
-  "password": "passme"
+  "first_name": "Khalid",
+  "last_name": "Mesbah",
+  "password": "my_secret_password"
 }
 
 ### update a user using put request 
@@ -53,7 +49,7 @@ GET http://localhost:3000/api/users/auth/{{user_uuid}}
 Content-Type: application/json
 
 {
-  "password": "passme"
+  "password": "my_secret_password"
 }
 
 ### delete a user
@@ -63,7 +59,7 @@ Authorization: Bearer {{user_token}}
 ########PRODUCTS######PRODUCTS########PRODUCTS##############PRODUCTS######PRODUCTS########PRODUCTS######
 ########PRODUCTS######PRODUCTS########PRODUCTS##############PRODUCTS######PRODUCTS########PRODUCTS######
 ########PRODUCTS######PRODUCTS########PRODUCTS##############PRODUCTS######PRODUCTS########PRODUCTS######
-@product_uuid=6f4377d6-36de-4cfd-b7cf-23d918916ca0
+@product_uuid=29e4f2ca-d0ba-44b7-875b-ca488a253886
 ### get all the products => index
 GET http://localhost:3000/api/products
 Authorization: Bearer {{user_token}}
@@ -82,9 +78,9 @@ Authorization: Bearer {{user_token}}
 Content-Type: application/json
 
 {
-  "name": "osama",
-  "price":15,
-  "category":"vegetables"
+  "name": "apples",
+  "price":115,
+  "category":"fruits"
 }
 
 ### update a product using put http request
@@ -105,7 +101,7 @@ Content-Type: application/json
 
 {
   "name": "cucamber",
-  "price":15,
+  "price":115,
   "category":"fruits"
 }
 
@@ -117,7 +113,7 @@ Authorization: Bearer {{user_token}}
 ########ORDERS######ORDERS########ORDERS##############ORDERS######ORDERS########ORDERS######
 ########ORDERS######ORDERS########ORDERS##############ORDERS######ORDERS########ORDERS######
 
-@order_uuid=15674de1-1d24-4251-b305-2da7e20f9250
+@order_uuid=9b726683-ed16-4ee6-905d-f92e58ca8a60
 ### get all of the orders
 GET http://localhost:3000/api/orders
 Authorization: Bearer {{user_token}}
@@ -160,11 +156,11 @@ Authorization: Bearer {{user_token}}
 Content-Type: application/json
 
 {
-  "quantity": 15,
+  "quantity": 2222,
   "product_id_FK": "{{product_uuid}}"
 }
 
-### get all prodcuts for a specific order 
+### get all prodcuts of a specific order 
 GET http://localhost:3000/api/orders/{{order_uuid}}/products
 Authorization: Bearer {{user_token}}
 

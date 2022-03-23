@@ -4,7 +4,7 @@ import express, { Request, Response, Application } from 'express';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import errorMiddleware from './middlewares/error.middleware';
-import db from './databases/database';
+// import db from './databases/database';
 import routes from './routes';
 import cors from 'cors';
 import env from './middlewares/config';

@@ -10,18 +10,18 @@ describe('<=======test===***products***===routes=======>', () => {
   let product_uuid_2: string;
 
   it('test POST /api/users endpoint : add a user ', async () => {
-    const response = await request.post('/api/users').send({
+    const res = await request.post('/api/users').send({
       first_name: 'Khalid',
       last_name: 'Mesbah',
       password: 'passme',
     });
-    user_token = response.body;
-    expect(response.status).toBe(200);
+    expect(res.status).toBe(200);
+    user_token = res.body;
   });
 
   it('test POST /api/products endpoint : add two products ', async () => {
     // product 1
-    const response = await request
+    const res = await request
       .post('/api/products')
       .set('Authorization', 'Bearer ' + user_token)
       .send({
@@ -29,16 +29,16 @@ describe('<=======test===***products***===routes=======>', () => {
         price: 115,
         category: 'vegetables',
       });
-    product_uuid_1 = response.body.products_id_pk;
-    expect(response.body).toEqual({
+    expect(res.status).toBe(200);
+    product_uuid_1 = res.body.products_id_pk;
+    expect(res.body).toEqual({
       products_id_pk: product_uuid_1,
       name: 'cucamber',
       price: 115,
       category: 'vegetables',
     });
-    expect(response.status).toBe(200);
     // product 2
-    const response2 = await request
+    const res2 = await request
       .post('/api/products')
       .set('Authorization', 'Bearer ' + user_token)
       .send({
@@ -46,22 +46,22 @@ describe('<=======test===***products***===routes=======>', () => {
         price: 231,
         category: 'fruits',
       });
-    product_uuid_2 = response2.body.products_id_pk;
-    expect(response2.body).toEqual({
+    expect(res.status).toBe(200);
+    product_uuid_2 = res2.body.products_id_pk;
+    expect(res2.body).toEqual({
       products_id_pk: product_uuid_2,
       name: 'apple',
       price: 231,
       category: 'fruits',
     });
-    expect(response2.status).toBe(200);
   });
 
   it('test GET /api/products endpoint : get all products ', async () => {
-    const response = await request
+    const res = await request
       .get('/api/products')
       .set('Authorization', 'Bearer ' + user_token);
-    expect(response.status).toBe(200);
-    expect(response.body[0]).toEqual({
+    expect(res.status).toBe(200);
+    expect(res.body[0]).toEqual({
       products_id_pk: product_uuid_1,
       name: 'cucamber',
       price: 115,
@@ -70,11 +70,11 @@ describe('<=======test===***products***===routes=======>', () => {
   });
 
   it('test GET /api/products/:uuid endpoint : get a specific product ', async () => {
-    const response = await request
+    const res = await request
       .get(`/api/products/${product_uuid_1}`)
       .set('Authorization', 'Bearer ' + user_token);
-    expect(response.status).toBe(200);
-    expect(response.body).toEqual({
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
       products_id_pk: product_uuid_1,
       name: 'cucamber',
       price: 115,
@@ -83,15 +83,11 @@ describe('<=======test===***products***===routes=======>', () => {
   });
 
   it('test GET /api/products/indexByCategory/:category endpoint : get all products by category ', async () => {
-    const response = await request
+    const res = await request
       .get(`/api/products/indexByCategory/vegetables`)
       .set('Authorization', 'Bearer ' + user_token);
-    const response2 = await request
-      .get(`/api/products/indexByCategory/fruits`)
-      .set('Authorization', 'Bearer ' + user_token);
-    expect(response.status).toBe(200);
-    expect(response2.status).toBe(200);
-    expect(response.body).toEqual([
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual([
       {
         products_id_pk: product_uuid_1,
         name: 'cucamber',
@@ -99,7 +95,11 @@ describe('<=======test===***products***===routes=======>', () => {
         category: 'vegetables',
       },
     ]);
-    expect(response2.body).toEqual([
+    const res2 = await request
+      .get(`/api/products/indexByCategory/fruits`)
+      .set('Authorization', 'Bearer ' + user_token);
+    expect(res2.status).toBe(200);
+    expect(res2.body).toEqual([
       {
         products_id_pk: product_uuid_2,
         name: 'apple',
@@ -110,7 +110,7 @@ describe('<=======test===***products***===routes=======>', () => {
   });
 
   it('test PUT /api/products/:uuid : update a specific product', async () => {
-    const response = await request
+    const res = await request
       .put(`/api/products/${product_uuid_1}`)
       .set('Authorization', 'Bearer ' + user_token)
       .send({
@@ -118,8 +118,8 @@ describe('<=======test===***products***===routes=======>', () => {
         price: 123,
         category: 'vegetables',
       });
-    expect(response.status).toBe(200);
-    expect(response.body).toEqual({
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
       products_id_pk: product_uuid_1,
       name: 'tomatos',
       price: 123,
@@ -128,7 +128,7 @@ describe('<=======test===***products***===routes=======>', () => {
   });
 
   it('test PATCH /api/products/:uuid : update a specific product', async () => {
-    const response = await request
+    const res = await request
       .put(`/api/products/${product_uuid_2}`)
       .set('Authorization', 'Bearer ' + user_token)
       .send({
@@ -136,8 +136,8 @@ describe('<=======test===***products***===routes=======>', () => {
         price: 321,
         category: 'fruits',
       });
-    expect(response.status).toBe(200);
-    expect(response.body).toEqual({
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
       products_id_pk: product_uuid_2,
       name: 'bananas',
       price: 321,
@@ -146,10 +146,11 @@ describe('<=======test===***products***===routes=======>', () => {
   });
 
   it('test DELETE /api/products/:uuid : delete a specific product', async () => {
-    const response = await request
+    const res = await request
       .delete(`/api/products/${product_uuid_2}`)
       .set('Authorization', 'Bearer ' + user_token);
-    expect(response.body).toEqual({
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual({
       products_id_pk: product_uuid_2,
       name: 'bananas',
       price: 321,
@@ -158,10 +159,11 @@ describe('<=======test===***products***===routes=======>', () => {
   });
 
   it("test GET /api/products/:uuid : can't get a specific product because it has been deleted", async () => {
-    const response = await request
+    const res = await request
       .get(`/api/products/${product_uuid_2}`)
       .set('Authorization', 'Bearer ' + user_token);
-    expect(response.body).toEqual("The product doesn't exist");
+    expect(res.status).toBe(200);
+    expect(res.body).toEqual("The product doesn't exist");
   });
 
   afterAll(async () => {
