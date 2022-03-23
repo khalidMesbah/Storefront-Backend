@@ -19,7 +19,8 @@ describe('<=======test===***products***===routes=======>', () => {
     expect(response.status).toBe(200);
   });
 
-  it('test POST /api/products endpoint : add a product ', async () => {
+  it('test POST /api/products endpoint : add two products ', async () => {
+    // product 1
     const response = await request
       .post('/api/products')
       .set('Authorization', 'Bearer ' + user_token)
@@ -28,6 +29,15 @@ describe('<=======test===***products***===routes=======>', () => {
         price: 115,
         category: 'vegetables',
       });
+    product_uuid_1 = response.body.products_id_pk;
+    expect(response.body).toEqual({
+      products_id_pk: product_uuid_1,
+      name: 'cucamber',
+      price: 115,
+      category: 'vegetables',
+    });
+    expect(response.status).toBe(200);
+    // product 2
     const response2 = await request
       .post('/api/products')
       .set('Authorization', 'Bearer ' + user_token)
@@ -36,13 +46,14 @@ describe('<=======test===***products***===routes=======>', () => {
         price: 231,
         category: 'fruits',
       });
-    product_uuid_1 = JSON.parse(
-      [...JSON.stringify(response.body).split(':')][1].split(',')[0]
-    );
-    product_uuid_2 = JSON.parse(
-      [...JSON.stringify(response2.body).split(':')][1].split(',')[0]
-    );
-    expect(response.status).toBe(200);
+    product_uuid_2 = response2.body.products_id_pk;
+    expect(response2.body).toEqual({
+      products_id_pk: product_uuid_2,
+      name: 'apple',
+      price: 231,
+      category: 'fruits',
+    });
+    expect(response2.status).toBe(200);
   });
 
   it('test GET /api/products endpoint : get all products ', async () => {
@@ -98,7 +109,7 @@ describe('<=======test===***products***===routes=======>', () => {
     ]);
   });
 
-  it('test PUT /api/products/:uuid : update a specific user', async () => {
+  it('test PUT /api/products/:uuid : update a specific product', async () => {
     const response = await request
       .put(`/api/products/${product_uuid_1}`)
       .set('Authorization', 'Bearer ' + user_token)
@@ -116,7 +127,7 @@ describe('<=======test===***products***===routes=======>', () => {
     });
   });
 
-  it('test PATCH /api/products/:uuid : update a specific user', async () => {
+  it('test PATCH /api/products/:uuid : update a specific product', async () => {
     const response = await request
       .put(`/api/products/${product_uuid_2}`)
       .set('Authorization', 'Bearer ' + user_token)

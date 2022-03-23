@@ -2,10 +2,10 @@
 ########USERS######USERS########USERS##############USERS######USERS########USERS######
 ########USERS######USERS########USERS##############USERS######USERS########USERS######
 # @user_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJzX2lkX3BrIjoiZGYyNDc1ZmUtYjJmNi00MWFhLWI3OTUtODg4YWIxNmE5NmVkIiwiZmlyc3RfbmFtZSI6InBhcGEiLCJsYXN0X25hbWUiOiJtZXNiYWgiLCJwYXNzd29yZCI6IiQyYiQxMCRaaDhNaFAudFo0OHJLcjJtWUJRLzFPeDhQNllJQS5DTHlpMTN4RTZCSGh0SS9OR1BWQUdnUyJ9LCJpYXQiOjE2NDc5Mzc3Njd9.MM-7VLWI8K58V3WO7-r8yQNFG13NhsZ0oPRL8CGvFrY
-@user_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJzX2lkX3BrIjoiNGNjMTAxZTMtM2JjYi00NTJlLTgyNmYtMDliY2MzMTFkM2UxIiwiZmlyc3RfbmFtZSI6ImtoYWxpZCIsImxhc3RfbmFtZSI6Im1lc2JhaCIsInBhc3N3b3JkIjoiJDJiJDEwJHdZRWt2RmFmZ2JEaVBadkFIQnJDbC4zbjNRdkE1TGVhRHRXNXA0L0d4c3NyUTVBTElucGVHIn0sImlhdCI6MTY0Nzk4NzE1OH0.rvrrLfja2lETI0AWdHps6yU7rM9hHLvVROqWNV0G_OE
+@user_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJzX2lkX3BrIjoiYTQwNzFkMzQtNDE3My00ZDIxLTlkNWMtNzBmMmViYjUwMzI2IiwiZmlyc3RfbmFtZSI6ImtoYWxpZCIsImxhc3RfbmFtZSI6Im1lc2JhaCIsInBhc3N3b3JkIjoiJDJiJDEwJC9jSHIxQVVDZXp0Q1RLaVJuczZ3bGVOMm9FTXNRRURoRC54Q0lNV3NMcFFGSGRPVEQ2M0JPIn0sImlhdCI6MTY0ODAzNDcxMX0.onh1tbXRuMJOUxxfMy5uubFfjF-vhvXNuzuqe1tdiaQ
 
 # @user_uuid=8d736d19-c7ac-4d72-9ba2-965b18ad1578
-@user_uuid=4cc101e3-3bcb-452e-826f-09bcc311d3e1
+@user_uuid=a4071d34-4173-4d21-9d5c-70f2ebb50326
 
 ### get all the users
 GET http://localhost:3000/api/users
@@ -63,7 +63,7 @@ Authorization: Bearer {{user_token}}
 ########PRODUCTS######PRODUCTS########PRODUCTS##############PRODUCTS######PRODUCTS########PRODUCTS######
 ########PRODUCTS######PRODUCTS########PRODUCTS##############PRODUCTS######PRODUCTS########PRODUCTS######
 ########PRODUCTS######PRODUCTS########PRODUCTS##############PRODUCTS######PRODUCTS########PRODUCTS######
-@product_uuid=c796ea1f-cea7-4717-9378-7940ab99624b
+@product_uuid=6f4377d6-36de-4cfd-b7cf-23d918916ca0
 ### get all the products => index
 GET http://localhost:3000/api/products
 Authorization: Bearer {{user_token}}
@@ -117,7 +117,7 @@ Authorization: Bearer {{user_token}}
 ########ORDERS######ORDERS########ORDERS##############ORDERS######ORDERS########ORDERS######
 ########ORDERS######ORDERS########ORDERS##############ORDERS######ORDERS########ORDERS######
 
-@order_uuid=a75e3bad-360a-4b3b-a0db-2885dee5ea5d
+@order_uuid=15674de1-1d24-4251-b305-2da7e20f9250
 ### get all of the orders
 GET http://localhost:3000/api/orders
 Authorization: Bearer {{user_token}}
@@ -154,19 +154,20 @@ Content-Type: application/json
   "status":"active"
 }
 
-### get all prodcuts for a specific order 
-GET http://localhost:3000/api/orders/{{order_uuid}}/products
-Authorization: Bearer {{user_token}}
-
 ### add a product to a specific order
 POST http://localhost:3000/api/orders/{{order_uuid}}/products
 Authorization: Bearer {{user_token}}
 Content-Type: application/json
 
 {
-  "quantity": 1,
+  "quantity": 15,
   "product_id_FK": "{{product_uuid}}"
 }
+
+### get all prodcuts for a specific order 
+GET http://localhost:3000/api/orders/{{order_uuid}}/products
+Authorization: Bearer {{user_token}}
+
 ### delete a specific order
 DELETE http://localhost:3000/api/orders/{{order_uuid}}
 Authorization: Bearer {{user_token}}
