@@ -8,7 +8,7 @@ import routes from './routes';
 import cors from 'cors';
 import env from './configs/config';
 
-const app: Application = express();
+const app: Application = express(); // create an instance of the server
 const PORT = env.port || 3000;
 
 app.use(cors()); // to make our api puclic to the universe
@@ -19,15 +19,13 @@ app.use(morgan('dev')); // http request logger middleware
 
 app.use(helmet()); // http security middleware
 
-app.use(errorMiddleware); // to handle errors inside the valid pathes
-
 app.use(
   rateLimit({
     windowMs: 10 * 60 * 1000, // 10 minutes
     max: 200, // Limit each IP to 10 requests per `window` (here, per 15 minutes)
     standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
     legacyHeaders: false, // Disable the `X-RateLimit-*` headers
-    message: 'too many requests from this ip,try again after a 10 minutes',
+    message: 'too many requests from this ip,try again after 10 minutes',
   })
 ); // a middleware for limiting the number of requests
 
@@ -39,7 +37,7 @@ db.connect().then(async client => {
     console.log(res.rows);
     return res;
   } catch (err) {
-    throw new Error('opsy error from the error middleware');
+    throw new Error('the database is not working' + err);
   }
 });
 
@@ -57,6 +55,8 @@ app.use((_req: Request, res: Response) => {
     message: 'wrong path, focus please!!',
   });
 }); // for handling the errors due to wrong pathes
+
+app.use(errorMiddleware); // to handle errors inside the valid pathes
 
 app.listen(PORT, () => {
   console.log(`the server is running on => http://localhost:${PORT}`);

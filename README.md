@@ -33,21 +33,22 @@ Advanced Full-Stack Web Development Nanodegree Program - Building an API with Po
 - list the most common products/orders and limit the number of responses.
 ---
 > ## Functionalities - Features
-- users
+- `users`
   - add a user
   - get all the users
   - get a specific user with uuid
   - update a user
+    - Add a users 5 most recent purchases to the data being sent back from the user show endpoint (/users/uuid)
   - authenticate a user
   - delete a user
-- products
+- `products`
   - add a product
   - get all the products
   - get a specific product with uuid
   - get all products by category
   - update a product
   - delete a product
-- orders
+- `orders`
   - add an order
   - get all of the orders
   - get a specific order
@@ -55,7 +56,7 @@ Advanced Full-Stack Web Development Nanodegree Program - Building an API with Po
   - add a product to a specific order
   - get all prodcuts of a specific order
   - delete a specific order
-- dashboard
+- `dashboard`
   - get all products that have been included in orders
   - get all users that have made orders
   - get the # most expensive products
@@ -201,11 +202,3 @@ Usually i run them on the following ports:-
 - Supertest : for testing the api
 - node : for coding the logic.
 - nodemon : for auto running the server. 
----
-> # Suggestions to Make Your Project Stand Out!
-- [x] In addition to the endpoints required in the project, add any missing CRUD endpoints with authentication if needed for that data
-- [x] Add a users 5 most recent purchases to the data being sent back from the user show endpoint (/users/id)
-- [x] Add a popular products endpoint that sends back the 5 most commonly ordered items
-- [x] [OPTIONAL] Products by category (args: product category)
-- [x] [OPTIONAL] Top 5 most popular products 
-- [x] [OPTIONAL] Completed Orders by user (args: user id)[token required]

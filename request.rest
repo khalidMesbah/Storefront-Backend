@@ -1,8 +1,8 @@
 ########USERS######USERS########USERS##############USERS######USERS########USERS######
 ########USERS######USERS########USERS##############USERS######USERS########USERS######
 ########USERS######USERS########USERS##############USERS######USERS########USERS######
-@user_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7InVzZXJzX2lkX3BrIjoiYzE3MzI1MmMtZWM4YS00MTdjLTg0OTMtZDE4YzJlNjQwZGE2IiwiZmlyc3RfbmFtZSI6IktoYWxpZCIsImxhc3RfbmFtZSI6Ik1lc2JhaCIsInBhc3N3b3JkIjoiJDJiJDEwJG5wMTBxaC5jZGEwaXk1MndYYUl2dC5zQnYwL1BvdjI4UXVwWmRrUHFBTlVQOVlNL0lrQU5xIn0sImlhdCI6MTY0ODA2MTk0Nn0.gULhX0QdLtl2W4yEUFx_L0vKkqz9hPYDsHSEvIcEt3c
-@user_uuid=c173252c-ec8a-417c-8493-d18c2e640da6
+@user_token=###
+@user_uuid=###
 
 ### get all the users
 GET http://localhost:3000/api/users
@@ -59,7 +59,7 @@ Authorization: Bearer {{user_token}}
 ########PRODUCTS######PRODUCTS########PRODUCTS##############PRODUCTS######PRODUCTS########PRODUCTS######
 ########PRODUCTS######PRODUCTS########PRODUCTS##############PRODUCTS######PRODUCTS########PRODUCTS######
 ########PRODUCTS######PRODUCTS########PRODUCTS##############PRODUCTS######PRODUCTS########PRODUCTS######
-@product_uuid=66a48d76-47f9-44aa-96ab-208b2cb5075a
+@product_uuid=###
 ### get all the products => index
 GET http://localhost:3000/api/products
 Authorization: Bearer {{user_token}}
@@ -113,7 +113,7 @@ Authorization: Bearer {{user_token}}
 ########ORDERS######ORDERS########ORDERS##############ORDERS######ORDERS########ORDERS######
 ########ORDERS######ORDERS########ORDERS##############ORDERS######ORDERS########ORDERS######
 
-@order_uuid=7cf3d60d-cfb0-4e5f-b262-ba3bc9aab652
+@order_uuid=###
 ### get all of the orders
 GET http://localhost:3000/api/orders
 Authorization: Bearer {{user_token}}

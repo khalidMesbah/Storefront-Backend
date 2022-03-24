@@ -4,7 +4,7 @@ The company stakeholders want to create an online storefront to showcase their g
 These are the notes from a meeting with the frontend developer that describe what endpoints the API needs to supply, as well as data shapes the frontend and backend have agreed meet the requirements of the application. 
 
 > ## API Endpoints
-> To try the endpoints install the REST Client Extentions and run the requests in the request.rest file.
+> To try the endpoints install the REST Client Extentions and run the requests in the [request.rest](request.rest) file.
 ### ***Users Routes***
 
 `Index` [token required] : get all the users.
@@ -315,7 +315,7 @@ store_dev=# SELECT * FROM orders;
 ```
 
 ### ***order_products Schema*** 
-The order_products junction table : for the many to many relationship between orders and products tables
+The order_products junction table : for the one  to many relationship between orders and products tables
 - [x] order_products_id_PK
 - [x] quantity : the quantity of each product in the order
 - [x] order_id_FK : the uuid of the order

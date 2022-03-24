@@ -5,12 +5,12 @@ const errorMiddleware = (
   error: Error,
   _req: Request,
   res: Response,
-  _next: NextFunction
+  next: NextFunction
 ) => {
-  res.status(error.status || 500).json({
-    status: error.status || 500,
-    message: error.message || 'oooopppsss something went wrong!!',
-  });
+  const status = error.status || 500;
+  const message = error.message || `oooopppsss something went wrong!!`;
+  res.status(status).json({ status, message });
+  next();
 };
 
 export default errorMiddleware;
