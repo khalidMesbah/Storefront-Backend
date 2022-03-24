@@ -5,7 +5,7 @@ Advanced Full-Stack Web Development Nanodegree Program - Building an API with Po
 
 - The API offers several endpoints to access and manipulate data in a Postgres database through both CRUD and custom actions.
 
-- PostgreSQL is object-relational database management system.
+- PostgreSQL is the object-relational database management system.
 
 - A detailed list of the endpoints and actions available can be found in the [REQUIREMENTS.md](REQUIREMENTS.md) file.
   - You can test them alive in the [request.rest](request.rest) file.
