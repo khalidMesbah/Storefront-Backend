@@ -20,12 +20,12 @@ Advanced Full-Stack Web Development Nanodegree Program - Building an API with Po
 - Created Express functions for incoming requests.
 - Mapped RESTful routes to model methods.
 - Added endpoint tests.
-- Available to public using CORS.
+- Available to the public using CORS.
 - Secure.
-- Password are stored hashed using bcrypt package.
+- Passwords are stored hashed using the bcrypt package.
 - Allow products to be created and stored in a database.
 - Allow users to sign up and sign in.
-- Allow usrs to login and register.
+- Allow users to login and register.
 - Require users to be signed in to perform certain actions.
 - Allow users to create orders and add products to orders.
 - Added a cart.
